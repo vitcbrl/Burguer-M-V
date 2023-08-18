@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import {Router} from '@angular/router';
-import { AuthService } from '../services/authentication.service';
+import { Component} from '@angular/core';
+import { Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -13,24 +13,34 @@ export class LoginComponent {
   errorLogin: boolean = false;
   errorMessage: string = '';
 
-  constructor(private authService: AuthService , private router: Router) {}
-  login(){
-    this.authService.login(this.email, this.password).subscribe(
-      result => {
-        if(result){
-          this.router.navigate(["aqui fica a rota do meu componente de menu"])
-        }else{
-          this.errorLogin = true;
-          this.errorMessage = 'Credencias invalidas';
-          console.log(this.errorMessage)
+  constructor (private router: Router){}
+
+  async login() {
+    /*try {
+      this.errorLogin = false;
+      const isUserLoggedIn = await this.authService.login(this.email, this.password).toPromise();
+      if (isUserLoggedIn) {
+        const userRole = localStorage.getItem('acessRole');
+        const roleRouteMap: { [key: string]: string } = {
+          'service': '/menu',
+          'chefe': '/cozinha',
+          'admin': '/admin'
+        };
+
+        if (userRole !== null && userRole in roleRouteMap) {
+          const targetRoute = roleRouteMap[userRole];
+          this.router.navigate([targetRoute]);
+        } else {
+          throw new Error('Invalid role');
         }
-      },
-      error => {
+      } else {
         this.errorLogin = true;
-        this.errorMessage = 'Ocorreu um erro durante o login';
-        console.log(this.errorMessage)
+        throw new Error('Invalid login');
       }
-    )
+    } catch (error) {
+      console.error('Login error:', error);
+      this.errorLogin = true;
+    }*/
   }
 }
 
