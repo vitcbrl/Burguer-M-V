@@ -14,7 +14,12 @@ import { LoginComponent } from './components/login/login.component';
     BrowserModule,
     AppRoutingModule
   ],
+  exports: [
+    LoginComponent,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+//teste
