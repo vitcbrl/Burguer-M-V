@@ -1,0 +1,259 @@
+.backgroundy {
+    display: flex;
+    position: relative;
+}
+
+.backgroundx {
+    display: none;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgLogo {
+    position: absolute;
+    width: 750px;
+    height: 750px;
+    top: 15px;
+    right: 520px;
+}
+
+.form {
+    top: 190px;
+    right: 100px;
+    position: absolute;
+}
+
+.titulo {
+    color: var(--CorPrimaria);
+    text-align: center;
+    font-size: 1.4rem;
+    font-family: 'Nunito', sans-serif;
+    margin-bottom: 25px;
+}
+
+.inputs-login {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 380px;
+    right: 0px;
+    gap: 10px;
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 0px 12px 0px rgba(28, 28, 28, 0.15);
+    border-radius: 15px;
+    background-color: var(--CorTerciaria);
+    -moz-box-shadow: 0px 0px 12px 0px rgba(28, 28, 28, 0.15);
+    padding: 45px;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(28, 28, 28, 0.15);
+}
+
+.inputs-acess {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.inputs {
+    background: var(--CorTerciaria);
+    border: 0;
+    border-bottom: 1px solid #bababa;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    outline: 0;
+    padding: 7px 10px;
+}
+
+.buttonLogin {
+    margin-top: 40px;
+    margin-left: 70px;
+    width: 150px;
+    height: 40px;
+    right: 50px;
+    border-radius: 5px;
+    background: var(--CorPrimaria);
+    border: 0;
+    color: var(--CorTerciaria);
+    cursor: pointer;
+    font-size: 1em;
+    font-family: 'Prompt', sans-serif;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.buttonLogin:hover {
+    background: var(--CorSecundaria);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.error-message {
+    display: none;
+}
+
+@media screen and (max-width: 1350px) {
+    .imgLogo {
+        left: 140px;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .imgLogo {
+        left: 60px;
+    }
+}
+
+@media screen and (max-width: 1190px) {
+    .imgLogo {
+        left: 10px;
+    }
+}
+
+@media screen and (max-width: 1145px) {
+    .imgLogo {
+        left: -80px;
+    }
+}
+
+@media screen and (max-width: 1030px) {
+    .backgroundy {
+        display: none;
+    }
+
+    .backgroundx {
+        display: flex;
+        position: absolute;
+        width: 100vw;
+    }
+
+    .container {
+        display: flex;
+        align-items:flex-end;
+        justify-content: flex-end;
+    }
+
+    .imgLogo {
+        position: relative;
+        width: 380px;
+        height: 380px;
+        margin-right: 220px;
+    }
+    
+    .form {
+        height: 250px;
+        top: 370px;
+        right: 310px;
+        position: absolute;
+    }
+    
+    .titulo {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+    
+    .inputs-login {
+        width: 380px;
+        height: 300px;
+        bottom: 40px;
+    }
+    
+    .inputs-acess {
+        width: 290px;
+    }
+    
+    .inputs {
+        font-size: 0.8rem;
+    }
+    
+    .buttonLogin {
+        margin-top: 20px;
+        width: 130px;
+        right: 50px;
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 1020px){
+    .imgLogo {
+        width: 380px;
+        height: 380px;
+        margin-right: 120px;
+    }
+    
+    .form {
+        height: 250px;
+        top: 370px;
+        right: 200px;
+        position: absolute;
+    }
+}
+
+@media screen and (max-width: 960px){
+    .form {
+        height: 250px;
+        top: 370px;
+        right: 200px;
+        position: absolute;
+    }
+}
+
+@media screen and (max-width: 675px){
+    .imgLogo {
+        position: absolute;
+        left: 0px;
+        margin-left: 120px;
+    }
+
+    .form {
+        height: 250px;
+        top: 370px;
+        right: 250px;
+        position: absolute;
+        left: 120px;
+    }
+}
+
+@media screen and (max-width: 566px){
+    .backgroundx {
+        width: 550px;
+    }
+
+    .imgLogo {
+        position: absolute;
+        left: 60px;
+        margin-left: 0px;
+    }
+
+    .form {
+        height: 250px;
+        top: 370px;
+        right: 200px;
+        position: absolute;
+        left: 60px;
+    }
+}
+
+@media screen and (max-width: 490px){
+    .backgroundx {
+        width: 550px;
+    }
+
+    .imgLogo {
+        position: absolute;
+        left: 60px;
+        margin-left: 0px;
+    }
+
+    .form {
+        height: 250px;
+        top: 370px;
+        right: 200px;
+        position: absolute;
+        left: 60px;
+    }
+}

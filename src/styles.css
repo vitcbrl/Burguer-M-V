@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt&family=Sunflower:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+
+:root {
+    --CorPrimaria: #641D29;
+    --CorSecundaria: #c83a52;
+    --CorTerciaria: #fff;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
