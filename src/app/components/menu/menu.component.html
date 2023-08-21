@@ -1,1 +1,31 @@
-<p>menu works!!</p>
+<div>
+  <label for="customerName">Nome do Cliente:</label>
+  <input type="text" id="customerName" [(ngModel)]="customerName" />
+</div>
+
+<div *ngFor="let product of products">
+  <div>
+    <img [src]="product.image" alt="{{ product.name }}" />
+    <div>
+      <h3>{{ product.name }}</h3>
+      <p>Preço: R$ {{ product.price }}</p>
+      <button (click)="addProductToOrder(product)">Adicionar</button>
+    </div>
+  </div>
+</div>
+
+<div>
+  <h2>Resumo do Pedido</h2>
+  <div *ngFor="let product of selectedProducts; let i = index">
+    <div>
+      <h3>{{ product.name }}</h3>
+      <p>Preço: R$ {{ product.price }}</p>
+      <button (click)="removeProductFromOrder(i)">Remover</button>
+    </div>
+  </div>
+  <p>Total: R$ {{ totalAmount }}</p>
+</div>
+
+<div>
+  <button (click)="sendOrderToKitchen()">Enviar Pedido</button>
+</div>
