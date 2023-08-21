@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   private apiUrl = 'http://localhost:8080/products';
-  private token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhcmNvbmVudGVAYnVyZ3Vlck1WLmNvbSIsImlhdCI6MTY5MjY1Mzg5MSwiZXhwIjoxNjkyNjU3NDkxLCJzdWIiOiIxIn0.djkreDnVKAUi3mIuqhLJtmM3a_mBksa5cpUmewogS1o'; //conserta pegando meu token salvo
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getProducts(): Observable<any[]> {
+    const { loggedIn, token} = this.authService.isUserLoggedIn();
+
+    if(!loggedIn){
+      throw new Error('User not logged in');
+    }
+
     // Define os headers com o cabeçalho de autorização
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${token}`
     });
 
     // Passa os headers para a solicitação
