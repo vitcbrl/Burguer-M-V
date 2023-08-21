@@ -35,8 +35,12 @@ export class AuthService {
     );
   }
 
-  isUserLoggedIn(): boolean {
-    return !!localStorage.getItem(this.accessTokenKey);
+  isUserLoggedIn(): { loggedIn: boolean, token: string | null} {
+    const token = localStorage.getItem(this.accessTokenKey);
+    return {
+      loggedIn: !!token,
+      token: token
+    };
   }
 
   getUserRole(): string | null {
