@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private apiUrl = 'http://localhost:8080/login'; //retirei o s que tinha no final de g-https pos dava erro
   private accessTokenKey = 'accessToken';
-  private userRoleKey = 'acessRole'; // Adjust the key name to match your implementation
+  private userRoleKey = 'accessRole'; // Adjust the key name to match your implementation
   // You can add more keys for storing other user-related data if needed
 
   constructor(private http: HttpClient, private router: Router) {}

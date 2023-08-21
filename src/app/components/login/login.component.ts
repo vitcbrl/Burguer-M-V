@@ -19,13 +19,13 @@ export class LoginComponent {
   login() {
     this.errorLogin = false;
 
-    //adicionei o Observablec pois na versão 7 do RxJS, a maneira antiga de usar funções de callback separadas está obsoleta. Agora, você deve usar um objeto observer, como subscribe({ next, error }), para tratar eventos. Isso é mais recomendado e atual.
     const loginObservable: Observable<boolean> = this.authService.login(this.email, this.password);
      
     loginObservable.subscribe({
       next: isUserLoggedIn => {
         if (isUserLoggedIn) {
           const userRole = localStorage.getItem('accessRole');
+          console.log('userRole:', userRole); // Log para depurar
           const roleRouteMap: { [key: string]: string } = {
             'service': '/menu',
             'chefe': '/cozinha',
@@ -34,6 +34,7 @@ export class LoginComponent {
 
           if (userRole !== null && userRole in roleRouteMap) {
             const targetRoute = roleRouteMap[userRole];
+            console.log('targetRoute:', targetRoute); // Log para depurar
             this.router.navigate([targetRoute]);
           } else {
             throw new Error('Invalid role');
