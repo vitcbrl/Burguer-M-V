@@ -4,12 +4,12 @@
   <img src="../../../assets/Logo-burguermv.png" alt="Imagem Logo" class="imagemLogo">
   <img src="../../../assets/logout.png" alt="Botão Logout" class="imgLogout">
   <section class="select">
-    <button class="buttons">Café da manhã</button>
-    <button class="buttons">Almoço e Jantar</button>
+    <button class="buttons" (click)="filterProducts('Café da manha')">Café da manhã</button>
+    <button class="buttons" (click)="filterProducts('Almoço')">Almoço e Jantar</button>
   </section>
   <p class="tituloItens">Itens/Valor</p>
   <section>
-    <div *ngFor="let product of products">
+    <div *ngFor="let product of filteredProducts">
       <div class="products">
         <img class="imgProduto" [src]="product.image" alt="{{ product.name }}" />
         <div class="elementsProducts">
@@ -23,17 +23,17 @@
       </div>
     </div>
   </section>
-  <section class="resumoPedido">
-    <h2 class="resumoProduto">Resumo do Pedido</h2>
-    <input class="inputName" type="text" id="customerName" [(ngModel)]="customerName" placeholder="Nome do cliente" />
-    <div *ngFor="let product of selectedProducts; let i = index">
-      <div>
-        <h3>{{ product.name }}</h3>
-        <p>Preço: R$ {{ product.price }}</p>
-        <button (click)="removeProductFromOrder(i)">Remover</button>
-      </div>
+</section>
+<section class="resumoPedido">
+  <h2 class="resumoProduto">Resumo do Pedido</h2>
+  <input class="inputName" type="text" id="customerName" [(ngModel)]="customerName" placeholder="Nome do cliente" />
+  <div *ngFor="let product of selectedProducts; let i = index">
+    <div>
+      <h3>{{ product.name }}</h3>
+      <p>Preço: R$ {{ product.price }}</p>
+      <button (click)="removeProductFromOrder(i)">Remover</button>
     </div>
-    <p class="totalPedido">Total: R$ {{ totalAmount }}</p>
-    <button class="buttonPedido" (click)="sendOrderToKitchen()">Enviar Pedido</button>
-  </section>
+  </div>
+  <p class="totalPedido">Total: R$ {{ totalAmount }}</p>
+  <button class="buttonPedido" (click)="sendOrderToKitchen()">Enviar Pedido</button>
 </section>

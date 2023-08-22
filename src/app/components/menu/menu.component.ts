@@ -8,20 +8,27 @@ import { ProductService } from '../services/product.service'
 })
 export class MenuComponent implements OnInit {
   products: any[] = [];
+  filteredProducts: any[] = []; 
   selectedProducts: any[] = [];
   totalAmount: number = 0;
   customerName: string = '';
+  filteredType: string = 'Café da manhã'; 
+
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((data) => {
-      // O objeto data é um array de arrays, então use o primeiro array interno
       this.products = data[0];
+      this.filteredProducts = this.products.filter(product => product.type === 'Café da manha'); 
     });
   }
   
-
+  filterProducts(type: string) {
+    this.filteredProducts = this.products.filter((product) => product.type === type);
+    this.filteredType = type; 
+  }
+  
   addProductToOrder(product: any) {
     const selectedProduct = { ...product };
     this.selectedProducts.push(selectedProduct);
@@ -45,3 +52,4 @@ export class MenuComponent implements OnInit {
     // to store the order in the database
   }
 }
+
