@@ -23,17 +23,18 @@
       </div>
     </div>
   </section>
-</section>
-<section class="resumoPedido">
-  <h2 class="resumoProduto">Resumo do Pedido</h2>
-  <input class="inputName" type="text" id="customerName" [(ngModel)]="customerName" placeholder="Nome do cliente" />
-  <div *ngFor="let product of selectedProducts; let i = index">
-    <div>
-      <h3>{{ product.name }}</h3>
-      <p>Preço: R$ {{ product.price }}</p>
-      <button (click)="removeProductFromOrder(i)">Remover</button>
+
+  <section class="resumoPedido">
+    <h2 class="resumoProduto">Resumo do Pedido</h2>
+    <input class="inputName" type="text" id="customerName" [(ngModel)]="customerName" placeholder="Nome do cliente" />
+    <div *ngFor="let product of selectedProducts; let i = index">
+      <div>
+        <h3>{{ product.name }}</h3>
+        <p>Preço: R$ {{ product.price }}</p>
+        <button (click)="removeProductFromOrder(i)">Remover</button>
+      </div>
     </div>
-  </div>
-  <p class="totalPedido">Total: R$ {{ totalAmount }}</p>
-  <button class="buttonPedido" (click)="sendOrderToKitchen()">Enviar Pedido</button>
+    <p class="totalPedido">Total: R$ {{ totalAmount }}</p>
+    <button class="buttonPedido" (click)="sendOrderToKitchen()">Enviar Pedido</button>
+  </section>
 </section>
