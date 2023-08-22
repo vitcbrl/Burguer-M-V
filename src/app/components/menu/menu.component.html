@@ -1,31 +1,39 @@
-<div>
-  <label for="customerName">Nome do Cliente:</label>
-  <input type="text" id="customerName" [(ngModel)]="customerName" />
-</div>
-
-<div *ngFor="let product of products">
-  <div>
-    <img [src]="product.image" alt="{{ product.name }}" />
-    <div>
-      <h3>{{ product.name }}</h3>
-      <p>Preço: R$ {{ product.price }}</p>
-      <button (click)="addProductToOrder(product)">Adicionar</button>
+<section class="principal">
+  <img src="../../../assets/vectorInverse.svg" alt="Logo" class="background">
+  <img src="../../../assets/vectorx-2.svg" alt="Color Logo" class="backgroundx">
+  <img src="../../../assets/Logo-burguermv.png" alt="Imagem Logo" class="imagemLogo">
+  <img src="../../../assets/logout.png" alt="Botão Logout" class="imgLogout">
+  <section class="select">
+    <button class="buttons">Café da manhã</button>
+    <button class="buttons">Almoço e Jantar</button>
+  </section>
+  <p class="tituloItens">Itens/Valor</p>
+  <section>
+    <div *ngFor="let product of products">
+      <div class="products">
+        <img class="imgProduto" [src]="product.image" alt="{{ product.name }}" />
+        <div class="elementsProducts">
+          <h3 class="tituloProducts">{{ product.name }} - R$ {{ product.price }}</h3>
+          <div class="quantity-controls">
+            <button class="quantity-button minus">-</button>
+            <input class="quantity-input" type="number" value="1" min="1">
+            <button class="quantity-button plus">+</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
-<div>
-  <h2>Resumo do Pedido</h2>
-  <div *ngFor="let product of selectedProducts; let i = index">
-    <div>
-      <h3>{{ product.name }}</h3>
-      <p>Preço: R$ {{ product.price }}</p>
-      <button (click)="removeProductFromOrder(i)">Remover</button>
+  </section>
+  <section class="resumoPedido">
+    <h2 class="resumoProduto">Resumo do Pedido</h2>
+    <input class="inputName" type="text" id="customerName" [(ngModel)]="customerName" placeholder="Nome do cliente" />
+    <div *ngFor="let product of selectedProducts; let i = index">
+      <div>
+        <h3>{{ product.name }}</h3>
+        <p>Preço: R$ {{ product.price }}</p>
+        <button (click)="removeProductFromOrder(i)">Remover</button>
+      </div>
     </div>
-  </div>
-  <p>Total: R$ {{ totalAmount }}</p>
-</div>
-
-<div>
-  <button (click)="sendOrderToKitchen()">Enviar Pedido</button>
-</div>
+    <p class="totalPedido">Total: R$ {{ totalAmount }}</p>
+    <button class="buttonPedido" (click)="sendOrderToKitchen()">Enviar Pedido</button>
+  </section>
+</section>
