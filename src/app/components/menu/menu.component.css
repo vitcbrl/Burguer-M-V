@@ -1,13 +1,12 @@
 .principal {
-    max-height: 100vh;
-    overflow-y: scroll;
+    height: 100vh;
     overflow-x: hidden;
 }
 
-.background {
+.containerBackground {
+    display: flex;
     position: absolute;
     right: 0px;
-    top: 0px;
 }
 
 .backgroundx {
@@ -26,7 +25,7 @@
     display: flex;
     position: absolute;
     top: 15px;
-    right: 15px;
+    right: 25px;
     width: 30px;
     height: 30px;
     cursor: pointer;
@@ -138,7 +137,7 @@
     color: var(--CorPrimaria);
     position: absolute;
     top: 150px;
-    right: 280px;
+    right: 250px;
 }
 
 .resumoProduto {
@@ -184,21 +183,21 @@
     transition: 0.2s;
 }
 
-@media screen and (max-width: 1240px) {
+@media screen and (max-width: 1265px) {
     .background {
         display: none;
     }
 
     .backgroundx {
         display: flex;
-        position: absolute;
+        position: relative;
         width: 100%;
     }
 
     .imagemLogo {
         position: relative;
         left: 500px;
-        top: 0px;
+        top: -150px;
         width: 250px;
         height: 250px;
     }
@@ -213,53 +212,55 @@
 
     .select {
         display: flex;
-        position: absolute;
+        position: relative;
         gap: 80px;
-        top: 150px;
+        top: -240px;
         left: 80px;
     }
-    
+
     .buttons {
         font-size: 0.9em;
     }
 
     .tituloItens {
-        position: absolute;
+        position: relative;
         left: 30px;
-        top: 220px;
+        top: -205px;
         font-size: 0.9em;
+        padding: 5px;
     }
 
     .products {
-        top: 10px;
+        top: -210px;
         left: 30px;
+        position: relative;
     }
-    
+
     .elementsProducts {
-        position: absolute;
         display: flex;
-        margin-left: 50px;
+        margin-left: 10px;
     }
-    
+
     .imgProduto {
-        width: 40px;
+        width: 50px;
     }
-    
+
     .tituloProducts {
-        font-size: 0.9rem;
-        padding: 10px 0px 5px 10px;
+        margin-top: 20px;
+        font-size: 1rem;
+        padding: 20px;
     }
-    
+
     .quantity-controls {
-        margin-top: 8px;
+        margin-top: 35px;
     }
-    
+
     .quantity-button {
         width: 20px;
         height: 20px;
         font-size: 10px;
     }
-    
+
     .quantity-input {
         width: 20px;
     }
@@ -268,28 +269,28 @@
         width: 360px;
         height: 380px;
         position: absolute;
-        top: 150px;
+        top: 130px;
         right: 80px;
     }
-    
+
     .resumoProduto {
         margin-top: -20px;
         font-size: 1.5rem;
     }
-    
+
     .inputName {
         width: 150px;
         height: 20px;
         font-size: 0.7rem;
     }
-    
+
     .totalPedido {
         font-size: 1rem;
         position: absolute;
         left: 50px;
         bottom: 90px;
     }
-    
+
     .buttonPedido {
         width: 130px;
         height: 40px;
@@ -297,21 +298,35 @@
     }
 }
 
-@media screen and (max-width: 1167px){
+@media screen and (max-width: 1167px) {
     .imagemLogo {
         position: relative;
         left: 430px;
-        top: 0px;
+        top: -120px;
         width: 250px;
         height: 250px;
     }
 
     .select {
         display: flex;
-        position: absolute;
+        position: relative;
         gap: 50px;
-        top: 150px;
+        top: -240px;
         left: 30px;
+    }
+
+    .tituloItens {
+        position: relative;
+        left: 30px;
+        top: -210px;
+        font-size: 0.9em;
+        padding: 5px;
+    }
+
+    .products {
+        top: -220px;
+        left: 30px;
+        position: relative;
     }
 
     .resumoPedido {
@@ -323,11 +338,11 @@
     }
 }
 
-@media screen and (max-width: 1067px){
+@media screen and (max-width: 1067px) {
     .imagemLogo {
         position: relative;
         left: 340px;
-        top: 0px;
+        top: -120px;
         width: 250px;
         height: 250px;
     }
@@ -341,17 +356,17 @@
 
     .select {
         display: flex;
-        position: absolute;
+        position: relative;
         width: 250px;
         gap: 20px;
-        top: 150px;
+        top: -230px;
         left: 30px;
         font-size: 0.8rem;
     }
 
     .tituloItens {
         left: 30px;
-        top: 220px;
+        top: -210px;
         font-size: 0.8em;
         padding: 5px;
         width: 100px;
@@ -369,20 +384,20 @@
         margin-top: -20px;
         font-size: 1.3rem;
     }
-    
+
     .inputName {
         width: 150px;
         height: 20px;
         font-size: 0.7rem;
     }
-    
+
     .totalPedido {
         font-size: 1rem;
         position: absolute;
         left: 50px;
         bottom: 90px;
     }
-    
+
     .buttonPedido {
         width: 130px;
         height: 40px;
@@ -392,9 +407,9 @@
 
 @media screen and (max-width: 968px) {
     .imagemLogo {
-        position: absolute;
-        left: 250px;
-        top: 0px;
+        position: relative;
+        left: 260px;
+        top: -120px;
         width: 250px;
         height: 250px;
     }
@@ -407,24 +422,29 @@
     }
 
     .select {
-        top: 140px;
+        top: -230px;
         left: 20px;
     }
 
     .tituloItens {
         left: 30px;
-        top: 205px;
+        top: -205px;
         font-size: 0.8em;
         padding: 5px;
         width: 100px;
     }
 
     .products {
-        position: absolute;
-        top: 300px;
+        position: relative;
+        top: -220px;
         left: 30px;
     }
 
+    .elementsProducts {
+        display: flex;
+        gap: 0px;
+    }
+    
     .resumoPedido {
         width: 350px;
         height: 370px;
@@ -437,62 +457,183 @@
 @media screen and (max-width: 860px) {
     .imagemLogo {
         position: relative;
+        margin-top: 15px;
         right: 450px;
         left: 330px;
         width: 180px;
         height: 180px;
     }
 
-    .imgLogout {
-        top: 3px;
-        right: 80px;
-        width: 20px;
-        height: 20px;
-    }
-
     .select {
         position: relative;
         display: flex;
-        top: 0px;
+        top: -120px;
         left: 290px;
         gap: 25px;
     }
 
     .tituloItens {
         position: relative;
-        top: 20px;
+        top: -100px;
     }
 
     .products {
-        top: 40px;
+        top: -110px;
         left: 30px;
     }
-    
+
     .elementsProducts {
-        position: absolute;
+        position: relative;
         display: flex;
-        margin-left: 50px;
+        margin-left: 5px;
+        padding-top: 10px;
     }
-    
+
     .imgProduto {
         width: 40px;
     }
-    
+
     .tituloProducts {
         font-size: 0.9rem;
         padding: 10px 0px 5px 10px;
     }
-    
+
     .quantity-controls {
-        margin-top: 8px;
+        margin-top: 25px;
+        margin-left: 15px;
     }
-    
+
     .quantity-button {
         width: 20px;
         height: 20px;
         font-size: 10px;
     }
+
+    .quantity-input {
+        width: 20px;
+    }
+
+    .resumoPedido {
+        width: 380px;
+        height: 300px;
+        position: absolute;
+        top: 230px;
+        right: 30px;
+    }
+}
+
+@media screen and (max-width: 826px) {
+    .imagemLogo {
+        position: relative;
+        top: -110px;
+        right: 280px;
+        left: 350px;
+    }
+
+    .select {
+        top: -110px;
+        left: 310px;
+        gap: 25px;
+    }
+
+    .products {
+        top: -100px;
+        left: 30px;
+    }
+
+    .elementsProducts {
+        position: absolute;
+        display: flex;
+        margin-left: 50px;
+    }
+
+    .imgProduto {
+        width: 40px;
+    }
+
+    .tituloProducts {
+        font-size: 0.8rem;
+        padding: 10px 0px 5px 10px;
+    }
+
+    .quantity-controls {
+        margin-top: 25px;
+    }
+
+    .quantity-button {
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+    }
+
+    .quantity-input {
+        width: 20px;
+    }
+
+    .resumoPedido {
+        width: 350px;
+        height: 290px;
+        position: absolute;
+        top: 250px;
+        right: 30px;
+    }
+}
+
+@media screen and (max-width: 773px){
+    .backgroundx {
+        display: flex;
+        position: relative;
+        width: 100vw;
+    }
     
+    .imagemLogo {
+        position: relative;
+        top: -110px;
+        right: 280px;
+        left: 300px;
+    }
+
+    .select {
+        top: -110px;
+        left: 260px;
+    }
+
+    .tituloItens {
+        position: relative;
+        top: -90px;
+        left: 340px;
+    }
+
+    .products {
+        top: -100px;
+        left: 240px;
+    }
+
+    .elementsProducts {
+        position: absolute;
+        display: flex;
+        margin-left: 50px;
+    }
+
+    .imgProduto {
+        width: 40px;
+    }
+
+    .tituloProducts {
+        font-size: 0.8rem;
+        padding: 10px 0px 5px 10px;
+    }
+
+    .quantity-controls {
+        margin-top: 25px;
+    }
+
+    .quantity-button {
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+    }
+
     .quantity-input {
         width: 20px;
     }
@@ -500,55 +641,108 @@
     .resumoPedido {
         width: 350px;
         height: 350px;
-        position: absolute;
-        top: 250px;
+        position: relative;
+        top: -30px;
         right: 30px;
+        margin-left: 250px;
+        margin-bottom: 20px;
     }
 }
 
-@media screen and (max-width: 728px){
+@media screen and (max-width: 694px) {
     .imagemLogo {
-        left: 280px;
+        position: relative;
+        left: 230px;
+        top: -100px;
     }
 
     .select {
-        top: 0px;
-        left: 250px;
-        gap: 25px;
+        margin-top: 10px;
+        left: 200px;
+    }
+
+    .tituloItens {
+        position: relative;
+        margin-top: 5px;
+        left: 280px;
     }
 
     .products {
-        top: 40px;
-        left: 30px;
-    }
-    
-    .elementsProducts {
-        position: absolute;
-        display: flex;
-        margin-left: 50px;
-    }
-    
-    .imgProduto {
-        width: 30px;
-    }
-    
-    .tituloProducts {
-        font-size: 0.8rem;
-        padding: 10px 0px 5px 10px;
-    }
-    
-    .quantity-controls {
-        margin-top: 8px;
-    }
-    
-    .quantity-button {
-        width: 20px;
-        height: 20px;
-        font-size: 10px;
-    }
-    
-    .quantity-input {
-        width: 20px;
+        top: -100px;
+        left: 190px;
     }
 
+    .imgProduto {
+        width: 40px;
+    }
+
+    .resumoPedido {
+        width: 350px;
+        height: 350px;
+        position: relative;
+        top: -30px;
+        right: 30px;
+        margin-left: 190px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 605px){
+    .imagemLogo {
+        left: 150px;
+        top: -80px;
+    }
+
+    .select {
+        margin-top:20px;
+        left: 120px;
+    }
+
+    .tituloItens {
+        left: 190px;
+    }
+
+    .products {
+        left: 90px;
+    }
+
+    .resumoPedido {
+        margin-left: 100px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .backgroundx {
+        display: flex;
+        position: relative;
+        width: 500px;
+    }
+
+    .imagemLogo {
+        left: 150px;
+        margin-top: 30px;
+    }
+
+    .imgLogout {
+        top: 10px;
+        right: 80px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .select {
+        left: 120px;
+    }
+
+    .tituloItens {
+        left: 190px;
+    }
+
+    .products {
+        left: 90px;
+    }
+
+    .resumoPedido {
+        margin-left: 100px;
+    }
 }
