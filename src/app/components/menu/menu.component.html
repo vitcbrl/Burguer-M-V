@@ -1,14 +1,16 @@
-<section class="principal">
-  <img src="../../../assets/vectorInverse.svg" alt="Logo" class="background">
-  <img src="../../../assets/vectorx-2.svg" alt="Color Logo" class="backgroundx">
-  <img src="../../../assets/Logo-burguermv.png" alt="Imagem Logo" class="imagemLogo">
-  <img src="../../../assets/logout.png" alt="Botão Logout" class="imgLogout">
-  <section class="select">
-    <button class="buttons" (click)="filterProducts('Café da manha')">Café da manhã</button>
-    <button class="buttons" (click)="filterProducts('Almoço')">Almoço e Jantar</button>
-  </section>
-  <p class="tituloItens">Itens/Valor</p>
-  <section>
+<main class="principal">
+    <div class="containerBackground">
+      <img src="../../../assets/vectorInverse.svg" alt="Logo" class="background">
+    </div>
+
+    <img src="../../../assets/vectorx-2.svg" alt="Color Logo" class="backgroundx">
+    <img src="../../../assets/Logo-burguermv.png" alt="Imagem Logo" class="imagemLogo">
+    <img src="../../../assets/logout.png" alt="Botão Logout" class="imgLogout">
+    <section class="select">
+      <button class="buttons" (click)="filterProducts('Café da manha')">Café da manhã</button>
+      <button class="buttons" (click)="filterProducts('Almoço')">Almoço e Jantar</button>
+    </section>
+    <p class="tituloItens">Itens/Valor</p>
     <div *ngFor="let product of filteredProducts">
       <div class="products">
         <img class="imgProduto" [src]="product.image" alt="{{ product.name }}" />
@@ -22,19 +24,18 @@
         </div>
       </div>
     </div>
-  </section>
 
-  <section class="resumoPedido">
-    <h2 class="resumoProduto">Resumo do Pedido</h2>
-    <input class="inputName" type="text" id="customerName" [(ngModel)]="customerName" placeholder="Nome do cliente" />
-    <div *ngFor="let product of selectedProducts; let i = index">
-      <div>
-        <h3>{{ product.name }}</h3>
-        <p>Preço: R$ {{ product.price }}</p>
-        <button (click)="removeProductFromOrder(i)">Remover</button>
+    <section class="resumoPedido">
+      <h2 class="resumoProduto">Resumo do Pedido</h2>
+      <input class="inputName" type="text" id="customerName" [(ngModel)]="customerName" placeholder="Nome do cliente" />
+      <div *ngFor="let product of selectedProducts; let i = index">
+        <div>
+          <h3>{{ product.name }}</h3>
+          <p>Preço: R$ {{ product.price }}</p>
+          <button (click)="removeProductFromOrder(i)">Remover</button>
+        </div>
       </div>
-    </div>
-    <p class="totalPedido">Total: R$ {{ totalAmount }}</p>
-    <button class="buttonPedido" (click)="sendOrderToKitchen()">Enviar Pedido</button>
-  </section>
-</section>
+      <p class="totalPedido">Total: R$ {{ totalAmount }}</p>
+      <button class="buttonPedido" (click)="sendOrderToKitchen()">Enviar Pedido</button>
+    </section>
+</main>
