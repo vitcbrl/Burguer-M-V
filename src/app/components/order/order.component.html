@@ -1,13 +1,15 @@
-<div class="order-summary">
-  <h2>Resumo do Pedido</h2>
-  <div *ngFor="let selectedProduct of selectedProducts">
-    <p>{{ selectedProduct.product.name }} - R$ {{ selectedProduct.product.price * selectedProduct.quantity }}</p>
-    <button (click)="removeProductFromOrder(selectedProduct.product)">Remover</button>
+<section class="order-summary">
+  <h2 class="resumoProduto">Resumo do Pedido</h2>
+  <input class="inputName" id="customerName" type="text" [(ngModel)]="customerName" placeholder="Nome do cliente">
+
+  <div class="container">
+    <div *ngFor="let selectedProduct of selectedProducts" class="containerTwo">
+      <p class="tituloContainer">{{ selectedProduct.product.name }} - R$ {{ selectedProduct.product.price *
+        selectedProduct.quantity }}</p>
+      <img class="buttonRemove" (click)="removeProductFromOrder(selectedProduct.product)"
+        src="../../../assets/lixeira.png">
+    </div>
   </div>
-  <p>Total: R$ {{ calculateTotalAmount() | number: '1.2-2' }}</p>
-  <label for="customerName">Nome do Cliente:</label>
-  <input id="customerName" type="text" [(ngModel)]="customerName">
-  <button (click)="sendOrderToAPI()">Enviar Pedido</button>
-</div>
-
-
+  <p class="totalPedido">Total: R$ {{ calculateTotalAmount() | number: '1.2-2' }}</p>
+  <button class="buttonPedido" (click)="sendOrderToAPI()">Enviar Pedido</button>
+</section>

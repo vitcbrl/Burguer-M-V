@@ -12,10 +12,6 @@ const routes: Routes = [
   {
     path: 'menu',
     component: MenuComponent
-  },
-  {
-    path: 'order', 
-    component: OrderComponent 
   }
 ];
 
