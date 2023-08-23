@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core'; //teste
 import { ProductService } from '../services/product.service';
 import { OrderService } from '../services/order.service'; 
 
@@ -10,9 +10,6 @@ import { OrderService } from '../services/order.service';
 export class MenuComponent implements OnInit {
   products: any[] = [];
   filteredProducts: any[] = [];
-  selectedProducts: any[] = [];
-  totalAmount: number = 0;
-  customerName: string = '';
   filteredType: string = 'Café da manhã';
   @Output() addToOrder: EventEmitter<any> = new EventEmitter<any>();
   @Output() removeFromOrder: EventEmitter<any> = new EventEmitter<any>();
@@ -29,18 +26,6 @@ export class MenuComponent implements OnInit {
   filterProducts(type: string) {
     this.filteredProducts = this.products.filter((product) => product.type === type);
     this.filteredType = type;
-  }
-
-  calculateTotalAmount() {
-    this.totalAmount = this.selectedProducts.reduce(
-      (total, product) => total + product.price,
-      0
-    );
-  }
-
-  sendOrderToKitchen() {
-    // Send the order and selectedProducts to a backend service
-    // to store the order in the database
   }
 
     // Função para adicionar um produto ao pedido
