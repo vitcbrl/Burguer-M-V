@@ -2,7 +2,6 @@
     <div class="containerBackground">
       <img src="../../../assets/vectorInverse.svg" alt="Logo" class="background">
     </div>
-
     <img src="../../../assets/vectorx-2.svg" alt="Color Logo" class="backgroundx">
     <img src="../../../assets/Logo-burguermv.png" alt="Imagem Logo" class="imagemLogo">
     <img src="../../../assets/logout.png" alt="Botão Logout" class="imgLogout">
@@ -18,7 +17,7 @@
           <h3 class="tituloProducts">{{ product.name }} - R$ {{ product.price }}</h3>
           <div class="quantity-controls">
             <button class="quantity-button minus" (click)="removeProductFromOrder(product)">-</button>
-            <input class="quantity-input" type="number" value="1" min="1">
+            <input class="quantity-input" type="number" [(ngModel)]="product.quantity" min="1">
             <button class="quantity-button plus" (click)="addProductToOrder(product)">+</button>
           </div>          
         </div>

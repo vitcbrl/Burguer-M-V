@@ -1,6 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core'; //teste
+import { Component, OnInit, EventEmitter, Output, } from '@angular/core'; //teste
 import { ProductService } from '../services/product.service';
 import { OrderService } from '../services/order.service'; 
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-menu',
@@ -31,10 +32,13 @@ export class MenuComponent implements OnInit {
     // Função para adicionar um produto ao pedido
     addProductToOrder(product: any) {
       this.orderService.addProduct(product);
+      product.quantity = (product.quantity || 0) + 1;
     }
   
     // Função para remover um produto do pedido
     removeProductFromOrder(product: any) {
       this.orderService.removeProduct(product.id);
+      if (product.quantity && product.quantity > 0) {
+        product.quantity -= 1}
     }
   }
