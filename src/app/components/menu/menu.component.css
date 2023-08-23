@@ -195,7 +195,6 @@
     }
 
     .imagemLogo {
-        position: relative;
         left: 500px;
         top: -150px;
         width: 250px;
@@ -207,12 +206,9 @@
         right: 15px;
         width: 20px;
         height: 20px;
-        cursor: pointer;
     }
 
     .select {
-        display: flex;
-        position: relative;
         gap: 80px;
         top: -240px;
         left: 80px;
@@ -223,8 +219,6 @@
     }
 
     .tituloItens {
-        position: relative;
-        left: 30px;
         top: -205px;
         font-size: 0.9em;
         padding: 5px;
@@ -232,8 +226,6 @@
 
     .products {
         top: -210px;
-        left: 30px;
-        position: relative;
     }
 
     .elementsProducts {
@@ -268,7 +260,6 @@
     .resumoPedido {
         width: 360px;
         height: 380px;
-        position: absolute;
         top: 130px;
         right: 80px;
     }
@@ -286,53 +277,36 @@
 
     .totalPedido {
         font-size: 1rem;
-        position: absolute;
-        left: 50px;
         bottom: 90px;
     }
 
     .buttonPedido {
         width: 130px;
-        height: 40px;
         font-size: 0.9em;
     }
 }
 
 @media screen and (max-width: 1167px) {
     .imagemLogo {
-        position: relative;
         left: 430px;
         top: -120px;
-        width: 250px;
-        height: 250px;
     }
 
     .select {
-        display: flex;
-        position: relative;
         gap: 50px;
-        top: -240px;
         left: 30px;
     }
 
     .tituloItens {
-        position: relative;
         left: 30px;
         top: -210px;
-        font-size: 0.9em;
-        padding: 5px;
     }
 
     .products {
         top: -220px;
-        left: 30px;
-        position: relative;
     }
 
     .resumoPedido {
-        width: 360px;
-        height: 380px;
-        position: absolute;
         top: 150px;
         right: 50px;
     }
@@ -340,123 +314,75 @@
 
 @media screen and (max-width: 1067px) {
     .imagemLogo {
-        position: relative;
         left: 340px;
-        top: -120px;
-        width: 250px;
-        height: 250px;
     }
 
     .imgLogout {
         top: 3px;
         right: 15px;
-        width: 20px;
-        height: 20px;
     }
 
     .select {
-        display: flex;
-        position: relative;
         width: 250px;
         gap: 20px;
         top: -230px;
-        left: 30px;
         font-size: 0.8rem;
     }
 
     .tituloItens {
-        left: 30px;
-        top: -210px;
         font-size: 0.8em;
-        padding: 5px;
         width: 100px;
     }
 
     .resumoPedido {
         width: 350px;
         height: 370px;
-        position: absolute;
-        top: 150px;
-        right: 50px;
     }
 
     .resumoProduto {
-        margin-top: -20px;
         font-size: 1.3rem;
     }
 
-    .inputName {
-        width: 150px;
-        height: 20px;
-        font-size: 0.7rem;
-    }
-
-    .totalPedido {
-        font-size: 1rem;
-        position: absolute;
-        left: 50px;
-        bottom: 90px;
-    }
-
     .buttonPedido {
-        width: 130px;
         height: 40px;
-        font-size: 0.9em;
     }
 }
 
 @media screen and (max-width: 968px) {
     .imagemLogo {
-        position: relative;
         left: 260px;
-        top: -120px;
-        width: 250px;
-        height: 250px;
     }
 
     .imgLogout {
-        top: 3px;
         right: 80px;
         width: 20px;
         height: 20px;
     }
 
     .select {
-        top: -230px;
         left: 20px;
     }
 
     .tituloItens {
-        left: 30px;
         top: -205px;
-        font-size: 0.8em;
-        padding: 5px;
-        width: 100px;
     }
 
     .products {
-        position: relative;
-        top: -220px;
         left: 30px;
     }
 
     .elementsProducts {
-        display: flex;
         gap: 0px;
     }
     
     .resumoPedido {
-        width: 350px;
-        height: 370px;
-        position: absolute;
-        top: 150px;
         right: 30px;
     }
 }
 
+/* Parei a refatoração aqui*/
 @media screen and (max-width: 860px) {
     .imagemLogo {
-        position: relative;
         margin-top: 15px;
         right: 450px;
         left: 330px;
@@ -465,21 +391,17 @@
     }
 
     .select {
-        position: relative;
-        display: flex;
         top: -120px;
         left: 290px;
         gap: 25px;
     }
 
     .tituloItens {
-        position: relative;
         top: -100px;
     }
 
     .products {
         top: -110px;
-        left: 30px;
     }
 
     .elementsProducts {
@@ -503,20 +425,9 @@
         margin-left: 15px;
     }
 
-    .quantity-button {
-        width: 20px;
-        height: 20px;
-        font-size: 10px;
-    }
-
-    .quantity-input {
-        width: 20px;
-    }
-
     .resumoPedido {
         width: 380px;
         height: 300px;
-        position: absolute;
         top: 230px;
         right: 30px;
     }
@@ -533,7 +444,6 @@
     .select {
         top: -110px;
         left: 310px;
-        gap: 25px;
     }
 
     .products {
@@ -547,23 +457,12 @@
         margin-left: 50px;
     }
 
-    .imgProduto {
-        width: 40px;
-    }
-
     .tituloProducts {
         font-size: 0.8rem;
-        padding: 10px 0px 5px 10px;
-    }
-
-    .quantity-controls {
-        margin-top: 25px;
     }
 
     .quantity-button {
         width: 20px;
-        height: 20px;
-        font-size: 10px;
     }
 
     .quantity-input {
@@ -573,9 +472,7 @@
     .resumoPedido {
         width: 350px;
         height: 290px;
-        position: absolute;
         top: 250px;
-        right: 30px;
     }
 }
 
@@ -587,9 +484,6 @@
     }
     
     .imagemLogo {
-        position: relative;
-        top: -110px;
-        right: 280px;
         left: 300px;
     }
 
@@ -605,45 +499,17 @@
     }
 
     .products {
-        top: -100px;
         left: 240px;
     }
 
-    .elementsProducts {
-        position: absolute;
-        display: flex;
-        margin-left: 50px;
-    }
-
-    .imgProduto {
-        width: 40px;
-    }
-
     .tituloProducts {
-        font-size: 0.8rem;
         padding: 10px 0px 5px 10px;
     }
 
-    .quantity-controls {
-        margin-top: 25px;
-    }
-
-    .quantity-button {
-        width: 20px;
-        height: 20px;
-        font-size: 10px;
-    }
-
-    .quantity-input {
-        width: 20px;
-    }
-
     .resumoPedido {
-        width: 350px;
         height: 350px;
         position: relative;
         top: -30px;
-        right: 30px;
         margin-left: 250px;
         margin-bottom: 20px;
     }

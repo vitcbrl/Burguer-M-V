@@ -148,7 +148,6 @@
         height: 250px;
         top: 370px;
         right: 310px;
-        position: absolute;
     }
     
     .titulo {
@@ -173,47 +172,27 @@
     .buttonLogin {
         margin-top: 20px;
         width: 130px;
-        right: 50px;
         font-size: 0.9rem;
     }
 }
 
 @media screen and (max-width: 1020px){
     .imgLogo {
-        width: 380px;
-        height: 380px;
         margin-right: 120px;
     }
     
     .form {
-        height: 250px;
-        top: 370px;
         right: 200px;
-        position: absolute;
-    }
-}
-
-@media screen and (max-width: 960px){
-    .form {
-        height: 250px;
-        top: 370px;
-        right: 200px;
-        position: absolute;
     }
 }
 
 @media screen and (max-width: 675px){
     .imgLogo {
-        position: absolute;
         left: 0px;
-        margin-left: 120px;
     }
 
     .form {
-        height: 250px;
-        top: 370px;
         right: 250px;
-        position: absolute;
         left: 120px;
     }
 }
@@ -230,30 +209,7 @@
     }
 
     .form {
-        height: 250px;
-        top: 370px;
         right: 200px;
-        position: absolute;
-        left: 60px;
-    }
-}
-
-@media screen and (max-width: 490px){
-    .backgroundx {
-        width: 550px;
-    }
-
-    .imgLogo {
-        position: absolute;
-        left: 60px;
-        margin-left: 0px;
-    }
-
-    .form {
-        height: 250px;
-        top: 370px;
-        right: 200px;
-        position: absolute;
         left: 60px;
     }
 }
