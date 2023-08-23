@@ -43,13 +43,13 @@ export class MenuComponent implements OnInit {
     // to store the order in the database
   }
 
-  // Função para adicionar um produto ao pedido
-  addProductToOrder(product: any) {
-    this.addToOrder.emit(product);
+    // Função para adicionar um produto ao pedido
+    addProductToOrder(product: any) {
+      this.orderService.addProduct(product);
+    }
+  
+    // Função para remover um produto do pedido
+    removeProductFromOrder(product: any) {
+      this.orderService.removeProduct(product.id);
+    }
   }
-
-  // Função para remover um produto do pedido
-  removeProductFromOrder(product: any) {
-    this.removeFromOrder.emit(product);
-  }
-}

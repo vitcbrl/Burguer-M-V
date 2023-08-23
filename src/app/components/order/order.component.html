@@ -1,13 +1,13 @@
 <div class="order-summary">
   <h2>Resumo do Pedido</h2>
-  <div *ngFor="let selectedProduct of selectedProducts[0]?.products">
-    <p>{{ selectedProduct.product.name }} - R$ {{ selectedProduct.product.price * selectedProduct.qty }}</p>
-    <!-- Adicione um botão de remoção para cada produto -->
+  <div *ngFor="let selectedProduct of selectedProducts">
+    <p>{{ selectedProduct.product.name }} - R$ {{ selectedProduct.product.price * selectedProduct.quantity }}</p>
     <button (click)="removeProductFromOrder(selectedProduct.product)">Remover</button>
   </div>
-  <p>Total: R$ {{ totalAmount }}</p>
+  <p>Total: R$ {{ calculateTotalAmount() | number: '1.2-2' }}</p>
   <label for="customerName">Nome do Cliente:</label>
   <input id="customerName" type="text" [(ngModel)]="customerName">
-  <button (click)="sendOrderToKitchen()">Enviar Pedido</button>
+  <button (click)="sendOrderToAPI()">Enviar Pedido</button>
 </div>
+
 

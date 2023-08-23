@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
 
 @Component({
@@ -6,43 +6,29 @@ import { OrderService } from '../services/order.service';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-export class OrderComponent {
-  @Input() selectedProducts: any[] = [];
-  @Input() totalAmount: number = 0;
+export class OrderComponent implements OnInit {
+  selectedProducts: any[] = [];
+  totalAmount: number = 0;
   customerName: string = '';
 
   constructor(private orderService: OrderService) {}
 
-  removeProductFromOrder(product: any) {
-    this.orderService.removeProductFromOrder(this.selectedProducts[0]?.id, product.id);
-    this.updateOrderSummary();
-  }
-
-  addProductToOrder(product: any) {
-    this.orderService.addProductToOrder(this.selectedProducts[0]?.id, product);
-    this.updateOrderSummary();
-  }
-
-  updateOrderSummary() {
-    this.orderService.addedProduct$.subscribe(products => {
+  ngOnInit(): void {
+    this.orderService.addedProduct$.subscribe((products) => {
       this.selectedProducts = products;
-      this.totalAmount = this.orderService.getTotalAmount(this.selectedProducts[0]?.id);
+      this.calculateTotalAmount();
     });
   }
 
-  sendOrderToKitchen() {
-    const orderId = this.selectedProducts[0]?.id;
-    if (!orderId || this.customerName.trim() === '') {
-      return;
-    }
-
-    this.orderService.sendOrderToKitchen(orderId, this.customerName);
-    this.resetOrderSummary();
+  removeProductFromOrder(product: any) {
+    this.orderService.removeProduct(product.id);
   }
 
-  resetOrderSummary() {
-    this.selectedProducts = [];
-    this.totalAmount = 0;
-    this.customerName = '';
+  calculateTotalAmount(): number {
+    return this.selectedProducts.reduce((total, product) => total + product.product.price * product.quantity, 0);
+  }
+
+  sendOrderToAPI() {
+    // Implementar a lógica de enviar o pedido para a API
   }
 }
