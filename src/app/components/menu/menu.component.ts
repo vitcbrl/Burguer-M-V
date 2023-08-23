@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../services/product.service'
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ProductService } from '../services/product.service';
+import { OrderService } from '../services/order.service'; 
 
 @Component({
   selector: 'app-menu',
@@ -8,36 +9,26 @@ import { ProductService } from '../services/product.service'
 })
 export class MenuComponent implements OnInit {
   products: any[] = [];
-  filteredProducts: any[] = []; 
+  filteredProducts: any[] = [];
   selectedProducts: any[] = [];
   totalAmount: number = 0;
   customerName: string = '';
-  filteredType: string = 'Café da manhã'; 
+  filteredType: string = 'Café da manhã';
+  @Output() addToOrder: EventEmitter<any> = new EventEmitter<any>();
+  @Output() removeFromOrder: EventEmitter<any> = new EventEmitter<any>();
 
-
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private orderService: OrderService) {} 
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((data) => {
       this.products = data[0];
-      this.filteredProducts = this.products.filter(product => product.type === 'Café da manha'); 
+      this.filteredProducts = this.products.filter(product => product.type === 'Café da manha');
     });
   }
-  
+
   filterProducts(type: string) {
     this.filteredProducts = this.products.filter((product) => product.type === type);
-    this.filteredType = type; 
-  }
-  
-  addProductToOrder(product: any) {
-    const selectedProduct = { ...product };
-    this.selectedProducts.push(selectedProduct);
-    this.calculateTotalAmount();
-  }
-
-  removeProductFromOrder(index: number) {
-    this.selectedProducts.splice(index, 1);
-    this.calculateTotalAmount();
+    this.filteredType = type;
   }
 
   calculateTotalAmount() {
@@ -51,5 +42,14 @@ export class MenuComponent implements OnInit {
     // Send the order and selectedProducts to a backend service
     // to store the order in the database
   }
-}
 
+  // Função para adicionar um produto ao pedido
+  addProductToOrder(product: any) {
+    this.addToOrder.emit(product);
+  }
+
+  // Função para remover um produto do pedido
+  removeProductFromOrder(product: any) {
+    this.removeFromOrder.emit(product);
+  }
+}

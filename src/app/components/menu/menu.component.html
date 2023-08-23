@@ -17,25 +17,15 @@
         <div class="elementsProducts">
           <h3 class="tituloProducts">{{ product.name }} - R$ {{ product.price }}</h3>
           <div class="quantity-controls">
-            <button class="quantity-button minus">-</button>
+            <button class="quantity-button minus" (click)="removeProductFromOrder(product)">-</button>
             <input class="quantity-input" type="number" value="1" min="1">
-            <button class="quantity-button plus">+</button>
+            <button class="quantity-button plus" (click)="addProductToOrder(product)">+</button>
           </div>
+          
         </div>
       </div>
     </div>
-
-    <section class="resumoPedido">
-      <h2 class="resumoProduto">Resumo do Pedido</h2>
-      <input class="inputName" type="text" id="customerName" [(ngModel)]="customerName" placeholder="Nome do cliente" />
-      <div *ngFor="let product of selectedProducts; let i = index">
-        <div>
-          <h3>{{ product.name }}</h3>
-          <p>Preço: R$ {{ product.price }}</p>
-          <button (click)="removeProductFromOrder(i)">Remover</button>
-        </div>
-      </div>
-      <p class="totalPedido">Total: R$ {{ totalAmount }}</p>
-      <button class="buttonPedido" (click)="sendOrderToKitchen()">Enviar Pedido</button>
-    </section>
+    <div>
+      <app-order></app-order>
+    </div>
 </main>

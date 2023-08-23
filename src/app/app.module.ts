@@ -7,23 +7,26 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module'; 
 import { MenuComponent } from './components/menu/menu.component';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MenuComponent
+    MenuComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot([]), // Configure your routes here
-    AppRoutingModule, // Importe o AppRoutingModule aqui
+    RouterModule.forRoot([]),
+    AppRoutingModule, 
   ],
   exports: [
     LoginComponent,
     MenuComponent,
+    OrderComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
