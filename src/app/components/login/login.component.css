@@ -1,6 +1,7 @@
 .backgroundy {
     display: flex;
-    position: relative;
+    position: absolute;
+    height: 100%;
 }
 
 .backgroundx {
@@ -17,7 +18,7 @@
     position: absolute;
     width: 750px;
     height: 750px;
-    top: 15px;
+    top: 0px;
     right: 520px;
 }
 
