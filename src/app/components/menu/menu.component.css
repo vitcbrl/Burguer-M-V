@@ -121,69 +121,6 @@
     padding: auto;
 }
 
-.resumoPedido {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 450px;
-    height: 480px;
-    gap: 20px;
-    backdrop-filter: blur(2px);
-    box-shadow: 0px 0px 12px 0px rgba(28, 28, 28, 0.15);
-    border-radius: 15px;
-    background-color: var(--CorTerciaria);
-    -moz-box-shadow: 0px 0px 12px 0px rgba(28, 28, 28, 0.15);
-    padding: 45px;
-    -webkit-box-shadow: 0px 0px 12px 0px rgba(30, 28, 28, 0.15);
-    color: var(--CorPrimaria);
-    position: absolute;
-    top: 150px;
-    right: 250px;
-}
-
-.resumoProduto {
-    margin-top: -10px;
-    font-size: 2rem;
-    text-align: center;
-}
-
-.inputName {
-    border: 1px solid #999;
-    outline-color: var(--CorPrimaria);
-    border-radius: 5px;
-    width: 230px;
-    height: 25px;
-    padding: 0px 0px 0px 5px;
-}
-
-.totalPedido {
-    font-size: 1.2rem;
-    position: absolute;
-    left: 50px;
-    bottom: 85px;
-}
-
-.buttonPedido {
-    position: absolute;
-    bottom: 25px;
-    width: 150px;
-    height: 40px;
-    border-radius: 5px;
-    background: var(--CorPrimaria);
-    border: 0;
-    color: var(--CorTerciaria);
-    cursor: pointer;
-    font-size: 1em;
-    font-family: 'Prompt', sans-serif;
-    padding: 8px;
-}
-
-.buttonPedido:hover {
-    background: var(--CorSecundaria);
-    cursor: pointer;
-    transition: 0.2s;
-}
-
 @media screen and (max-width: 1265px) {
     .background {
         display: none;
@@ -257,34 +194,6 @@
     .quantity-input {
         width: 20px;
     }
-
-    .resumoPedido {
-        width: 360px;
-        height: 380px;
-        top: 130px;
-        right: 80px;
-    }
-
-    .resumoProduto {
-        margin-top: -20px;
-        font-size: 1.5rem;
-    }
-
-    .inputName {
-        width: 150px;
-        height: 20px;
-        font-size: 0.7rem;
-    }
-
-    .totalPedido {
-        font-size: 1rem;
-        bottom: 90px;
-    }
-
-    .buttonPedido {
-        width: 130px;
-        font-size: 0.9em;
-    }
 }
 
 @media screen and (max-width: 1167px) {
@@ -305,11 +214,6 @@
 
     .products {
         top: -220px;
-    }
-
-    .resumoPedido {
-        top: 150px;
-        right: 50px;
     }
 }
 
@@ -339,14 +243,6 @@
         width: 350px;
         height: 370px;
     }
-
-    .resumoProduto {
-        font-size: 1.3rem;
-    }
-
-    .buttonPedido {
-        height: 40px;
-    }
 }
 
 @media screen and (max-width: 968px) {
@@ -375,13 +271,8 @@
     .elementsProducts {
         gap: 0px;
     }
-    
-    .resumoPedido {
-        right: 30px;
-    }
 }
 
-/* Parei a refatoração aqui*/
 @media screen and (max-width: 860px) {
     .imagemLogo {
         margin-top: 15px;
@@ -425,13 +316,6 @@
         margin-top: 25px;
         margin-left: 15px;
     }
-
-    .resumoPedido {
-        width: 380px;
-        height: 300px;
-        top: 230px;
-        right: 30px;
-    }
 }
 
 @media screen and (max-width: 826px) {
@@ -469,12 +353,6 @@
     .quantity-input {
         width: 20px;
     }
-
-    .resumoPedido {
-        width: 350px;
-        height: 290px;
-        top: 250px;
-    }
 }
 
 @media screen and (max-width: 773px){
@@ -506,14 +384,6 @@
     .tituloProducts {
         padding: 10px 0px 5px 10px;
     }
-
-    .resumoPedido {
-        height: 350px;
-        position: relative;
-        top: -30px;
-        margin-left: 250px;
-        margin-bottom: 20px;
-    }
 }
 
 @media screen and (max-width: 694px) {
@@ -542,16 +412,6 @@
     .imgProduto {
         width: 40px;
     }
-
-    .resumoPedido {
-        width: 350px;
-        height: 350px;
-        position: relative;
-        top: -30px;
-        right: 30px;
-        margin-left: 190px;
-        margin-bottom: 20px;
-    }
 }
 
 @media screen and (max-width: 605px){
@@ -571,10 +431,6 @@
 
     .products {
         left: 90px;
-    }
-
-    .resumoPedido {
-        margin-left: 100px;
     }
 }
 
@@ -607,9 +463,5 @@
 
     .products {
         left: 90px;
-    }
-
-    .resumoPedido {
-        margin-left: 100px;
     }
 }

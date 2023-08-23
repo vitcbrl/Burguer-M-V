@@ -1,0 +1,194 @@
+.order-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 450px;
+    height: 500px;
+    gap: 20px;
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 0px 12px 0px rgba(28, 28, 28, 0.15);
+    border-radius: 15px;
+    background-color: var(--CorTerciaria);
+    -moz-box-shadow: 0px 0px 12px 0px rgba(28, 28, 28, 0.15);
+    padding: 45px;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(30, 28, 28, 0.15);
+    color: var(--CorPrimaria);
+    position: absolute;
+    top: 150px;
+    right: 250px;
+}
+
+.resumoProduto {
+    margin-top: -10px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.inputName {
+    border: 1px solid #999;
+    outline-color: var(--CorPrimaria);
+    border-radius: 5px;
+    width: 230px;
+    height: 30px;
+    padding: 0px 0px 0px 5px;
+}
+
+.container {
+    overflow-y: scroll;
+    margin-top: 20px;
+}
+
+.containerTwo{
+    margin-top: 20px;
+    margin-bottom: 0px;
+    display: flex;
+    gap: 50px;
+}
+
+.tituloContainer {
+    font-size: 1.2rem;
+}
+
+.buttonRemove{
+    width: 25px;
+    height: 25px;
+}
+
+.totalPedido {
+    margin-top: 35px;
+    font-size: 1.2rem;
+    position: relative;
+    bottom: 0px;
+}
+
+.buttonPedido {
+    position: relative;
+    margin-top: 30px;
+    bottom: 25px;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    background: var(--CorPrimaria);
+    border: 0;
+    color: var(--CorTerciaria);
+    cursor: pointer;
+    font-size: 1em;
+    font-family: 'Prompt', sans-serif;
+    padding: 8px;
+}
+
+.buttonPedido:hover {
+    background: var(--CorSecundaria);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+@media screen and (max-width: 1265px) {
+    .order-summary {
+        width: 360px;
+        height: 380px;
+        top: 130px;
+        right: 80px;
+    }
+
+    .resumoProduto {
+        margin-top: -20px;
+        font-size: 1.5rem;
+    }
+
+    .inputName {
+        width: 150px;
+        height: 20px;
+        font-size: 0.7rem;
+    }
+
+    .totalPedido {
+        font-size: 1rem;
+        bottom: 90px;
+    }
+
+    .buttonPedido {
+        width: 130px;
+        font-size: 0.9em;
+    }
+}
+
+@media screen and (max-width: 1167px) {
+    .order-summary {
+        top: 150px;
+        right: 50px;
+    }
+}
+
+@media screen and (max-width: 1067px) {
+    .order-summary {
+        width: 350px;
+        height: 370px;
+    }
+
+    .resumoProduto {
+        font-size: 1.3rem;
+    }
+
+    .buttonPedido {
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 968px) {
+    .order-summary {
+        right: 30px;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .order-summary {
+        width: 380px;
+        height: 300px;
+        top: 230px;
+        right: 30px;
+    }
+}
+
+@media screen and (max-width: 826px) {
+    .order-summary {
+        width: 350px;
+        height: 290px;
+        top: 250px;
+    }
+}
+
+@media screen and (max-width: 773px) {
+    .order-summary {
+        height: 350px;
+        position: relative;
+        top: -30px;
+        margin-left: 250px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 694px) {
+    .order-summary {
+        width: 350px;
+        height: 350px;
+        position: relative;
+        top: -30px;
+        right: 30px;
+        margin-left: 190px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 605px) {
+    .order-summary {
+        margin-left: 100px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .resumoPedido {
+        margin-top: -10px;
+        font-size: 1rem;
+    }
+}
