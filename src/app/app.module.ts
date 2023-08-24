@@ -8,13 +8,15 @@ import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module'; 
 import { MenuComponent } from './components/menu/menu.component';
 import { OrderComponent } from './components/order/order.component';
+import { CookeRyComponent } from './components/cooke-ry/cooke-ry.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MenuComponent,
-    OrderComponent
+    OrderComponent,
+    CookeRyComponent
   ],
   imports: [
     BrowserModule,
