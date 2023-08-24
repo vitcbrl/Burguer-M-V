@@ -21,8 +21,8 @@ export class OrderComponent implements OnInit {
   }
 
   removeProductFromOrder(product: any) {
-    this.orderService.removeProduct(product.id);
-    product.quantity = ''; //redefino o valor do meu input de entrada que tá no meu menu.html
+    this.orderService.removeProduct(product.product.id);
+    product.quantity = '';
   }
 
   calculateTotalAmount(): number {
@@ -33,17 +33,18 @@ export class OrderComponent implements OnInit {
     console.log('Sending order:', this.customerName, this.selectedProducts);
     const order = {
       client: this.customerName,
-      products: this.selectedProducts.map(item => {
-        return {
-          name: item.product.name,
-          quantity: item.quantity,
-        };
-      })
+      products: this.selectedProducts.map(item => ({
+        ...item.product, 
+        quantity: item.quantity
+      })),
+      status: 'pending', 
+      dateEntry: new Date().toISOString(), 
+      dateProcessed: '' 
     };
-  
+
     try {
       this.orderService.sendOrderToBackend(order);
-      this.customerName = ''; 
+      this.customerName = '';
     } catch (error) {
       if (error instanceof Error) {
         console.error('Error sending order:', error.message);
@@ -52,4 +53,4 @@ export class OrderComponent implements OnInit {
       }
     }
   }
-};
+}
