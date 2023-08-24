@@ -35,7 +35,6 @@ export class MenuComponent implements OnInit {
       product.quantity = (product.quantity || 0) + 1;
     }
   
-    // Função para remover um produto do pedido
     removeProductFromOrder(product: any) {
       this.orderService.removeProduct(product.id);
       if (product.quantity && product.quantity > 0) {

@@ -22,6 +22,7 @@ export class OrderComponent implements OnInit {
 
   removeProductFromOrder(product: any) {
     this.orderService.removeProduct(product.id);
+    product.quantity = 0; //redefino o valor do meu input de entrada que tá no meu menu.html
   }
 
   calculateTotalAmount(): number {

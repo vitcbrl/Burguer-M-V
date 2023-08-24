@@ -32,25 +32,28 @@ export class OrderService {
 
   sendOrderToBackend(order: any) {
     const { loggedIn, token } = this.authService.isUserLoggedIn();
-
+  
     if (!loggedIn) {
       throw new Error('User not logged in');
     }
-
+  
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
-    // mandando order pro backend
+  
     this.http.post(this.apiUrl, order, { headers }).subscribe(
       (response) => {
         console.log(response + ' sent to the API');
-        this.addedProducts = [];
+        this.addedProducts = []; 
         this.addedProductSubject.next(this.addedProducts);
       },
       (error) => {
         console.error('Failed to send order to the API:', error.message);
       }
     );
-  }
-}
+  
+    // redefino o meu input de quantidade do menu para zero
+    this.addedProducts.forEach(item => {
+      item.product.quantity = 0;
+    });
+  }};  
