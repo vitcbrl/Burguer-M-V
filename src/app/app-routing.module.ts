@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { OrderComponent } from './components/order/order.component'; // Importe o componente Order
+import { CookeRyComponent } from './components/cooke-ry/cooke-ry.component';
 
 const routes: Routes = [
   {
@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'menu',
     component: MenuComponent
+  },
+  {
+    path: 'cozinha',
+    component: CookeRyComponent
   }
 ];
 
