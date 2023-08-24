@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 export class MenuComponent implements OnInit {
   products: any[] = [];
   filteredProducts: any[] = [];
-  filteredType: string = 'Café da manhã';
+  filteredType: string = 'Café da manha';
   @Output() addToOrder: EventEmitter<any> = new EventEmitter<any>();
   @Output() removeFromOrder: EventEmitter<any> = new EventEmitter<any>();
 

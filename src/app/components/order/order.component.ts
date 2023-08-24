@@ -29,6 +29,26 @@ export class OrderComponent implements OnInit {
   }
 
   sendOrderToAPI() {
-    // Implementar a lógica de enviar o pedido para a API
+    console.log('Sending order:', this.customerName, this.selectedProducts);
+    const order = {
+      client: this.customerName,
+      products: this.selectedProducts.map(item => {
+        return {
+          name: item.product.name,
+          quantity: item.quantity,
+        };
+      })
+    };
+  
+    try {
+      this.orderService.sendOrderToBackend(order);
+      this.customerName = ''; 
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error('Error sending order:', error.message);
+      } else {
+        console.error('An unknown error occurred while sending the order.');
+      }
+    }
   }
-}
+};
