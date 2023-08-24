@@ -38,6 +38,8 @@ export class MenuComponent implements OnInit {
     removeProductFromOrder(product: any) {
       this.orderService.removeProduct(product.id);
       if (product.quantity && product.quantity > 0) {
-        product.quantity -= 1}
-    }
-  }
+        product.quantity -= 1;
+      } else {
+        product.quantity = '';
+      }
+    }};

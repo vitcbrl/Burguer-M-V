@@ -7,7 +7,7 @@ import { AuthService } from './authentication.service';
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = 'http://localhost:8080/orders'; // Update with the actual API URL
+  private apiUrl = 'http://localhost:8080/orders'; 
   private addedProducts: any[] = [];
   private addedProductSubject = new BehaviorSubject<any[]>(this.addedProducts);
   addedProduct$ = this.addedProductSubject.asObservable();
@@ -54,6 +54,6 @@ export class OrderService {
   
     // redefino o meu input de quantidade do menu para zero
     this.addedProducts.forEach(item => {
-      item.product.quantity = 0;
+      item.product.quantity = '';
     });
   }};  
