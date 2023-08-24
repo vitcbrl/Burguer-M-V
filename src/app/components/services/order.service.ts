@@ -25,16 +25,10 @@ export class OrderService {
   }
 
   removeProduct(productId: number) {
-    const existingProduct = this.addedProducts.find(p => p.product.id === productId);
-    if (existingProduct) {
-      if (existingProduct.quantity > 1) {
-        existingProduct.quantity--;
-      } else {
-        this.addedProducts = this.addedProducts.filter(p => p.product.id !== productId);
-      }
-      this.addedProductSubject.next(this.addedProducts);
-    }
+    this.addedProducts = this.addedProducts.filter(p => p.product.id !== productId);
+    this.addedProductSubject.next(this.addedProducts);
   }
+  
 
   sendOrderToBackend(order: any) {
     const { loggedIn, token } = this.authService.isUserLoggedIn();
