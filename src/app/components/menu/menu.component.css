@@ -141,7 +141,7 @@
 
     .imgLogout {
         top: 5px;
-        right: 15px;
+        right: 30px;
         width: 20px;
         height: 20px;
     }
@@ -192,7 +192,7 @@
     }
 
     .quantity-input {
-        width: 20px;
+        width: 25px;
     }
 }
 
@@ -217,7 +217,7 @@
     }
 }
 
-@media screen and (max-width: 1067px) {
+@media screen and (max-width: 1094px) {
     .imagemLogo {
         left: 340px;
     }
@@ -245,7 +245,7 @@
     }
 }
 
-@media screen and (max-width: 968px) {
+@media screen and (max-width: 1004px) {
     .imagemLogo {
         left: 260px;
     }
@@ -273,7 +273,7 @@
     }
 }
 
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 903px) {
     .imagemLogo {
         margin-top: 15px;
         right: 450px;
@@ -289,11 +289,11 @@
     }
 
     .tituloItens {
-        top: -100px;
+        top: -50px;
     }
 
     .products {
-        top: -110px;
+        top: -30px;
     }
 
     .elementsProducts {
@@ -316,9 +316,13 @@
         margin-top: 25px;
         margin-left: 15px;
     }
+
+    .quantity-input {
+        width: 30px;
+    }
 }
 
-@media screen and (max-width: 826px) {
+@media screen and (max-width: 845px) {
     .imagemLogo {
         position: relative;
         top: -110px;
@@ -332,7 +336,6 @@
     }
 
     .products {
-        top: -100px;
         left: 30px;
     }
 
@@ -351,11 +354,11 @@
     }
 
     .quantity-input {
-        width: 20px;
+        width: 35px;
     }
 }
 
-@media screen and (max-width: 773px){
+@media screen and (max-width: 826px){
     .backgroundx {
         display: flex;
         position: relative;
@@ -378,6 +381,7 @@
     }
 
     .products {
+        top: -80px;
         left: 240px;
     }
 
@@ -462,6 +466,31 @@
     }
 
     .products {
-        left: 90px;
+        left: 80px;
+    }
+}
+
+@media screen and (max-width: 459px){
+    .imagemLogo {
+        left: 100px;
+    }
+
+    .imgLogout {
+        top: 10px;
+        right: 40px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .select {
+        left: 70px;
+    }
+
+    .tituloItens {
+        left: 150px;
+    }
+
+    .products {
+        left: 50px;
     }
 }
