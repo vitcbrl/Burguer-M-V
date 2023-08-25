@@ -1,0 +1,19 @@
+<section class="cookery">
+  <h2 class="cookery-title">Cozinha</h2>
+  <div class="order-list">
+    <div *ngFor="let order of orders" class="order-item">
+      <div class="order-details">
+        <p class="order-client">Cliente: {{ order.client }}</p>
+        <p class="order-status">Status: {{ order.status }}</p>
+        <p class="order-time">Tempo de Preparo: {{ calculatePreparationTime(order) }}</p>
+      </div>
+      <button
+        *ngIf="order.status === 'pending'"
+        class="mark-ready-button"
+        (click)="markOrderAsReady(order)"
+      >
+        Marcar como Pronto
+      </button>
+    </div>
+  </div>
+</section>

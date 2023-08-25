@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './authentication.service';
+import { Observable, EMPTY } from 'rxjs';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -56,4 +59,30 @@ export class OrderService {
       item.product.quantity = '';
     });
   }
+
+   
+  getOrders(): Observable<any[]> {
+    const user = this.authService.isUserLoggedIn();
+    if (user.loggedIn) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${user.token}`
+      });
+
+      return this.http.get<any[]>(this.apiUrl, { headers });
+    } else {
+      // Handle not logged in scenario
+      return EMPTY;  // or return an Observable with appropriate default data
+    }
+  }
+
+  
+  updateOrder(order: any): Observable<any> {
+    const updateUrl = `${this.apiUrl}/${order.id}`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.isUserLoggedIn().token}`
+    });
+
+    return this.http.put(updateUrl, order, { headers });
+  }
 }
+
