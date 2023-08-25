@@ -5,8 +5,17 @@
       <div class="order-details">
         <p class="order-client">Cliente: {{ order.client }}</p>
         <p class="order-status">Status: {{ order.status }}</p>
+        
         <p class="order-time">Tempo de Preparo: {{ calculatePreparationTime(order) }}</p>
       </div>
+      <div *ngFor="let order of orders" class="order-item">
+        <!-- ... -->
+        <div *ngFor="let product of order.productDetails">
+          <p class="order-status">Produto: {{ product.productName  }}</p>
+          <p class="order-status">Quantidade: {{ product.quantity}}</p>
+        </div>
+        <!-- ... -->
+      </div>      
       <button
         *ngIf="order.status === 'pending'"
         class="mark-ready-button"

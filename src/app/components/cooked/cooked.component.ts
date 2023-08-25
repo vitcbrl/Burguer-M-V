@@ -15,18 +15,26 @@ export class CookedComponent implements OnInit {
     this.loadOrders();
   }
 
-  // Replace 'any' with appropriate types
-loadOrders() {
-  this.orderService.getOrders().subscribe(
-    (orders: any[]) => {
-      this.orders = orders;
-      
-    },
-    (error: any) => {
-      console.error('Failed to fetch orders:', error);
-    }
-  );
-}
+  loadOrders() {
+    this.orderService.getOrders().subscribe(
+      (orders: any[]) => {
+        this.orders = orders.map(order => {
+          const productDetails = order.products.map((product: any) => {
+            return {
+              productName : product.name,
+              quantity: product.quantity,
+            }
+          })
+      return {
+        ...order,
+        productDetails: productDetails
+      }
+    })
+  }, (error: any) => {
+    console.error('erro ao puxar os produtos desse caralho',error)
+  }
+  )}
+        
 
   markOrderAsReady(order: any) {
     // Marcar o pedido como pronto
