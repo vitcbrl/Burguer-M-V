@@ -1,28 +1,26 @@
 <section class="cookery">
-  <h2 class="cookery-title">Cozinha</h2>
-  <div class="order-list">
+  <img src="../../../assets/Logo-burguermv.png" alt="Logo" class="logoCooked">
+  <div class="buttonsContainer">
+    <button class="buttonOne">Pedidos em andamento</button>
+    <button class="buttonTwo">Pedidos Concluído</button>
+  </div>
+  <img src="../../../assets/logoutCooked.png" alt="Imagem de Logout" class="imgLogout">
+  <section class="order-list">
     <div *ngFor="let order of orders" class="order-item">
       <div class="order-details">
-        <p class="order-client">Cliente: {{ order.client }}</p>
-        <p class="order-status">Status: {{ order.status }}</p>
-        
-        <p class="order-time">Tempo de Preparo: {{ calculatePreparationTime(order) }}</p>
+        <p class="order status">Status: {{ order.status }}</p>
+        <p class="order client">{{ order.client }}</p>
+        <p class="order time">Tempo de Preparo: {{ calculatePreparationTime(order) }}</p>
       </div>
-      <div *ngFor="let order of orders" class="order-item">
-        <!-- ... -->
-        <div *ngFor="let product of order.productDetails">
-          <p class="order-status">Produto: {{ product.productName  }}</p>
-          <p class="order-status">Quantidade: {{ product.quantity}}</p>
+      <div class="product-details">
+        <div *ngFor="let product of order.productDetails" class="order-product">
+          <p class="order-status">{{ product.productName }}</p>
+          <p class="order-status">Qtd: {{ product.quantity}}</p>
         </div>
-        <!-- ... -->
-      </div>      
-      <button
-        *ngIf="order.status === 'pending'"
-        class="mark-ready-button"
-        (click)="markOrderAsReady(order)"
-      >
-        Marcar como Pronto
+      </div>
+      <button *ngIf="order.status === 'pending'" class="buttonOk" (click)="markOrderAsReady(order)">
+        Pedido Concluído
       </button>
     </div>
-  </div>
+  </section>
 </section>

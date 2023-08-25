@@ -8,7 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module'; 
 import { MenuComponent } from './components/menu/menu.component';
 import { OrderComponent } from './components/order/order.component';
-import { CookeRyComponent } from './components/cooke-ry/cooke-ry.component';
+import { CookedComponent } from './components/cooked/cooked.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { CookeRyComponent } from './components/cooke-ry/cooke-ry.component';
     LoginComponent,
     MenuComponent,
     OrderComponent,
-    CookeRyComponent
+    CookedComponent
   ],
   imports: [
     BrowserModule,
