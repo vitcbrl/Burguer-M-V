@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { CookeRyComponent } from './components/cooke-ry/cooke-ry.component';
+import { CookedComponent } from './components/cooked/cooked.component';
 
 const routes: Routes = [
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'cozinha',
-    component: CookeRyComponent
+    component: CookedComponent
   }
 ];
 
