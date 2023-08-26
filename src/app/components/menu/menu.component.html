@@ -1,29 +1,29 @@
 <main class="principal">
-    <div class="containerBackground">
-      <img src="../../../assets/vectorInverse.svg" alt="Logo" class="background">
-    </div>
-    <img src="../../../assets/vectorx-2.svg" alt="Color Logo" class="backgroundx">
-    <img src="../../../assets/Logo-burguermv.png" alt="Imagem Logo" class="imagemLogo">
-    <img src="../../../assets/logout.png" alt="Botão Logout" class="imgLogout" (click)="logout()">
-    <section class="select">
-      <button class="buttons" (click)="filterProducts('Café da manha')">Café da manhã</button>
-      <button class="buttons" (click)="filterProducts('Almoço')">Almoço e Jantar</button>
-    </section>
-    <p class="tituloItens">Itens/Valor</p>
-    <div *ngFor="let product of filteredProducts">
-      <div class="products">
-        <img class="imgProduto" [src]="product.image" alt="{{ product.name }}" />
-        <div class="elementsProducts">
-          <h3 class="tituloProducts">{{ product.name }} - R$ {{ product.price }}</h3>
-          <div class="quantity-controls">
-            <button class="quantity-button minus" (click)="removeProductFromOrder(product)">-</button>
-            <input class="quantity-input" type="number" [(ngModel)]="product.quantity" min="1">
-            <button class="quantity-button plus" (click)="addProductToOrder(product)">+</button>
-          </div>          
+  <div class="containerBackground">
+    <img src="../../../assets/vectorInverse.svg" alt="Logo" class="background">
+  </div>
+  <img src="../../../assets/vectorx-2.svg" alt="Color Logo" class="backgroundx">
+  <img src="../../../assets/Logo-burguermv.png" alt="Imagem Logo" class="imagemLogo">
+  <img src="../../../assets/logout.png" alt="Botão Logout" class="imgLogout" (click)="logout()">
+  <section class="select">
+    <button class="buttons" (click)="filterProducts('Café da manha')">Café da manhã</button>
+    <button class="buttons" (click)="filterProducts('Almoço')">Almoço e Jantar</button>
+  </section>
+  <p class="tituloItens">Itens/Valor</p>
+  <div *ngFor="let product of filteredProducts">
+    <div class="products">
+      <img class="imgProduto" [src]="product.image" alt="{{ product.name }}" />
+      <div class="elementsProducts">
+        <h3 class="tituloProducts">{{ product.name }} - R$ {{ product.price }}</h3>
+        <div class="quantity-controls">
+          <button class="quantity-button minus" (click)="removeProductFromOrder(product)">-</button>
+          <input class="quantity-input" type="number" [value]="product.quantity || 0" min="0" />
+          <button class="quantity-button plus" (click)="addProductToOrder(product)">+</button>
         </div>
       </div>
     </div>
-    <div>
-      <app-order></app-order>
-    </div>
+  </div>
+  <div>
+    <app-order></app-order>
+  </div>
 </main>

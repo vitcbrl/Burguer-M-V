@@ -75,6 +75,18 @@ export class OrderService {
     }
   }
 
+  decreaseProductQuantity(productId: number) {
+    const existingProduct = this.addedProducts.find(p => p.product.id === productId);
+    if (existingProduct) {
+      existingProduct.quantity -= 1;
+    }
+  }
+  
+  getOrderedProduct(productId: number): any {
+    return this.addedProducts.find(p => p.product.id === productId);
+  }
+  
+
   
   updateOrder(order: any): Observable<any> {
     const updateUrl = `${this.apiUrl}/${order.id}`;
@@ -85,4 +97,3 @@ export class OrderService {
     return this.http.put(updateUrl, order, { headers });
   }
 }
-

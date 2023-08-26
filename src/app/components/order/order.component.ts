@@ -21,7 +21,7 @@ export class OrderComponent implements OnInit {
   }
 
   removeProductFromOrder(product: any) {
-    this.orderService.removeProduct(product.product.id);
+    this.orderService.removeProduct(product.id);
     product.quantity = '';
   }
 

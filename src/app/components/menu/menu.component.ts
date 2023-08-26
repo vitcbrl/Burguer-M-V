@@ -1,6 +1,6 @@
-import { Component, OnInit, EventEmitter, Output, } from '@angular/core'; //teste
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ProductService } from '../services/product.service';
-import { OrderService } from '../services/order.service'; 
+import { OrderService } from '../services/order.service';
 import { AuthService } from '../services/authentication.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
   @Output() addToOrder: EventEmitter<any> = new EventEmitter<any>();
   @Output() removeFromOrder: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private productService: ProductService, private orderService: OrderService, private authService: AuthService) {} 
+  constructor(private productService: ProductService, private orderService: OrderService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((data) => {
@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  logout(): void{
+  logout(): void {
     this.authService.logout();
   }
 
@@ -33,17 +33,26 @@ export class MenuComponent implements OnInit {
     this.filteredType = type;
   }
 
-    // Função para adicionar um produto ao pedido
-    addProductToOrder(product: any) {
-      this.orderService.addProduct(product);
-      product.quantity = (product.quantity || 0) + 1;
-    }
-  
-    removeProductFromOrder(product: any) {
-      this.orderService.removeProduct(product.id);
-      if (product.quantity && product.quantity > 0) {
-        product.quantity -= 1;
+  addProductToOrder(product: any) {
+    this.orderService.addProduct(product);
+    this.updateProductQuantity(product, 1);
+  }
+
+  removeProductFromOrder(product: any) {
+    const existingProduct = this.orderService.getOrderedProduct(product.id);
+
+    if (existingProduct) {
+      if (existingProduct.quantity > 1) {
+        this.orderService.decreaseProductQuantity(product.id);
+        this.updateProductQuantity(product, -1);
       } else {
-        product.quantity = '';
+        this.orderService.removeProduct(product.id);
+        this.updateProductQuantity(product, -1);
       }
-    }};
+    }
+  }
+
+  private updateProductQuantity(product: any, change: number) {
+    product.quantity = (product.quantity || 0) + change;
+  }
+}
