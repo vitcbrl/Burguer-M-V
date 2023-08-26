@@ -4,7 +4,7 @@
     <button class="buttonOne">Pedidos em andamento</button>
     <button class="buttonTwo">Pedidos Concluído</button>
   </div>
-  <img src="../../../assets/logoutCooked.png" alt="Imagem de Logout" class="imgLogout">
+  <img src="../../../assets/logoutCooked.png" alt="Imagem de Logout" class="imgLogout" (click)="logout()">
   <section class="order-list">
     <div *ngFor="let order of orders" class="order-item">
       <div class="order-details">

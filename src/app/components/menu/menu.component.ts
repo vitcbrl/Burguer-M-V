@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, } from '@angular/core'; //teste
 import { ProductService } from '../services/product.service';
 import { OrderService } from '../services/order.service'; 
-import { FormsModule } from '@angular/forms';
+import { AuthService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-menu',
@@ -15,13 +15,17 @@ export class MenuComponent implements OnInit {
   @Output() addToOrder: EventEmitter<any> = new EventEmitter<any>();
   @Output() removeFromOrder: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private productService: ProductService, private orderService: OrderService) {} 
+  constructor(private productService: ProductService, private orderService: OrderService, private authService: AuthService) {} 
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((data) => {
       this.products = data[0];
       this.filteredProducts = this.products.filter(product => product.type === 'Café da manha');
     });
+  }
+
+  logout(): void{
+    this.authService.logout();
   }
 
   filterProducts(type: string) {

@@ -13,7 +13,7 @@ export class AuthService {
   private userRoleKey = 'accessRole'; // Adjust the key name to match your implementation
   // You can add more keys for storing other user-related data if needed
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(email: string, password: string): Observable<boolean> {
     const loginUser = { email, password };
@@ -35,7 +35,7 @@ export class AuthService {
     );
   }
 
-  isUserLoggedIn(): { loggedIn: boolean, token: string | null} {
+  isUserLoggedIn(): { loggedIn: boolean, token: string | null } {
     const token = localStorage.getItem(this.accessTokenKey);
     return {
       loggedIn: !!token,
@@ -47,24 +47,24 @@ export class AuthService {
     return localStorage.getItem(this.userRoleKey);
   }
 
-    // Obter o email do usuario logado
-    getUserEmail(): string | null {
-      return localStorage.getItem('userEmail');
-    }
-  
-    // Armazenar o token no localStorage após o login
-    storageToken(token: string) {
-      localStorage.setItem('token', token);
-    }
-  
-    // Remover o token após logout
-    logout() {
-      localStorage.removeItem('token');
-      localStorage.removeItem('userEmail');
-      this.router.navigate(['']);
-    }
-  
-    getUsername(): string | null {
-      return localStorage.getItem('username')
-    }
+  // Obter o email do usuario logado
+  getUserEmail(): string | null {
+    return localStorage.getItem('userEmail');
+  }
+
+  // Armazenar o token no localStorage após o login
+  storageToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  // Remover o token após logout
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userEmail');
+    this.router.navigate(['/login']);
+  }
+
+  getUsername(): string | null {
+    return localStorage.getItem('username')
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
+import { AuthService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-cooked',
@@ -9,10 +10,14 @@ import { OrderService } from '../services/order.service';
 export class CookedComponent implements OnInit {
   orders: any[] = [];
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loadOrders();
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
   loadOrders() {
@@ -31,7 +36,7 @@ export class CookedComponent implements OnInit {
       }
     })
   }, (error: any) => {
-    console.error('erro ao puxar os produtos desse caralho',error)
+    console.error('erro ao puxar os produtos',error)
   }
   )}
         
