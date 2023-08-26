@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { AuthService } from '../services/authentication.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-cooked',
@@ -9,14 +10,15 @@ import { AuthService } from '../services/authentication.service';
 })
 export class CookedComponent implements OnInit {
   orders: any[] = [];
+  activeTab: string = 'pending'; 
 
-  constructor(private orderService: OrderService, private authService: AuthService) {}
+  constructor(private orderService: OrderService, private authService: AuthService, private datePipe: DatePipe ) {}
 
   ngOnInit(): void {
     this.loadOrders();
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
   }
 
@@ -26,20 +28,21 @@ export class CookedComponent implements OnInit {
         this.orders = orders.map(order => {
           const productDetails = order.products.map((product: any) => {
             return {
-              productName : product.name,
+              productName: product.name,
               quantity: product.quantity,
             }
-          })
-      return {
-        ...order,
-        productDetails: productDetails
+          });
+          return {
+            ...order,
+            productDetails: productDetails
+          }
+        });
+      },
+      (error: any) => {
+        console.error('Erro ao puxar os produtos', error);
       }
-    })
-  }, (error: any) => {
-    console.error('erro ao puxar os produtos',error)
+    );
   }
-  )}
-        
 
   markOrderAsReady(order: any) {
     // Marcar o pedido como pronto
@@ -49,24 +52,36 @@ export class CookedComponent implements OnInit {
     // Atualizar o pedido no serviço
     this.orderService.updateOrder(order).subscribe(
       () => {
-        console.log('Order marked as ready:', order);
+        console.log('Pedido marcado como pronto:', order);
+        this.loadOrders(); // Reload orders to update the list
       },
       (error) => {
-        console.error('Failed to mark order as ready:', error);
+        console.error('Falha ao marcar o pedido como pronto:', error);
       }
     );
   }
 
   calculatePreparationTime(order: any): string {
-    // Calcular o tempo de preparação do pedido
     if (order.status === 'ready' && order.dateEntry && order.dateProcessed) {
       const entryTime = new Date(order.dateEntry).getTime();
       const processedTime = new Date(order.dateProcessed).getTime();
       const preparationTime = processedTime - entryTime;
       const minutes = Math.floor(preparationTime / 1000 / 60);
-      return `${minutes} min`;
+
+      const formattedEntryDate = this.datePipe.transform(order.dateEntry, 'dd/MM/yyyy HH:mm:ss');
+      const formattedProcessedDate = this.datePipe.transform(order.dateProcessed, 'dd/MM/yyyy HH:mm:ss');
+
+      return `Feito em: ${formattedEntryDate}, Entregue em: ${formattedProcessedDate}, Tempo: ${minutes} min`;
     } else {
       return '-';
     }
+  }
+
+   setActiveTab(tab: string) { //controlar qual aba está ativa
+    this.activeTab = tab;
+  }
+
+  filterOrdersByStatus(status: string): any[] { //para filtrar os pedidos com base no status
+    return this.orders.filter(order => order.status === status);
   }
 }

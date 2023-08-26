@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MenuComponent } from './components/menu/menu.component';
 import { OrderComponent } from './components/order/order.component';
 import { CookedComponent } from './components/cooked/cooked.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { CookedComponent } from './components/cooked/cooked.component';
     MenuComponent,
     OrderComponent
   ],
-  providers: [],
+  providers: [ DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
