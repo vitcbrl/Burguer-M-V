@@ -56,7 +56,7 @@
     width: 300px;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 30px;
 }
 
 .inputs {
@@ -70,7 +70,7 @@
 }
 
 .buttonLogin {
-    margin-top: 40px;
+    margin-top: 30px;
     margin-left: 70px;
     width: 150px;
     height: 40px;
@@ -94,7 +94,13 @@
 }
 
 .error-message {
-    display: none;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+    margin-left: 55px;
+    font-size: 0.9rem;
+    font-family: 'Prompt', sans-serif;
 }
 
 @media screen and (max-width: 1350px) {
@@ -118,6 +124,9 @@
 @media screen and (max-width: 1145px) {
     .imgLogo {
         left: -80px;
+    }
+    .error-message {
+        font-size: 0.9rem;
     }
 }
 
@@ -173,6 +182,10 @@
     .buttonLogin {
         margin-top: 20px;
         width: 130px;
+        font-size: 0.9rem;
+    }
+
+    .error-message {
         font-size: 0.9rem;
     }
 }

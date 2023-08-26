@@ -12,9 +12,9 @@
           <input class="inputs" type="email" [(ngModel)]="email" name="email" placeholder="Email" required>
           <input class="inputs" type="password" [(ngModel)]="password" name="password" placeholder="Senha" required>
         </div>
+        <div *ngIf="errorLogin" class="error-message">{{errorMessage}}</div>
         <button type="submit" class="buttonLogin">Acessar</button>
       </section>
-      <div *ngIf="errorLogin" class="error-message">Email e senha invalidos</div>
     </form>
   </section>
 </main>

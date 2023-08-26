@@ -25,7 +25,6 @@ export class LoginComponent {
       next: isUserLoggedIn => {
         if (isUserLoggedIn) {
           const userRole = localStorage.getItem('accessRole');
-          console.log('userRole:', userRole); // Log para depurar
           const roleRouteMap: { [key: string]: string } = {
             'service': '/menu',
             'chefe': '/cozinha',
@@ -34,7 +33,6 @@ export class LoginComponent {
 
           if (userRole !== null && userRole in roleRouteMap) {
             const targetRoute = roleRouteMap[userRole];
-            console.log('targetRoute:', targetRoute); // Log para depurar
             this.router.navigate([targetRoute]);
           } else {
             throw new Error('Invalid role');
@@ -47,7 +45,7 @@ export class LoginComponent {
       error: error => {
         console.error('Login error:', error);
         this.errorLogin = true;
-        this.errorMessage = 'An error occurred during login. Please try again.';
+        this.errorMessage = 'Email ou senha inválidos';
       }
     });
   }
