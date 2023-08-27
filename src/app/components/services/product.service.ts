@@ -15,7 +15,7 @@ export class ProductService {
     const { loggedIn, token} = this.authService.isUserLoggedIn();
 
     if(!loggedIn){
-      throw new Error('User not logged in');
+      throw new Error('Usuário não logado');
     }
 
     // Define os headers com o cabeçalho de autorização

@@ -45,12 +45,12 @@ export class OrderService {
 
     this.http.post(this.apiUrl, order, { headers }).subscribe(
       (response) => {
-        console.log(response + ' sent to the API');
+        console.log(response + ' enviado para a API');
         this.addedProducts = [];
         this.addedProductSubject.next(this.addedProducts);
       },
       (error) => {
-        console.error('Failed to send order to the API:', error.message);
+        console.error('Falha ao enviar pedido para a API:', error.message);
       }
     );
 

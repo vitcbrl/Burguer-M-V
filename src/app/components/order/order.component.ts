@@ -47,9 +47,9 @@ export class OrderComponent implements OnInit {
       this.customerName = '';
     } catch (error) {
       if (error instanceof Error) {
-        console.error('Error sending order:', error.message);
+        console.error('Erro ao enviar pedido:', error.message);
       } else {
-        console.error('An unknown error occurred while sending the order.');
+        console.error('Ocorreu um erro desconhecido ao enviar o pedido.');
       }
     }
   }

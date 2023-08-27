@@ -25,12 +25,12 @@ export class AuthService {
           localStorage.setItem(this.userRoleKey, response.user.role);
           return true;
         } else {
-          throw new Error("Invalid credentials");
+          throw new Error("Credenciais inválidas");
         }
       }),
       catchError(error => {
-        console.log('Login error', error);
-        return throwError("An error occurred during login. Please try again.");
+        console.log('Erro de login', error);
+        return throwError("Ocorreu um erro durante o login. Por favor, tente novamente.");
       })
     );
   }
@@ -61,7 +61,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('userEmail');
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
 
   getUsername(): string | null {
