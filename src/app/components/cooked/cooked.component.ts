@@ -69,11 +69,12 @@ export class CookedComponent implements OnInit {
       const minutes = Math.floor(preparationTime / 1000 / 60);
 
       const formattedEntryDate = this.datePipe.transform(order.dateEntry, 'dd/MM/yyyy HH:mm:ss');
-      const formattedProcessedDate = this.datePipe.transform(order.dateProcessed, 'dd/MM/yyyy HH:mm:ss');
+      //const formattedProcessedDate = this.datePipe.transform(order.dateProcessed, 'dd/MM/yyyy HH:mm:ss');
 
-      return `Feito em: ${formattedEntryDate}, Entregue em: ${formattedProcessedDate}, Tempo: ${minutes} min`;
+      return `Data: ${formattedEntryDate} - ${minutes} min`;
+      //`Entregue em: ${formattedProcessedDate},`
     } else {
-      return '-';
+      return '';
     }
   }
 

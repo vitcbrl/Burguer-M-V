@@ -6,7 +6,7 @@ import { CookedComponent } from './components/cooked/cooked.component';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     component: LoginComponent
   },
   {
