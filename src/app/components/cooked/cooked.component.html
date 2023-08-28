@@ -10,14 +10,13 @@
       <div class="order-details">
         <p class="order status">Status: {{ order.status }}</p>
         <p class="order client">{{ order.client }}</p>
-        <div class="product-details"> <!--adicionei os elementos aqui dentro-->
+        <div class="product-details">
           <div *ngFor="let product of order.productDetails" class="order-product">
             <p class="order-status">{{ product.productName }}</p>
             <p class="order-status">Qtd: {{ product.quantity }}</p>
           </div>
         </div>
-        <p class="order time">{{ calculatePreparationTime(order) }}</p>
-        <p *ngIf="order.status === 'ready'" class="order"></p>
+        <p *ngIf="order.status === 'ready'" class="order time">{{ calculatePreparationTime(order) }} - </p>
       </div>
       <button *ngIf="order.status === 'pending'" class="buttonOk" (click)="markOrderAsReady(order)">
         Pedido Concluído
