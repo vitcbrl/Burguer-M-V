@@ -1,0 +1,18 @@
+<div class="mesas-container">
+  <h2>Pedidos Prontos para Servir</h2>
+  <ul class="ready-orders-list">
+    <li *ngFor="let order of readyOrders">
+      <div class="order-details">
+        <p>{{ order.client }} - {{ order.products.length }} Itens</p>
+        <ul>
+          <li *ngFor="let product of order.products">
+            {{ product.name }} - {{ product.quantity }} unidades
+          </li>
+        </ul>
+        <button>Marcar como Entregue</button>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
