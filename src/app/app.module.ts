@@ -10,6 +10,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { OrderComponent } from './components/order/order.component';
 import { CookedComponent } from './components/cooked/cooked.component';
 import { DatePipe } from '@angular/common';
+import { TablesComponent } from './components/tables/tables.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DatePipe } from '@angular/common';
     LoginComponent,
     MenuComponent,
     OrderComponent,
-    CookedComponent
+    CookedComponent,
+    TablesComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { DatePipe } from '@angular/common';
   exports: [
     LoginComponent,
     MenuComponent,
-    OrderComponent
+    OrderComponent,
+    TablesComponent
   ],
   providers: [ DatePipe],
   bootstrap: [AppComponent]
