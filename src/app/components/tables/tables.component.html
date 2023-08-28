@@ -1,7 +1,11 @@
 <div class="mesas-container">
-  <h2>Pedidos Prontos para Servir</h2>
-  <ul class="ready-orders-list">
-    <li *ngFor="let order of readyOrders">
+  <button (click)="setActiveTab('ready')">Pedidos Prontos para Servir</button>
+  <button (click)="setActiveTab('delivered')">Pedidos Entregues</button>
+
+  <button class="back-button" (click)="goToMenu()">Voltar para o Menu</button>
+
+  <ul class="orders-list">
+    <li *ngFor="let order of (activeTab === 'ready' ? readyOrders : deliveredOrders)">
       <div class="order-details">
         <p>{{ order.client }} - {{ order.products.length }} Itens</p>
         <ul>
@@ -9,10 +13,16 @@
             {{ product.name }} - {{ product.quantity }} unidades
           </li>
         </ul>
-        <button>Marcar como Entregue</button>
+        <p *ngIf="activeTab === 'delivered'">Total: R$ {{ calculateTotal(order) }}</p>
+      </div>
+      <div *ngIf="activeTab === 'ready'">
+        Tempo de Preparo: {{ calculatePreparationTime(order) }}
+        <button (click)="markOrderAsDelivered(order)">Marcar como Entregue</button>
       </div>
     </li>
   </ul>
 </div>
+
+
 
 
