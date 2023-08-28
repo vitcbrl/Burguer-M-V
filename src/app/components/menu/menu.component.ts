@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { OrderService } from '../services/order.service';
 import { AuthService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -15,13 +16,23 @@ export class MenuComponent implements OnInit {
   @Output() addToOrder: EventEmitter<any> = new EventEmitter<any>();
   @Output() removeFromOrder: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private productService: ProductService, private orderService: OrderService, private authService: AuthService) {}
+  constructor(
+    private productService: ProductService,
+    private orderService: OrderService,
+    private authService: AuthService,
+    private router: Router // Injete o Router
+  ) {}
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((data) => {
       this.products = data[0];
       this.filteredProducts = this.products.filter(product => product.type === 'Café da manha');
     });
+  }
+
+  goToMesas() {
+    // Redirecionar para o componente Mesas
+    this.router.navigate(['/tables']);
   }
 
   logout(): void {

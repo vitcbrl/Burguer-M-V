@@ -70,8 +70,8 @@ export class OrderService {
 
       return this.http.get<any[]>(this.apiUrl, { headers });
     } else {
-      // Handle not logged in scenario
-      return EMPTY;  // or return an Observable with appropriate default data
+      
+      return EMPTY; 
     }
   }
 
@@ -96,4 +96,21 @@ export class OrderService {
 
     return this.http.put(updateUrl, order, { headers });
   }
+
+  //função para pegar os pedidos que estão marcados com ready no cooked
+  getReadyOrdersFromBackend(): Observable<any[]> {
+    const user = this.authService.isUserLoggedIn();
+    if (user.loggedIn) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${user.token}`
+      });
+
+      //aqui tem uma verificação apara eu filtrar isso 
+      return this.http.get<any[]>(`${this.apiUrl}?status=ready`, { headers });
+    } else {
+      return EMPTY;
+    }
+  }
 }
+
+

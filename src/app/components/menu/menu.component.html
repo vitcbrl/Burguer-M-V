@@ -10,6 +10,7 @@
     <button class="buttons" (click)="filterProducts('Almoço')">Almoço e Jantar</button>
   </section>
   <p class="tituloItens">Itens/Valor</p>
+  <button class="buttons" (click)="goToMesas()">Ir para Mesas</button>
   <div *ngFor="let product of filteredProducts">
     <div class="products">
       <img class="imgProduto" [src]="product.image" alt="{{ product.name }}" />
