@@ -1,0 +1,131 @@
+.container {
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.logoTables {
+    display: flex;
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 0;
+    left: 0;
+}
+
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 400px;
+    top: 50px;
+    gap: 200px;
+}
+
+.buttonOne,
+.buttonTwo,
+.buttonThree, .buttonOk {
+    background-color: var(--CorPrimaria);
+    color: var(--CorTerciaria);
+    border-radius: 5px;
+    width: 190px;
+    height: 40px;
+    cursor: pointer;
+    border: 0;
+    font-family: 'Prompt', sans-serif;
+}
+
+.buttonOne:hover,
+.buttonTwo:hover,
+.buttonThree:hover, .buttonOk:hover {
+    background-color: var(--CorSecundaria);
+}
+
+.order-list {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 100px;
+    grid-template-columns: 330px 330px 330px 330px;
+}
+
+.order-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    top: 100px;
+    width: 300px;
+    height: 300px;
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 0px 12px 0px rgba(28, 28, 28, 0.15);
+    border-radius: 15px;
+    background-color: var(--CorTerciaria);
+    -moz-box-shadow: 0px 0px 12px 0px rgba(28, 28, 28, 0.15);
+    padding: 45px;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(30, 28, 28, 0.15);
+    color: var(--CorPrimaria);
+    left: 150px;
+    position: relative;
+}
+
+.order-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order {
+    text-align: center;
+    gap: 20px;
+}
+
+.client {
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+}
+
+.product-details{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 100px;
+    width: 250px;
+    gap: 10px;
+    margin-left: 10px;
+    font-size: 1rem;
+}
+
+.order-product{
+    display: flex;
+    gap: 100px;
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    height: 25px;
+    color: var(--CorPrimaria);
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-left: 15px;
+    align-items: center;
+    padding: 5px 0 5px 0;
+    gap: 25px;
+}
+
+.buttonOk {
+    margin-top: 15px;
+}
+
+.total {
+    text-align: center;
+    font-size: 1.3rem;
+    background-color: #e5e6c9;
+    color: var(--CorPrimaria);
+    border-radius: 5px;
+    width: 150px;
+    height: 50px;
+    padding: 10px;
+}
