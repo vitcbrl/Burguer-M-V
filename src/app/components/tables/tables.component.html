@@ -1,28 +1,25 @@
-<div class="mesas-container">
-  <button (click)="setActiveTab('ready')">Pedidos Prontos para Servir</button>
-  <button (click)="setActiveTab('delivered')">Pedidos Entregues</button>
-
-  <button class="back-button" (click)="goToMenu()">Voltar para o Menu</button>
-
-  <ul class="orders-list">
-    <li *ngFor="let order of (activeTab === 'ready' ? readyOrders : deliveredOrders)">
+<section class="container">
+  <img src="../../../assets/Logo-burguermv.png" alt="Imagem Logo" class="logoTables">
+  <div class="buttonsContainer">
+    <button class='buttonOne' (click)="setActiveTab('ready')">Pedidos à Entregar</button>
+    <button class='buttonTwo' (click)="setActiveTab('delivered')">Pedidos Entregues</button>
+    <button class="buttonThree" (click)="goToMenu()"><-- Voltar para o Menu</button>
+  </div>
+  <section class="order-list">
+    <div class="order-item" *ngFor="let order of (activeTab === 'ready' ? readyOrders : deliveredOrders)">
       <div class="order-details">
-        <p>{{ order.client }} - {{ order.products.length }} Itens</p>
-        <ul>
-          <li *ngFor="let product of order.products">
+        <p class="order client">{{ order.client }} - {{ order.products.length }} Itens</p>
+        <div class="product-details">
+          <ul class="order-product" *ngFor="let product of order.products">
             {{ product.name }} - {{ product.quantity }} unidades
-          </li>
-        </ul>
-        <p *ngIf="activeTab === 'delivered'">Total: R$ {{ calculateTotal(order) }}</p>
+          </ul>
+        </div>
       </div>
-      <div *ngIf="activeTab === 'ready'">
-        Tempo de Preparo: {{ calculatePreparationTime(order) }}
-        <button (click)="markOrderAsDelivered(order)">Marcar como Entregue</button>
+      <p class='total' *ngIf="activeTab === 'delivered'">Total: R$ {{ calculateTotal(order) }}</p>
+      <div class='order' *ngIf="activeTab === 'ready'">
+        <p class="time">Tempo de Preparo: {{ calculatePreparationTime(order) }}</p>
+        <button class='buttonOk' (click)="markOrderAsDelivered(order)">Marcar como Entregue</button>
       </div>
-    </li>
-  </ul>
-</div>
-
-
-
-
+    </div>
+  </section>
+</section>

@@ -16,7 +16,7 @@
             <p class="order-status">Qtd: {{ product.quantity }}</p>
           </div>
         </div>
-        <p *ngIf="order.status === 'ready'" class="order time">{{ calculatePreparationTime(order) }} - </p>
+        <p *ngIf="order.status === 'ready'" class="time">{{ calculatePreparationTime(order) }}</p>
       </div>
       <button *ngIf="order.status === 'pending'" class="buttonOk" (click)="markOrderAsReady(order)">
         Pedido Concluído

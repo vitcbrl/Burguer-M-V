@@ -35,26 +35,24 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('login', () => {
-    it('Deve poder navegar para a rota correta após login bem sucedido', () => {
-      const mockLoginObservable = of(true);
-      mockAuthService.login.and.returnValue(mockLoginObservable);
-      localStorage.setItem('accessRole', 'service'); // simulando o role do usuário garçonete
+  it('Deve poder navegar para a rota correta após login bem sucedido', () => {
+    const mockLoginObservable = of(true);
+    mockAuthService.login.and.returnValue(mockLoginObservable);
+    localStorage.setItem('accessRole', 'service'); // simulando o role do usuário garçonete
 
-      component.login();
+    component.login();
 
-      expect(mockAuthService.login).toHaveBeenCalledWith(component.email, component.password);
-      expect(mockRouter.navigate).toHaveBeenCalledWith(['/menu']);
-    });
+    expect(mockAuthService.login).toHaveBeenCalledWith(component.email, component.password);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/menu']);
+  });
 
-    it('Deve exibir uma mensagem de erro ao fazer login com credenciais inválidas', () => {
-      const mockLoginObservable = of(false);
-      mockAuthService.login.and.returnValue(mockLoginObservable);
+  it('Deve exibir uma mensagem de erro ao fazer login com credenciais inválidas', () => {
+    const mockLoginObservable = of(false);
+    mockAuthService.login.and.returnValue(mockLoginObservable);
 
-      component.login();
+    component.login();
 
-      expect(component.errorLogin).toBeTrue();
-      expect(component.errorMessage).toEqual('Invalid login');
-    });
+    expect(component.errorLogin).toBeTrue();
+    expect(component.errorMessage).toEqual('Invalid login');
   });
 });

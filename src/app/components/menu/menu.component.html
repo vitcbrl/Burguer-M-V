@@ -4,13 +4,15 @@
   </div>
   <img src="../../../assets/vectorx-2.svg" alt="Color Logo" class="backgroundx">
   <img src="../../../assets/Logo-burguermv.png" alt="Imagem Logo" class="imagemLogo">
-  <img src="../../../assets/logout.png" alt="Botão Logout" class="imgLogout" (click)="logout()">
+  <div class="icones">
+    <img src="../../../assets/logout.png" alt="Imagem Ilustrativa de Logout" class="imgLogout" (click)="logout()">
+    <img src="../../../assets/iconPedidoOk.png" class="imgPedidos" alt="Imagem Ilustrativa de Pedidos" (click)="goToMesas()">
+  </div>
   <section class="select">
     <button class="buttons" (click)="filterProducts('Café da manha')">Café da manhã</button>
     <button class="buttons" (click)="filterProducts('Almoço')">Almoço e Jantar</button>
   </section>
   <p class="tituloItens">Itens/Valor</p>
-  <button class="buttons" (click)="goToMesas()">Ir para Mesas</button>
   <div *ngFor="let product of filteredProducts">
     <div class="products">
       <img class="imgProduto" [src]="product.image" alt="{{ product.name }}" />

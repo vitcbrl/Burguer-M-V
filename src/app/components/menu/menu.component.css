@@ -22,13 +22,27 @@
     height: 100px;
 }
 
-.imgLogout {
+.icones {
     display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.imgLogout {
     position: absolute;
     top: 15px;
     right: 25px;
     width: 30px;
     height: 30px;
+    cursor: pointer;
+}
+
+.imgPedidos {
+    position: absolute;
+    top: 80px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
 }
 
@@ -141,11 +155,18 @@
 
     .imgLogout {
         top: 5px;
-        right: 30px;
+        right: 25px;
         width: 20px;
         height: 20px;
     }
 
+    .imgPedidos {
+        top: 2px;
+        right: 80px;
+        width: 30px;
+        height: 28px;
+    }
+    
     .select {
         gap: 80px;
         top: -240px;
@@ -254,6 +275,11 @@
         right: 80px;
         width: 20px;
         height: 20px;
+    }
+
+    .imgPedidos {
+        top: 2px;
+        right: 120px;
     }
 
     .select {
@@ -457,6 +483,13 @@
         height: 20px;
     }
 
+    .imgPedidos {
+        top: 8px;
+        right: 105px;
+        width: 30px;
+        height: 28px;
+    }
+
     .select {
         left: 120px;
     }
@@ -480,6 +513,11 @@
         right: 40px;
         width: 20px;
         height: 20px;
+    }
+
+    .imgPedidos {
+        top: 8px;
+        right: 70px;
     }
 
     .select {

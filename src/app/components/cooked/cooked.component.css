@@ -24,6 +24,7 @@
 .buttonOne, .buttonTwo, .buttonOk{
     background-color: var(--CorPrimaria);
     color: var(--CorTerciaria);
+    font-family: 'Prompt', sans-serif;
     border-radius: 5px;
     width: 190px;
     height: 40px;
@@ -76,17 +77,24 @@
 .order-details {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.order {
+.order { 
     text-align: center;
     gap: 20px;
 }
 
 .status {
     font-size: 1.3rem;
-    margin-top: -20px;
-    margin-bottom: 20px;
+    margin-top: -5px;
+    margin-bottom: 15px;
+    background-color: #e5e6c9;
+    color: var(--CorPrimaria);
+    border-radius: 5px;
+    width: 150px;
+    height: 30px;
+    padding: 3px;
 }
 
 .client{
@@ -96,6 +104,7 @@
 
 .time{
     display: flex;
+    text-align: center;
     background-color: #DF582E;
     width: 240px;
     height: 25px;
@@ -103,12 +112,13 @@
     border-radius: 5px;
     margin-top: 50px;
     margin-left: 15px;
-    padding: 3px;
+    font-size: 0.9rem;
+    padding: 5px;
 }
 
 .order-product{
     display: flex;
-    gap: 100px;
+    gap: 90px;
 }
 
 .product-details{
@@ -119,12 +129,11 @@
     width: 250px;
     gap: 10px;
     margin-left: 10px;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .buttonOk {
-    top: 50px;
-    margin-bottom: -20px;
+    margin-bottom: -25px;
 }
 
 @media screen and (max-width: 1496px){
@@ -144,7 +153,7 @@
     }
 }
 
-@media screen and (max-width: 1161px){
+@media screen and (max-width: 1187px){
     .logoCooked {
         position: relative;
         width: 200px;
@@ -204,21 +213,43 @@
 
 @media screen and (max-width: 878px){
     .logoCooked {
-        left: 225px;
+        left: 320px;
     }
 
     .buttonsContainer{
-        left: 100px;
-        gap: 200px;
-        width: 450px;
+        left: 180px;
+        gap: 210px;
+        width: 490px;
         height: 100px;
     }
 
     .order-list {
-        margin-left: 20px;
+        margin-left: 120px;
         grid-template-columns: 330px;
     }
 }
+
+@media screen and (max-width: 747px){
+    .logoCooked {
+        width: 200px;
+        height: 200px;
+        left: 250px;
+    }
+    
+    .buttonsContainer{
+        top: 5px;
+        left: 190px;
+        gap: 30px;
+        width: 320px;
+        height: 100px;
+    }
+
+    .order-list {
+        margin-left: 40px;
+        grid-template-columns: 330px;
+    }
+}
+
 
 @media screen and (max-width: 613px){
     .logoCooked {
@@ -238,7 +269,6 @@
     .order-list {
         margin-left: -50px;
         grid-template-columns: 330px;
-        margin-bottom: 15px;
     }
 }
 
