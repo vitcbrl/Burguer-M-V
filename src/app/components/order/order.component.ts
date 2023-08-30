@@ -16,7 +16,7 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
     this.orderService.addedProduct$.subscribe((products) => {
       this.selectedProducts = products;
-      this.calculateTotalAmount();
+      //this.calculateTotalAmount();
     });
   }
 
