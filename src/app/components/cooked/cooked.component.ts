@@ -10,9 +10,9 @@ import { DatePipe } from '@angular/common';
 })
 export class CookedComponent implements OnInit {
   orders: any[] = [];
-  activeTab: string = 'pending'; 
+  activeTab: string = 'pending';
 
-  constructor(private orderService: OrderService, private authService: AuthService, private datePipe: DatePipe ) {}
+  constructor(private orderService: OrderService, private authService: AuthService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.loadOrders();
@@ -26,15 +26,19 @@ export class CookedComponent implements OnInit {
     this.orderService.getOrders().subscribe(
       (orders: any[]) => {
         this.orders = orders.map(order => {
-          const productDetails = order.products.map((product: any) => {
+          if (order.products && Array.isArray(order.products)) { // Adicionei essa condicional para verificar se o retorno do produto é realmente um array
+            const productDetails = order.products.map((product: any) => {
+              return {
+                productName: product.name,
+                quantity: product.quantity,
+              };
+            });
             return {
-              productName: product.name,
-              quantity: product.quantity,
-            }
-          });
-          return {
-            ...order,
-            productDetails: productDetails
+              ...order,
+              productDetails: productDetails,
+            };
+          } else {
+            return order;
           }
         });
       },
@@ -78,7 +82,7 @@ export class CookedComponent implements OnInit {
     }
   }
 
-   setActiveTab(tab: string) { //controlar qual aba está ativa
+  setActiveTab(tab: string) { //controlar qual aba está ativa
     this.activeTab = tab;
   }
 
