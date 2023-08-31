@@ -14,22 +14,23 @@ export class UserService {
 
   getEmployees(): Observable<any[]> {
     const { loggedIn, token } = this.authService.isUserLoggedIn();
-
+  
     if (!loggedIn) {
       throw new Error('Usuário não logado');
     }
-
-    // Define os headers com o cabeçalho de autorização
+  
+    // Define the headers with the authorization header
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
-    // Passa os headers para a solicitação
+  
+    // Pass the headers to the request
     return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
       map(users => {
         return users.filter(user => user.role === 'chefe' || user.role === 'service')
           .map(user => {
             return {
+              id: user.id,
               name: user.name,
               role: user.role === 'chefe' ? 'Cozinheiro' : 'Garçom'
             };
@@ -37,6 +38,7 @@ export class UserService {
       })
     );
   }
+  
 
   addEmployee(employee: any): Observable<any> {
     const { loggedIn, token } = this.authService.isUserLoggedIn();
