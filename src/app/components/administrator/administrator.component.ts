@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-administrator',
@@ -29,11 +28,11 @@ export class AdministratorComponent implements OnInit {
   }
 
   addEmployee() {
-    // Busque o último ID utilizado dos funcionários existentes
+    // Busca o último ID utilizado dos funcionários existentes
     const lastEmployee = this.employees[this.employees.length - 1];
-    const newId = lastEmployee ? lastEmployee.id + 1 : 1; // Incremente o ID
+    const newId = lastEmployee ? lastEmployee.id + 1 : 1; // Incrementei o ID
 
-    // Preencha os detalhes do novo funcionário
+    // Preenche os detalhes do novo funcionário
     this.newEmployee.id = newId;
 
     this.userService.addEmployee(this.newEmployee).subscribe(
@@ -51,6 +50,21 @@ export class AdministratorComponent implements OnInit {
   resetForm() {
     this.newEmployee = { name: '', email: '', password: '', role: this.newEmployee.role };
   }
+
+  deleteEmployee(employeeId: number) {
+    if (confirm('Tem certeza que deseja excluir esse funcionário?')) {
+      this.userService.deleteEmployee(employeeId).subscribe(
+        (response: any) => {
+          console.log('Funcionário excluído com sucesso', response);
+          this.loadEmployees();
+        },
+        (error: any) => {
+          console.error('Erro ao excluir funcionário', error);
+        }
+      );
+    }
+  }
+
 }
 
 

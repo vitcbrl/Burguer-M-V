@@ -1,16 +1,16 @@
 <table class="table">
   <thead>
     <tr>
-      <th>ID</th>
       <th>Nome</th>
       <th>Função</th>
+      <th>Ação</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let employee of employees">
-      <td>{{ employee.id }}</td>
       <td>{{ employee.name }}</td>
       <td>{{ employee.role }}</td>
+      <td><button (click)="deleteEmployee(employee.id)">Excluir</button></td>
     </tr>
   </tbody>
 </table>
