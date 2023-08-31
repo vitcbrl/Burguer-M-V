@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { v4 as uuidv4 } from 'uuid';
 
-
 @Component({
   selector: 'app-administrator',
   templateUrl: './administrator.component.html',
@@ -10,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class AdministratorComponent implements OnInit {
   employees: any[] = [];
-  newEmployee: any = { id: '', name: '', email: '', password: '', role: 'garçom' };
+  newEmployee: any = { id: 0, name: '', email: '', password: '', role: 'garçom' }; // Inicializado com ID 0
 
   constructor(private userService: UserService) {}
 
@@ -30,9 +29,9 @@ export class AdministratorComponent implements OnInit {
   }
 
   addEmployee() {
-    // Gere um ID aleatório usando o uuidv4() instalei com o comando npm install uuid
-
-    const newId = uuidv4();
+    // Busque o último ID utilizado dos funcionários existentes
+    const lastEmployee = this.employees[this.employees.length - 1];
+    const newId = lastEmployee ? lastEmployee.id + 1 : 1; // Incremente o ID
 
     // Preencha os detalhes do novo funcionário
     this.newEmployee.id = newId;
@@ -51,8 +50,7 @@ export class AdministratorComponent implements OnInit {
 
   resetForm() {
     this.newEmployee = { name: '', email: '', password: '', role: this.newEmployee.role };
-  }  
+  }
 }
-
 
 

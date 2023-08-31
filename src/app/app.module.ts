@@ -11,6 +11,7 @@ import { OrderComponent } from './components/order/order.component';
 import { CookedComponent } from './components/cooked/cooked.component';
 import { DatePipe } from '@angular/common';
 import { TablesComponent } from './components/tables/tables.component';
+import { AdministratorComponent } from './components/administrator/administrator.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TablesComponent } from './components/tables/tables.component';
     MenuComponent,
     OrderComponent,
     CookedComponent,
-    TablesComponent
+    TablesComponent,
+    AdministratorComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { TablesComponent } from './components/tables/tables.component';
     LoginComponent,
     MenuComponent,
     OrderComponent,
-    TablesComponent
+    TablesComponent,
+    AdministratorComponent,
   ],
   providers: [ DatePipe],
   bootstrap: [AppComponent]
