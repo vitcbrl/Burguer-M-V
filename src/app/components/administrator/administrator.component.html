@@ -1,0 +1,39 @@
+<div>
+  <h2>Lista de Funcionários</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Função</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.role }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h2>Adicionar Funcionários</h2>
+  <form (submit)="addEmployee()">
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="newEmployee.name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="newEmployee.email">
+
+    <label for="password">Senha:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="newEmployee.password">
+
+    <label for="role">Cargo:</label>
+    <select id="role" name="role" [(ngModel)]="newEmployee.role" required>
+      <option value="garçom">Garçom</option>
+      <option value="cozinheiro">Cozinheiro</option>
+    </select>
+
+    <button type="submit">Adicionar Funcionário</button>
+  </form>
+</div>
