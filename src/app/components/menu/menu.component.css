@@ -166,7 +166,7 @@
         width: 30px;
         height: 28px;
     }
-    
+
     .select {
         gap: 80px;
         top: -240px;
@@ -384,13 +384,13 @@
     }
 }
 
-@media screen and (max-width: 826px){
+@media screen and (max-width: 826px) {
     .backgroundx {
         display: flex;
         position: relative;
         width: 100vw;
     }
-    
+
     .imagemLogo {
         left: 300px;
     }
@@ -444,14 +444,14 @@
     }
 }
 
-@media screen and (max-width: 605px){
+@media screen and (max-width: 605px) {
     .imagemLogo {
         left: 150px;
         top: -80px;
     }
 
     .select {
-        margin-top:20px;
+        margin-top: 20px;
         left: 120px;
     }
 
@@ -464,7 +464,7 @@
     }
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500px) {
     .backgroundx {
         display: flex;
         position: relative;
@@ -503,21 +503,86 @@
     }
 }
 
-@media screen and (max-width: 459px){
+@media screen and (max-width: 472px){
+    .imagemLogo {
+        left: 130px;
+    }
+
+    .imgLogout {
+        right: 80px;
+    }
+
+    .imgLogout {
+        right: 60px;
+    }
+
+    .imgPedidos {
+        right: 105px;
+    }
+
+    .select {
+        left: 100px;
+    }
+
+    .tituloItens {
+        left: 170px;
+    }
+    
+    .products {
+        left: 40px;
+    }
+    
+    .imgPedidos {
+        right: 80px;
+    }
+}
+
+@media screen and (max-width: 431px) {
     .imagemLogo {
         left: 100px;
     }
 
     .imgLogout {
         top: 10px;
-        right: 40px;
+        right: 30px;
         width: 20px;
         height: 20px;
     }
 
     .imgPedidos {
         top: 8px;
-        right: 70px;
+        right: 50px;
+    }
+
+    .select {
+        left: 70px;
+    }
+
+    .tituloItens {
+        left: 150px;
+    }
+
+    .products {
+        display: flex;
+        left: 20px;
+    }
+}
+
+@media screen and (max-width: 416px) {
+    .imagemLogo {
+        left: 100px;
+    }
+
+    .imgLogout {
+        top: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .imgPedidos {
+        top: 8px;
+        right: 30px;
     }
 
     .select {
@@ -531,4 +596,18 @@
     .products {
         left: 50px;
     }
+
+    .elementsProducts {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin-left: 50px;
+    }
+
+    .imgProduto {
+        margin-top: 55px;
+        width: 30px;
+        height: 30px;
+    }
+
 }
