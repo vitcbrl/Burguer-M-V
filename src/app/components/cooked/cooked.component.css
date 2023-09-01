@@ -183,7 +183,6 @@
         margin-left: -90px;
         top: -90px;
         gap: 30px;
-        margin-bottom: 100px;
     }
 }
 
@@ -206,7 +205,7 @@
     
     .order-list {
         margin-left: -20px;
-        gap: 20px;
+        gap: 25px;
         grid-template-columns: 330px 330px;
     }
 }

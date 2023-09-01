@@ -206,6 +206,7 @@
 
 @media screen and (max-width: 459px){
     .order-summary {
-        margin-left: 65px;
+        margin-left: 90px;
+        width: 300px;
     }
 }
