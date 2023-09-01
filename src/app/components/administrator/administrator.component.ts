@@ -9,6 +9,8 @@ import { UserService } from '../services/user.service';
 export class AdministratorComponent implements OnInit {
   employees: any[] = [];
   newEmployee: any = { id: 0, name: '', email: '', password: '', role: 'garçom' }; // Inicializado com ID 0
+  isEditing = false;
+  employeeToUpdate: any = { id: 0, name: '', role: '' }; // Inicializado com ID 0
 
   constructor(private userService: UserService) {}
 
@@ -58,6 +60,26 @@ export class AdministratorComponent implements OnInit {
     }
   }
 
+  showUpdateForm(employee: any) {
+    this.isEditing = true;
+    this.employeeToUpdate = { ...employee };
+  }
+
+  updateEmployee() {
+    this.userService.updateEmployee(this.employeeToUpdate.id, this.employeeToUpdate).subscribe(
+      (response: any) => {
+        console.log('Dados do funcionário atualizados com sucesso', response);
+        this.loadEmployees(); // Atualize a lista após a atualização bem-sucedida.
+        this.cancelUpdate();
+      },
+      (error: any) => {
+        console.error('Erro ao atualizar funcionário', error);
+      }
+    );
+  }
+
+  cancelUpdate() {
+    this.isEditing = false;
+    this.employeeToUpdate = { id: 0, name: '', role: '' };
+  }
 }
-
-

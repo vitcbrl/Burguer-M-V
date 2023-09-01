@@ -1,3 +1,4 @@
+<!-- administrator.component.html -->
 <table class="table">
   <thead>
     <tr>
@@ -10,7 +11,10 @@
     <tr *ngFor="let employee of employees">
       <td>{{ employee.name }}</td>
       <td>{{ employee.role }}</td>
-      <td><button (click)="deleteEmployee(employee.id)">Excluir</button></td>
+      <td>
+        <button (click)="deleteEmployee(employee.id)">Excluir</button>
+        <button (click)="showUpdateForm(employee)">Editar</button>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -34,5 +38,22 @@
     </select>
 
     <button type="submit">Adicionar Funcionário</button>
+  </form>
+</div>
+
+<div *ngIf="isEditing">
+  <h2>Editar Funcionário</h2>
+  <form (submit)="updateEmployee()">
+    <label for="updateName">Nome:</label>
+    <input type="text" id="updateName" name="updateName" [(ngModel)]="employeeToUpdate.name" required>
+
+    <label for="updateRole">Função:</label>
+    <select id="updateRole" name="updateRole" [(ngModel)]="employeeToUpdate.role" required>
+      <option value="Garçom">Garçom</option>
+      <option value="Cozinheiro">Cozinheiro</option>
+    </select>
+
+    <button type="submit">Atualizar Funcionário</button>
+    <button type="button" (click)="cancelUpdate()">Cancelar</button>
   </form>
 </div>

@@ -92,4 +92,26 @@ export class UserService {
 
     return this.http.delete(url, { headers });
   }
+
+  updateEmployee(employeeId: number, updatedData: any): Observable<any> {
+    const { loggedIn, token } = this.authService.isUserLoggedIn();
+  
+    if (!loggedIn) {
+      throw new Error('Usuário não logado');
+    }
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+  
+    const url = `${this.apiUrl}/${employeeId}`;
+  
+    return this.http.patch(url, JSON.stringify(updatedData), { headers }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Erro ao atualizar funcionário:', error);
+        throw error;
+      })
+    );
+  }
 }
