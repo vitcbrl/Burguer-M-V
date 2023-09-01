@@ -28,13 +28,6 @@ export class AdministratorComponent implements OnInit {
   }
 
   addEmployee() {
-    // Busca o último ID utilizado dos funcionários existentes
-    const lastEmployee = this.employees[this.employees.length - 1];
-    const newId = lastEmployee ? lastEmployee.id + 1 : 1; // Incrementei o ID
-
-    // Preenche os detalhes do novo funcionário
-    this.newEmployee.id = newId;
-
     this.userService.addEmployee(this.newEmployee).subscribe(
       (response: any) => {
         console.log('Funcionário adicionado com sucesso', response);
