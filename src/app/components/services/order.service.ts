@@ -32,6 +32,10 @@ export class OrderService {
     this.addedProductSubject.next(this.addedProducts);
   }
 
+  getAddedProductsLength(): number {
+    return this.addedProducts.length;
+  }
+  
   sendOrderToBackend(order: any) {
     const { loggedIn, token } = this.authService.isUserLoggedIn();
 
@@ -85,8 +89,6 @@ export class OrderService {
   getOrderedProduct(productId: number): any {
     return this.addedProducts.find(p => p.product.id === productId);
   }
-  
-
   
   updateOrder(order: any): Observable<any> {
     const updateUrl = `${this.apiUrl}/${order.id}`;
