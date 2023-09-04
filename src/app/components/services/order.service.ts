@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './authentication.service';
 import { Observable, EMPTY } from 'rxjs';
-
 
 
 @Injectable({
@@ -14,6 +13,10 @@ export class OrderService {
   private addedProducts: any[] = [];
   private addedProductSubject = new BehaviorSubject<any[]>(this.addedProducts);
   addedProduct$ = this.addedProductSubject.asObservable();
+
+  public getApiUrl(): string {
+    return this.apiUrl;
+  }
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -67,16 +70,11 @@ export class OrderService {
    
   getOrders(): Observable<any[]> {
     const user = this.authService.isUserLoggedIn();
-    if (user.loggedIn) {
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${user.token}`
-      });
+    const headers = new HttpHeaders({
+      'Authorization': user.loggedIn ? `Bearer ${user.token}` : ''
+    });
 
       return this.http.get<any[]>(this.apiUrl, { headers });
-    } else {
-      
-      return EMPTY; 
-    }
   }
 
   decreaseProductQuantity(productId: number) {

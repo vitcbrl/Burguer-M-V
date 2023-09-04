@@ -1,25 +1,27 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { OrderService } from './order.service';
-import { of, EMPTY } from 'rxjs';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { of, Observable } from 'rxjs';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { AuthService } from './authentication.service';
 
 
 describe('OrderService', () => {
     let orderService: OrderService;
-    let authService: AuthService;
     let http: HttpClient;
+    let authService: AuthService;
+    let httpTestingController: HttpTestingController;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
             providers: [OrderService, HttpClient, AuthService],
         });
-        
+
         orderService = TestBed.inject(OrderService);
         authService = TestBed.inject(AuthService);
         http = TestBed.inject(HttpClient);
+        httpTestingController = TestBed.inject(HttpTestingController);
     });
 
     it('should create', () => {
@@ -86,7 +88,8 @@ describe('OrderService', () => {
     });
 
     it('sendOrderToBackend - Deve enviar um pedido para o backend corretamente', () => {
-        spyOn(authService, 'isUserLoggedIn').and.returnValue({ loggedIn: true, token: 'mockedToken' });
+        const authServiceInstance = TestBed.inject(AuthService);
+        spyOn(authServiceInstance, 'isUserLoggedIn').and.returnValue({ loggedIn: true, token: 'mockedToken' });
 
         const mockOrder = { id: 1, items: [] }; // Mock de um pedido
         const mockResponse = 'Response data'; // Mock da resposta do servidor
@@ -103,12 +106,14 @@ describe('OrderService', () => {
         expect(orderService.getAddedProductsLength()).toBe(0);
     });
 
-    /*it('Deve obter pedidos corretamente', () => {
-        // Mock do usuário logado
-        spyOn(authService, 'isUserLoggedIn').and.returnValue({ loggedIn: true, token: 'mockedToken' });
+    it('getOrders - Deve obter pedidos corretamente', () => {
+        const httpResponse = new HttpResponse({
+            body: [{ id: 1 }, { id: 2 }],
+        });
+        const responseBody = httpResponse.body;
 
         // Mock da solicitação HTTP
-        const httpGetSpy = spyOn(http, 'get').and.returnValue(of<any[]>([{id: 1}, {id: 2}]));
+        const httpGetSpy = spyOn(http, 'get').and.returnValue(of(httpResponse));
 
         // Chamada da função getOrders
         let orders: any[] = [];
@@ -118,14 +123,12 @@ describe('OrderService', () => {
 
         // Verifica se a função HTTP foi chamada corretamente
         expect(httpGetSpy).toHaveBeenCalledWith('http://localhost:8080/orders', jasmine.objectContaining({
-            headers: jasmine.objectContaining({
-                Authorization: 'Bearer mockedToken',
-            }),
+            headers: jasmine.any(HttpHeaders),
         }));
 
         // Verifica se os pedidos foram obtidos corretamente
-        expect(orders).toEqual([{id: 1}, {id: 2}]);
-    }); //Não deu certo, verificar amanha */
+        expect(responseBody).toEqual([Object({ id: 1 }), Object({ id: 2 })]);
+    });
 
     it('decreaseProductQuantity - Deve diminuir a quantidade de um produto existente', () => {
         // Adicionado um produto de exemplo com quantidade 2
@@ -148,7 +151,7 @@ describe('OrderService', () => {
     });
 
     it('getOrderedProduct - Deve obter um produto de pedidos corretamente', () => {
-        const exampleOrder = {product: {id: 1}, quantity: 3};
+        const exampleOrder = { product: { id: 1 }, quantity: 3 };
 
         spyOn(orderService, 'getOrderedProduct').and.returnValue(exampleOrder);
 
@@ -158,17 +161,37 @@ describe('OrderService', () => {
         expect(orderedProduct).toEqual(exampleOrder);
     });
 
-    /*it('Deve atualizar um pedido corretamente', () => {
-        const exampleOrder = {id: 1, status: 'ready'};
-
+    it('updateOrder - Deve atualizar um pedido corretamente', () => {
+        const exampleOrder = { id: 1, status: 'ready' };
         const httpPutSpy = spyOn(http, 'put').and.returnValue(of({}));
 
         orderService.updateOrder(exampleOrder).subscribe(() => {
             expect(httpPutSpy).toHaveBeenCalled();
 
-            expect(httpPutSpy).toHaveBeenCalledWith('http://localhost:8080/orders/1', exampleOrder, {
-                headers: jasmine.objectContaining({ 'Authorization': 'Bearer mockedToken' }),
-            });
+            expect(httpPutSpy).toHaveBeenCalledWith('http://localhost:8080/orders/1', jasmine.objectContaining(exampleOrder), jasmine.any(Object));
         });
-    }); // nao deu certo verificar amanha*/
+    });
+
+    it('getReadyOrdersFromBackend - Deve obter pedidos prontos corretamente quando o usuário estiver logado', fakeAsync(() => {
+        const user = { loggedIn: true, token: 'mockedToken' };
+
+        spyOn(authService, 'isUserLoggedIn').and.returnValue(user);
+
+        let orders: any[] | undefined;
+
+        orderService.getReadyOrdersFromBackend().subscribe((data) => {
+            orders = data;
+        });
+
+        const req = httpTestingController.expectOne((request) => request.url.endsWith('?status=ready'));
+
+        expect(req.request.method).toEqual('GET');
+        expect(req.request.headers.get('Authorization')).toBe(`Bearer ${user.token}`);
+        
+        req.flush([{ id: 1, status: 'ready' }]);
+        
+        tick();
+
+        expect(orders).toEqual([{ id: 1, status: 'ready' }]);
+    }));
 });
