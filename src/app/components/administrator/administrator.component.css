@@ -1,0 +1,173 @@
+.principal {
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.logoAdm {
+    display: flex;
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 0;
+    left: 0;
+}
+
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 490px;
+    top: 40px;
+    gap: 200px;
+}
+
+.buttonOne, .buttonTwo, .buttonThree {
+    font-size: 1rem;
+    background-color: var(--CorPrimaria);
+    color: var(--CorTerciaria);
+    font-family: 'Prompt', sans-serif;
+    border-radius: 5px;
+    width: 190px;
+    height: 40px;
+    cursor: pointer;
+    border: 0;
+}
+
+.buttonOne:hover, .buttonTwo:hover, .buttonThree:hover {
+    background-color: var(--CorSecundaria);
+}
+
+.imgLogout{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    top: 10px;
+    right: 25px;
+}
+
+.titulo, .table {
+    background-color: var(--CorSecundaria);
+    color: var(--CorTerciaria);
+    font-family: 'Prompt', sans-serif;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 450px;
+    height: 35px;
+    text-align: center;
+    position: relative;
+    top: 80px;
+    left: 550px;
+    padding: 5px;
+}
+
+.addOne, .addTwo, .buttonThree, .addThree {
+    font-size: 0.9rem;
+    font-family: 'Prompt', sans-serif;
+    display: flex;
+    position: relative;
+    color: var(--CorPrimaria);
+    top: 90px;
+    gap: 10px;
+    margin-top: 10px;
+    left: 555px;
+}
+
+.addOne {
+    display: flex;
+    flex-direction: column;
+}
+
+.namesOne, .namesTwo {
+    display: flex;
+    gap: 10px;
+}
+
+.inputs {
+    width: 300px;
+}
+
+.buttonThree {
+    color: var(--CorTerciaria);
+    width: 100px;
+    height: 30px;
+    padding-left: 16px;
+    padding-top: 5px;
+    font-size: 0.9rem;
+    left: 720px;
+    top: 100px;
+}
+
+.buttonSelect{
+    text-align: center;
+    width: 110px;
+    color: var(--CorPrimaria);
+}
+
+.table {
+    display: flex;
+    position: relative;
+    gap: 100px;
+    top: 120px;
+    padding-top: 5px;
+    padding-left: 50px;
+}
+
+.worked {
+    display: flex;
+    height: 40px;
+}
+
+.titleName, .titleRole, .buttonsWorked{
+    position: relative;
+    top: 140px;
+    left: 600px;
+    color: var(--CorPrimaria);
+}
+
+.buttonsIcons {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+}
+
+.titleRole {
+    top: 120px;
+    left: 750px;
+}
+
+.buttonsWorked {
+    top: 100px;
+    left: 880px;
+}
+
+.text {
+    margin-top: 20px;
+    padding-left: 150px;
+}
+
+.editWorked {
+    display: flex;
+}
+
+.addThree {
+    top: 120px;
+    left: 580px;
+    padding: 5px;
+}
+
+.btn {
+    display: flex;
+    top: 170px;
+    gap: 10px;
+    left: 250px;
+    padding: 5px;
+}
+
+.btn1 {
+    display: flex;
+    top: 170px;
+    gap: 10px;
+    left: 280px;
+    padding-left: 20px;
+}

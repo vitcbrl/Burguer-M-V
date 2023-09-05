@@ -1,9 +1,9 @@
 <section class="cookery">
   <img src="../../../assets/Logo-burguermv.png" alt="Logo" class="logoCooked">
-  <div class="buttonsContainer">
+  <section class="buttonsContainer">
     <button class="buttonOne" (click)="setActiveTab('pending')">Pedidos pendentes</button>
     <button class="buttonTwo" (click)="setActiveTab('ready')">Pedidos concluídos</button>
-  </div>
+  </section>
   <img src="../../../assets/logoutCooked.png" alt="Imagem de Logout" class="imgLogout" (click)="logout()">
   <section class="order-list">
     <div *ngFor="let order of filterOrdersByStatus(activeTab)" class="order-item">
