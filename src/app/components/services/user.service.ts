@@ -28,7 +28,10 @@ export class UserService {
     });
   
     
-    return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
+    return this.http.get<any[]>(this.apiUrl, { headers });
+    
+    // Ao comentar essa linha de código, funcionou normalmente as atualizações de cadastro.
+    /*.pipe(
       map(users => {
         return users.filter(user => user.role === 'chefe' || user.role === 'service')
           .map(user => {
@@ -39,7 +42,7 @@ export class UserService {
             };
           });
       })
-    );
+    );*/
   }
   
 
@@ -55,10 +58,10 @@ export class UserService {
       'Content-Type': 'application/json'
     });
   
-    if (employee.role === 'cozinheiro') {
-      employee.role = 'chefe';
-    } else if (employee.role === 'garçom') {
-      employee.role = 'service';
+    if (employee.role === 'Cozinheiro') {
+      employee.role = 'Cozinheiro';
+    } else if (employee.role === 'Garçom') {
+      employee.role = 'Garçom';
     }
   
     const body = JSON.stringify({
