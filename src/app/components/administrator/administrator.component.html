@@ -1,59 +1,72 @@
 <!-- administrator.component.html -->
-<table class="table">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Função</th>
-      <th>Ação</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let employee of employees">
-      <td>{{ employee.name }}</td>
-      <td>{{ employee.role }}</td>
-      <td>
-        <button (click)="deleteEmployee(employee.id)">Excluir</button>
-        <button (click)="showUpdateForm(employee)">Editar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<section class="principal">
+  <img src="../../../assets/Logo-burguermv.png" alt="Logo" class="logoAdm">
+  <section class="buttonsContainer">
+    <button class="buttonOne">Funcionários</button>
+    <button class="buttonTwo">Produtos</button>
+  </section>
+  <img src="../../../assets/logoutCooked.png" alt="Imagem de Logout" class="imgLogout" (click)="logout()">
+  <section class="addEmployee">
+    <h2 class="titulo">Adicionar Funcionários</h2>
+    <form (submit)="addEmployee()" class="nome">
+      <section class="addOne">
+        <div class="namesOne">
+          <label for="name">Nome:</label>
+          <input class='inputs' type="text" id="name" name="name" [(ngModel)]="newEmployee.name" required>
+        </div>
+        <div class="namesTwo">
+          <label for="email">Email:</label>
+          <input class='inputs' type="email" id="email" name="email" [(ngModel)]="newEmployee.email">
+        </div>
+      </section>
+      <section class="addTwo">
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="newEmployee.password">
 
-<div>
-  <h2>Adicionar Funcionários</h2>
-  <form (submit)="addEmployee()">
-    <label for="name">Nome:</label>
-    <input type="text" id="name" name="name" [(ngModel)]="newEmployee.name" required>
+        <label for="role">Cargo:</label>
+        <select id="role" class='buttonSelect' name="role" [(ngModel)]="newEmployee.role" required>
+          <option value="garçom">Garçom</option>
+          <option value="cozinheiro">Cozinheiro</option>
+          <option value="administrador">Administrador</option>
+        </select>
+      </section>
+      <button class='buttonThree' type="submit">Adicionar</button>
+    </form>
+  </section>
+  <section class="addedWorked">
+    <div class="table">
+      <p>Nome</p>
+      <p>Função</p>
+      <p>Ação</p>
+    </div>
+    <section *ngFor="let employee of employees" class="worked">
+      <div class="elementosTwo">
+        <p class="titleName">{{ employee.name }}</p>
+        <p class="titleRole">{{ employee.role }}</p>
+        <div class="buttonsWorked">
+          <img class="buttonsIcons" (click)="deleteEmployee(employee.id)" src="../../../assets/lixeira.png" alt="Lixeira Ilustrativa">
+          <img class='buttonsIcons' (click)="showUpdateForm(employee)" src="../../../assets/botao-editar.png" alt="Botão Ilustrativo">
+        </div>
+      </div>
+    </section>
+  </section>
+  <section *ngIf="isEditing">
+    <h2 class="table text">Editar Funcionário</h2>
+    <form (submit)="updateEmployee()" class="editWorked">
+      <section class="addThree">
+        <label for="updateName">Nome:</label>
+        <input class='inputEdit' type="text" id="updateName" name="updateName" [(ngModel)]="employeeToUpdate.name"
+          required>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" [(ngModel)]="newEmployee.email">
-
-    <label for="password">Senha:</label>
-    <input type="password" id="password" name="password" [(ngModel)]="newEmployee.password">
-
-    <label for="role">Cargo:</label>
-    <select id="role" name="role" [(ngModel)]="newEmployee.role" required>
-      <option value="garçom">Garçom</option>
-      <option value="cozinheiro">Cozinheiro</option>
-    </select>
-
-    <button type="submit">Adicionar Funcionário</button>
-  </form>
-</div>
-
-<div *ngIf="isEditing">
-  <h2>Editar Funcionário</h2>
-  <form (submit)="updateEmployee()">
-    <label for="updateName">Nome:</label>
-    <input type="text" id="updateName" name="updateName" [(ngModel)]="employeeToUpdate.name" required>
-
-    <label for="updateRole">Função:</label>
-    <select id="updateRole" name="updateRole" [(ngModel)]="employeeToUpdate.role" required>
-      <option value="Garçom">Garçom</option>
-      <option value="Cozinheiro">Cozinheiro</option>
-    </select>
-
-    <button type="submit">Atualizar Funcionário</button>
-    <button type="button" (click)="cancelUpdate()">Cancelar</button>
-  </form>
-</div>
+        <label for="updateRole">Função:</label>
+        <select id="updateRole" class='buttonSelect' name="updateRole" [(ngModel)]="employeeToUpdate.role" required>
+          <option value="Garçom">Garçom</option>
+          <option value="Cozinheiro">Cozinheiro</option>
+          <option value="administrador">Administrador</option>
+        </select>
+      </section>
+      <button class='buttonThree btn' type="submit">Atualizar Funcionário</button>
+      <button class='buttonThree btn1' type="button" (click)="cancelUpdate()">Cancelar</button>
+    </form>
+  </section>
+</section>

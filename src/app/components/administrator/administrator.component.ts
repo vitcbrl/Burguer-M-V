@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { AuthService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-administrator',
@@ -12,10 +13,14 @@ export class AdministratorComponent implements OnInit {
   isEditing = false;
   employeeToUpdate: any = { id: 0, name: '', role: '' }; // Inicializado com ID 0
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService , private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loadEmployees();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   loadEmployees() {
