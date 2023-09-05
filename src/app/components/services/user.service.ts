@@ -59,9 +59,9 @@ export class UserService {
     });
   
     if (employee.role === 'Cozinheiro') {
-      employee.role = 'Cozinheiro';
+      employee.role = 'chefe';
     } else if (employee.role === 'Garçom') {
-      employee.role = 'Garçom';
+      employee.role = 'service';
     }
   
     const body = JSON.stringify({
