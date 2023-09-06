@@ -21,7 +21,7 @@
       </section>
       <section class="addTwo">
         <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" [(ngModel)]="newEmployee.password">
+        <input type="password" class="inputPassword" id="password" name="password" [(ngModel)]="newEmployee.password">
 
         <label for="role">Cargo:</label>
         <select id="role" class='buttonSelect' name="role" [(ngModel)]="newEmployee.role" required>
@@ -43,8 +43,10 @@
         <p class="titleName">{{ employee.name }}</p>
         <p class="titleRole">{{ employee.role }}</p>
         <div class="buttonsWorked">
-          <img class="buttonsIcons" (click)="deleteEmployee(employee.id)" src="../../../assets/lixeira.png" alt="Lixeira Ilustrativa">
-          <img class='buttonsIcons' (click)="showUpdateForm(employee)" src="../../../assets/botao-editar.png" alt="Botão Ilustrativo">
+          <img class="buttonsIcons" (click)="deleteEmployee(employee.id)" src="../../../assets/lixeira.png"
+            alt="Lixeira Ilustrativa">
+          <img class='buttonsIcons' (click)="showUpdateForm(employee)" src="../../../assets/botao-editar.png"
+            alt="Botão Ilustrativo">
         </div>
       </div>
     </section>
@@ -53,6 +55,7 @@
     <h2 class="table text">Editar Funcionário</h2>
     <form (submit)="updateEmployee()" class="editWorked">
       <section class="addThree">
+<<<<<<< Updated upstream
         <label for="updateName">Nome:</label>
         <input class='inputEdit' type="text" id="updateName" name="updateName" [(ngModel)]="employeeToUpdate.name"
           required>
@@ -62,6 +65,21 @@
           <option value="Garçom">Garçom</option>
           <option value="Cozinheiro">Cozinheiro</option>
         </select>
+=======
+        <div class="editOne">
+          <label for="updateName">Nome:</label>
+          <input class='inputEdit' type="text" id="updateName" name="updateName" [(ngModel)]="employeeToUpdate.name"
+            required>
+        </div>
+        <div class="editTwo">
+          <label for="updateRole">Função:</label>
+          <select id="updateRole" class='buttonSelect' name="updateRole" [(ngModel)]="employeeToUpdate.role" required>
+            <option value="Garçom">Garçom</option>
+            <option value="Cozinheiro">Cozinheiro</option>
+            <option value="Administrador">Administrador</option>
+          </select>
+        </div>
+>>>>>>> Stashed changes
       </section>
       <button class='buttonThree btn' type="submit">Atualizar Funcionário</button>
       <button class='buttonThree btn1' type="button" (click)="cancelUpdate()">Cancelar</button>
