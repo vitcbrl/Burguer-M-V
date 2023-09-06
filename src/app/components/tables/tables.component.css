@@ -242,7 +242,7 @@
     }
 }
 
-@media screen and (max-width: 830px){
+@media screen and (max-width: 830px) {
     .logoTables {
         left: 270px;
     }
@@ -289,21 +289,21 @@
 
 @media screen and (max-width: 613px) {
     .logoTables {
-        left: 180px;
+        left: 150px;
     }
 
     .buttonsContainer {
         width: 280px;
-        left: 140px;
+        left: 110px;
     }
 
     .buttonsContainerTwo {
-        left: 220px;
+        left: 190px;
         width: 120px;
     }
 
     .order-list {
-        margin-left: -20px;
+        margin-left: -50px;
         top: 20px;
         grid-template-columns: 330px;
     }

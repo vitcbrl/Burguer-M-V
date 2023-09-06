@@ -240,10 +240,10 @@
         left: 190px;
         gap: 30px;
         width: 320px;
-        height: 100px;
     }
 
     .order-list {
+        top: -35px;
         margin-left: 40px;
         grid-template-columns: 330px;
     }
@@ -252,20 +252,16 @@
 
 @media screen and (max-width: 613px){
     .logoCooked {
-        width: 200px;
-        height: 200px;
         left: 150px;
     }
     
     .buttonsContainer{
-        top: 5px;
         left: 125px;
-        gap: 30px;
         width: 250px;
-        height: 100px;
     }
 
     .order-list {
+        top: -35px;
         margin-left: -50px;
         grid-template-columns: 330px;
     }
@@ -277,11 +273,8 @@
     }
     
     .buttonsContainer{
-        top: 5px;
         left: 100px;
         gap: 50px;
-        width: 250px;
-        height: 100px;
     }
 
     .order-list {
