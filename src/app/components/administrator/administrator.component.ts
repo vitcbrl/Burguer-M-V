@@ -71,6 +71,13 @@ export class AdministratorComponent implements OnInit {
   }
 
   updateEmployee() {
+    // Verifiquei a função selecionada e ajustei antes de atualizar para garantir os roles corretos
+    if (this.employeeToUpdate.role === 'Cozinheiro') {
+      this.employeeToUpdate.role = 'chefe';
+    } else if (this.employeeToUpdate.role === 'Garçom') {
+      this.employeeToUpdate.role = 'service';
+    }
+  
     this.userService.updateEmployee(this.employeeToUpdate.id, this.employeeToUpdate).subscribe(
       (response: any) => {
         console.log('Dados do funcionário atualizados com sucesso', response);

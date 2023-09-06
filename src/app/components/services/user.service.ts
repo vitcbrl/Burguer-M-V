@@ -14,7 +14,6 @@ export class UserService {
   private apiUrl = 'http://localhost:8080/users';
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  //puxando meus usuarios
   getEmployees(): Observable<any[]> {
     const { loggedIn, token } = this.authService.isUserLoggedIn();
   
@@ -22,27 +21,21 @@ export class UserService {
       throw new Error('Usuário não logado');
     }
   
-    
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
   
-    
-    return this.http.get<any[]>(this.apiUrl, { headers });
-    
-    // Ao comentar essa linha de código, funcionou normalmente as atualizações de cadastro.
-    /*.pipe(
+    return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
       map(users => {
-        return users.filter(user => user.role === 'chefe' || user.role === 'service')
-          .map(user => {
-            return {
-              id: user.id, //me deu muito trabalha mas descobri que tinha que passar o id para o delete funcionar
-              name: user.name,
-              role: user.role === 'chefe' ? 'Cozinheiro' : 'Garçom' 
-            };
-          });
+        return users.map(user => {
+          return {
+            id: user.id,
+            name: user.name,
+            role: user.role === 'chefe' ? 'Cozinheiro' : 'Garçom' 
+          };
+        });
       })
-    );*/
+    );
   }
   
 
@@ -108,6 +101,13 @@ export class UserService {
       'Content-Type': 'application/json'
     });
   
+    // Verifico a função selecionada e ajusto antes de enviar para a API mock
+    if (updatedData.role === 'Cozinheiro') {
+      updatedData.role = 'chefe';
+    } else if (updatedData.role === 'Garçom') {
+      updatedData.role = 'service';
+    }
+  
     const url = `${this.apiUrl}/${employeeId}`;
   
     return this.http.patch(url, JSON.stringify(updatedData), { headers }).pipe(
@@ -116,5 +116,4 @@ export class UserService {
         throw error;
       })
     );
-  }
-}
+  }}
