@@ -97,15 +97,21 @@
   </section>
   <section *ngIf="activeTab === 'produtos'">
     <h2 class="table text2 list">Lista de Produtos</h2>
-    <section *ngFor="let product of products" class="worked">
-      <div>
-        <p class="titleName products">{{ product.name }}</p>
-        <p class="titleRole role">R$ {{ product.price }}</p>
-        <div class="buttonsWorked icons">
-          <img class="buttonsIcons" src="../../../assets/lixeira.png" alt="Lixeira Ilustrativa">
-          <img class='buttonsIcons' src="../../../assets/botao-editar.png" alt="Botão Ilustrativo">
-        </div>
+  <section *ngFor="let product of products" class="worked">
+    <div>
+      <p class="titleName products" *ngIf="!isEditingProduct || product.id !== productToUpdate.id">{{ product.name }}</p>
+      <input class='inputs' type="text" [(ngModel)]="productToUpdate.name" *ngIf="isEditingProduct && product.id === productToUpdate.id">
+      
+      <p class="titleRole role" *ngIf="!isEditingProduct || product.id !== productToUpdate.id">R$ {{ product.price }}</p>
+      <input class='inputs' type="number" [(ngModel)]="productToUpdate.price" *ngIf="isEditingProduct && product.id === productToUpdate.id">
+      
+      <div class="buttonsWorked icons">
+        <img class="buttonsIcons" (click)="deleteProduct(product.id)" src="../../../assets/lixeira.png" alt="Lixeira Ilustrativa">
+        <img class='buttonsIcons' *ngIf="!isEditingProduct || product.id !== productToUpdate.id" (click)="editProduct(product)" src="../../../assets/botao-editar.png" alt="Botão Ilustrativo">
+        <button class="buttonThree" *ngIf="isEditingProduct && product.id === productToUpdate.id" (click)="updateProduct()">Salvar</button>
+        <button class="buttonThree btn1" *ngIf="isEditingProduct && product.id === productToUpdate.id" (click)="cancelUpdateProduct()">Cancelar</button>
       </div>
-    </section>
-  </section>  
+    </div>
+  </section>
+</section>
 </section>
