@@ -15,6 +15,8 @@ export class AdministratorComponent implements OnInit {
   employeeToUpdate: any = { id: 0, name: '', role: '' };
   products: any[] = [];
   activeTab: string = 'funcionarios';
+  newProduct: any = { name: '', price: '', image: '', type: '' };
+
 
   isEmployeesTabActive: boolean = true;  // Variável para controlar a exibição da seção de funcionários
 
@@ -111,13 +113,44 @@ export class AdministratorComponent implements OnInit {
 
   loadProducts() {
     this.productService.getProducts().subscribe(
-      (products: any[]) => {
-        console.log('Dados dos produtos recebidos com sucesso:', products);
-        this.products = products[0];
+      (productsResponse: any[]) => {
+        console.log('Dados dos produtos recebidos com sucesso:', productsResponse);
+  
+        // Combine as duas listas de produtos em uma única lista
+        this.products = productsResponse.reduce((accumulator, currentList) => {
+          return accumulator.concat(currentList);
+        }, []);
+  
       },
       (error: any) => {
         console.error('Erro ao carregar produtos', error);
       }
     );
-  }  
+  }
+  
+  
+  
+  addProduct() {
+    const newProduct = {
+      name: this.newProduct.name,
+      price: this.newProduct.price.toString(), // Converter o preço para uma string
+      image: this.newProduct.image,
+      type: this.newProduct.type
+    };
+  
+    this.productService.addProduct(newProduct).subscribe(
+      (response: any) => {
+        console.log('Produto adicionado com sucesso', response);
+        this.loadProducts();
+        this.resetProductForm();
+      },
+      (error: any) => {
+        console.error('Erro ao adicionar produto', error);
+      }
+    );
+  }
+
+  resetProductForm() {
+    this.newProduct = { name: '', price: '', image: '', type: '' };
+  }
 }
