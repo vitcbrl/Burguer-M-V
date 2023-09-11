@@ -205,7 +205,7 @@
 }
 
 .icons {
-  left: 930px;
+    left: 930px;
 }
 
 @media screen and (max-width: 1496px) {
@@ -259,6 +259,28 @@
 
     .btn1 {
         left: 190px;
+    }
+
+    /**/
+    .namesProducts {
+        position: relative;
+        left: -30px;
+    }
+
+    .list {
+        left: 420px;
+    }
+
+    .products {
+        left: 440px;
+    }
+
+    .role {
+        left: 700px;
+    }
+
+    .icons {
+        left: 830px;
     }
 }
 
@@ -325,6 +347,28 @@
     .btn1 {
         left: 90px;
     }
+
+    /**/
+    .namesProducts {
+        position: relative;
+        left: -20px;
+    }
+
+    .list {
+        left: 330px;
+    }
+
+    .products {
+        left: 350px;
+    }
+
+    .role {
+        left: 630px;
+    }
+
+    .icons {
+        left: 740px;
+    }
 }
 
 @media screen and (max-width: 1099px) {
@@ -358,7 +402,7 @@
 
     .buttonThree {
         left: 400px;
-        padding-left: 20px;
+        padding-left: 15px;
     }
 
     .titleName,
@@ -386,6 +430,37 @@
 
     .btn1 {
         left: -30px;
+    }
+
+    /**/
+    .namesProducts {
+        position: relative;
+        left: 0px;
+    }
+
+    .inputsProducts {
+        width: 250px;
+    }
+
+    .list {
+        left: 230px;
+        width: 450px;
+    }
+
+    .text2 {
+        padding-left: 160px;
+    }
+
+    .products {
+        left: 250px;
+    }
+
+    .role {
+        left: 500px;
+    }
+
+    .icons {
+        left: 590px;
     }
 }
 
@@ -444,6 +519,35 @@
     .btn1 {
         left: -70px;
     }
+
+    /**/
+    .namesProducts {
+        left: 5px;
+    }
+
+    /*.inputsProducts{
+        width: 250px;
+    }*/
+
+    .list {
+        left: 200px;
+    }
+
+    /*.text2 {
+        padding-left: 160px;
+    }*/
+
+    .products {
+        left: 210px;
+    }
+
+    .role {
+        left: 450px;
+    }
+
+    .icons {
+        left: 570px;
+    }
 }
 
 @media screen and (max-width: 747px) {
@@ -476,12 +580,13 @@
         font-size: 0.8rem;
     }
 
-    .inputPassword{
+    .inputPassword {
         width: 130px;
     }
 
     .buttonThree {
         left: 300px;
+        padding-left: 20px;
     }
 
     .table {
@@ -519,6 +624,35 @@
     .btn1 {
         left: -130px;
     }
+
+    /**/
+    .namesProducts {
+        left: 0px;
+    }
+
+    .inputsProducts {
+        width: 240px;
+    }
+
+    .list {
+        left: 150px;
+    }
+
+    .text2 {
+        padding-left: 140px;
+    }
+
+    .products {
+        left: 160px;
+    }
+
+    .role {
+        left: 380px;
+    }
+
+    .icons {
+        left: 470px;
+    }
 }
 
 @media screen and (max-width: 613px) {
@@ -550,7 +684,7 @@
         width: 210px;
     }
 
-    .inputPassword{
+    .inputPassword {
         width: 80px;
     }
 
@@ -568,7 +702,7 @@
         gap: 75px;
     }
 
-    .text{
+    .text {
         padding-left: 90px;
     }
 
@@ -599,7 +733,8 @@
         left: 110px;
     }
 
-    .addFor, .addFive {
+    .addFor,
+    .addFive {
         display: flex;
         gap: 10px;
     }
@@ -614,6 +749,41 @@
         top: 200px;
         left: -60px;
         padding-left: 20px;
+    }
+
+    /**/
+    /*.namesProducts{
+        left: 0px;
+    }*/
+
+    .inputsProducts {
+        width: 170px;
+    }
+
+    .list {
+        left: 100px;
+    }
+
+    .text2 {
+        padding-left: 90px;
+    }
+
+    .products {
+        left: 110px;
+        font-size: 0.8rem;
+    }
+
+    .role {
+        left: 300px;
+        font-size: 0.8rem;
+        margin-top: 5px;
+    }
+
+    .icons {
+        left: 330px;
+        width: 10px;
+        height: 10px;
+        margin-top: 5px;
     }
 }
 
@@ -649,7 +819,7 @@
         width: 210px;
     }
 
-    .inputPassword{
+    .inputPassword {
         width: 80px;
     }
 
@@ -687,6 +857,36 @@
 
     .btn1 {
         left: -80px;
+    }
+
+     /**/
+    .namesProducts{
+        left: 5px;
+        font-size: 0.7rem;
+    }
+
+    .inputsProducts {
+        width: 170px;
+    }
+
+    .list {
+        left: 75px;
+    }
+
+    /*.text2 {
+        padding-left: 90px;
+    }*/
+
+    .products {
+        left: 80px;
+    }
+
+    .role {
+        left: 250px;
+    }
+
+    .icons {
+        left: 310px;
     }
 }
 
@@ -746,5 +946,26 @@
 
     .btn1 {
         left: -100px;
+    }
+
+    /**/
+    .namesProducts{
+        left: 0px;
+    }
+
+    .list {
+        left: 45px;
+    }
+
+    .products {
+        left: 50px;
+    }
+
+    .role {
+        left: 230px;
+    }
+
+    .icons {
+        left: 280px;
     }
 }
