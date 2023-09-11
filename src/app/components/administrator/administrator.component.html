@@ -9,7 +9,7 @@
   <section class="addEmployee">
     <h2 class="titulo">Adicionar Funcionários</h2>
     <form (submit)="addEmployee()" class="nome">
-      <section class="addOne">
+      <section class="addOne" *ngIf="isEmployeesTabActive">
         <div class="namesOne">
           <label for="name">Nome:</label>
           <input class='inputs' type="text" id="name" name="name" [(ngModel)]="newEmployee.name" required>
@@ -19,7 +19,7 @@
           <input class='inputs' type="email" id="email" name="email" [(ngModel)]="newEmployee.email">
         </div>
       </section>
-      <section class="addTwo">
+      <section class="addTwo" *ngIf="isEmployeesTabActive">
         <label for="password">Senha:</label>
         <input type="password" id="password" name="password" [(ngModel)]="newEmployee.password">
 
@@ -29,10 +29,10 @@
           <option value="Cozinheiro">Cozinheiro</option>
         </select>
       </section>
-      <button class='buttonThree' type="submit">Adicionar</button>
+      <button class='buttonThree' type="submit" *ngIf="isEmployeesTabActive">Adicionar</button>
     </form>
   </section>
-  <section class="addedWorked">
+  <section class="addedWorked" *ngIf="isEmployeesTabActive">
     <div class="table">
       <p>Nome</p>
       <p>Função</p>
@@ -49,7 +49,7 @@
       </div>
     </section>
   </section>
-  <section *ngIf="isEditing">
+  <section *ngIf="isEditing && isEmployeesTabActive">
     <h2 class="table text">Editar Funcionário</h2>
     <form (submit)="updateEmployee()" class="editWorked">
       <section class="addThree">
@@ -71,7 +71,10 @@
     <section class="products">
       <h2 class="titulo">Lista de Produtos</h2>
       <ul>
-        <li *ngFor="let product of products">{{ product.name }}</li>
+        <li *ngFor="let product of products">
+          <p>{{ product.name }}</p>
+          <p>Preço: R$ {{ product.price }}</p>
+        </li>
       </ul>
     </section>
   </div>
