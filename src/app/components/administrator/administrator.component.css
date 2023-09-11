@@ -184,6 +184,30 @@
     padding-left: 20px;
 }
 
+/* Adicionei aqui*/
+.list {
+    width: 500px;
+    left: 525px;
+}
+
+.text2 {
+    margin-top: 20px;
+    padding-left: 180px;
+}
+
+.products {
+    display: flex;
+    left: 550px;
+}
+
+.role {
+    left: 820px;
+}
+
+.icons {
+  left: 930px;
+}
+
 @media screen and (max-width: 1496px) {
     .imgLogout {
         right: 30px;
@@ -575,7 +599,7 @@
         left: 110px;
     }
 
-    .editOne, .editTwo {
+    .addFor, .addFive {
         display: flex;
         gap: 10px;
     }

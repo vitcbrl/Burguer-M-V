@@ -2,14 +2,16 @@
 <section class="principal">
   <img src="../../../assets/Logo-burguermv.png" alt="Logo" class="logoAdm">
   <section class="buttonsContainer">
-    <button class="buttonOne" (click)="setActiveTab('funcionarios')" [class.active]="activeTab === 'funcionarios'">Funcionários</button>
-    <button class="buttonTwo" (click)="setActiveTab('produtos')" [class.active]="activeTab === 'produtos'">Produtos</button>
+    <button class="buttonOne" (click)="setActiveTab('funcionarios')"
+      [class.active]="activeTab === 'funcionarios'">Funcionários</button>
+    <button class="buttonTwo" (click)="setActiveTab('produtos')"
+      [class.active]="activeTab === 'produtos'">Produtos</button>
   </section>
   <img src="../../../assets/logoutCooked.png" alt="Imagem de Logout" class="imgLogout" (click)="logout()">
   <section class="addEmployee">
-    <h2 class="titulo">Adicionar Funcionários</h2>
-    <form (submit)="addEmployee()" class="nome">
-      <section class="addOne" *ngIf="isEmployeesTabActive">
+    <form (submit)="addEmployee()" *ngIf="isEmployeesTabActive" class="nome">
+      <h2 class="titulo">Adicionar Funcionários</h2>
+      <section class="addOne">
         <div class="namesOne">
           <label for="name">Nome:</label>
           <input class='inputs' type="text" id="name" name="name" [(ngModel)]="newEmployee.name" required>
@@ -55,45 +57,53 @@
     <h2 class="table text">Editar Funcionário</h2>
     <form (submit)="updateEmployee()" class="editWorked">
       <section class="addThree">
-<<<<<<< Updated upstream
-        <label for="updateName">Nome:</label>
-        <input class='inputEdit' type="text" id="updateName" name="updateName" [(ngModel)]="employeeToUpdate.name"
-          required>
-
-        <label for="updateRole">Função:</label>
-        <select id="updateRole" class='buttonSelect' name="updateRole" [(ngModel)]="employeeToUpdate.role" required>
-          <option value="Garçom">Garçom</option>
-          <option value="Cozinheiro">Cozinheiro</option>
-        </select>
-=======
-        <div class="editOne">
+        <div class="addFor">
           <label for="updateName">Nome:</label>
           <input class='inputEdit' type="text" id="updateName" name="updateName" [(ngModel)]="employeeToUpdate.name"
             required>
         </div>
-        <div class="editTwo">
+        <div class="addFive">
           <label for="updateRole">Função:</label>
           <select id="updateRole" class='buttonSelect' name="updateRole" [(ngModel)]="employeeToUpdate.role" required>
             <option value="Garçom">Garçom</option>
             <option value="Cozinheiro">Cozinheiro</option>
-            <option value="Administrador">Administrador</option>
           </select>
         </div>
->>>>>>> Stashed changes
       </section>
       <button class='buttonThree btn' type="submit">Atualizar Funcionário</button>
       <button class='buttonThree btn1' type="button" (click)="cancelUpdate()">Cancelar</button>
     </form>
   </section>
-  <div *ngIf="activeTab === 'produtos'">
-    <section class="products">
-      <h2 class="titulo">Lista de Produtos</h2>
-      <ul>
-        <li *ngFor="let product of products">
-          <p>{{ product.name }}</p>
-          <p>Preço: R$ {{ product.price }}</p>
-        </li>
-      </ul>
+  <section *ngIf="activeTab === 'produtos'">
+    <form class="nome">
+      <h2 class="titulo list">Adicionar Produtos</h2>
+      <section class="addOne">
+        <div class="namesOne">
+          <label for="name">Nome do produto:</label>
+          <input class='inputs' type="text" id="name" name="name" required>
+        </div>
+        <div class="namesTwo">
+          <label for="email">Valor do produto:</label>
+          <input class='inputs' type="email" id="email" name="email">
+        </div>
+      </section>
+      <button class='buttonThree' type="submit">Adicionar</button>
+    </form>
+    <section class="addedWorked">
+      <h2 class="table text2 list">Lista de Produtos</h2>
+      <section *ngFor="let product of products" class="worked">
+        <div>
+          <p class="titleName products">{{ product.name }}</p>
+          <p class="titleRole role">R$ {{ product.price }}</p>
+          <div class="buttonsWorked icons">
+            <img class="buttonsIcons" src="../../../assets/lixeira.png"
+              alt="Lixeira Ilustrativa">
+            <img class='buttonsIcons' src="../../../assets/botao-editar.png"
+              alt="Botão Ilustrativo">
+          </div>
+        </div>
+      </section>
+
     </section>
-  </div>
+  </section>
 </section>
