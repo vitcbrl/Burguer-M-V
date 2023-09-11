@@ -18,14 +18,13 @@ export class ProductService {
       throw new Error('Usuário não logado');
     }
 
-    // Define os headers com o cabeçalho de autorização
+    
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${token}`,
+      'Cache-Control': 'no-cache' // Evita o uso do cache
     });
 
     // Passa os headers para a solicitação
     return this.http.get<any[]>(this.apiUrl, { headers });
   }
 }
-
-

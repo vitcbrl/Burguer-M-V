@@ -2,8 +2,8 @@
 <section class="principal">
   <img src="../../../assets/Logo-burguermv.png" alt="Logo" class="logoAdm">
   <section class="buttonsContainer">
-    <button class="buttonOne">Funcionários</button>
-    <button class="buttonTwo">Produtos</button>
+    <button class="buttonOne" (click)="setActiveTab('funcionarios')" [class.active]="activeTab === 'funcionarios'">Funcionários</button>
+    <button class="buttonTwo" (click)="setActiveTab('produtos')" [class.active]="activeTab === 'produtos'">Produtos</button>
   </section>
   <img src="../../../assets/logoutCooked.png" alt="Imagem de Logout" class="imgLogout" (click)="logout()">
   <section class="addEmployee">
@@ -67,4 +67,12 @@
       <button class='buttonThree btn1' type="button" (click)="cancelUpdate()">Cancelar</button>
     </form>
   </section>
+  <div *ngIf="activeTab === 'produtos'">
+    <section class="products">
+      <h2 class="titulo">Lista de Produtos</h2>
+      <ul>
+        <li *ngFor="let product of products">{{ product.name }}</li>
+      </ul>
+    </section>
+  </div>
 </section>
