@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './authentication.service';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +13,44 @@ export class ProductService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getProducts(): Observable<any[]> {
-    const { loggedIn, token} = this.authService.isUserLoggedIn();
+    const { loggedIn, token } = this.authService.isUserLoggedIn();
 
-    if(!loggedIn){
+    if (!loggedIn) {
       throw new Error('Usuário não logado');
     }
 
-    
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
-      'Cache-Control': 'no-cache' // Evita o uso do cache
+      'Cache-Control': 'no-cache'
     });
 
-    // Passa os headers para a solicitação
     return this.http.get<any[]>(this.apiUrl, { headers });
+  }
+
+  addProduct(newProduct: any): Observable<any> {
+    const { loggedIn, token } = this.authService.isUserLoggedIn();
+
+    if (!loggedIn) {
+      throw new Error('Usuário não logado');
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    const body = JSON.stringify({
+      name: newProduct.name,
+      price: newProduct.price,
+      image: newProduct.image,
+      type: newProduct.type
+    });
+
+    return this.http.post(this.apiUrl, body, { headers }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Erro ao adicionar produto:', error);
+        throw error;
+      })
+    );
   }
 }

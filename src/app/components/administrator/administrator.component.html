@@ -2,10 +2,8 @@
 <section class="principal">
   <img src="../../../assets/Logo-burguermv.png" alt="Logo" class="logoAdm">
   <section class="buttonsContainer">
-    <button class="buttonOne" (click)="setActiveTab('funcionarios')"
-      [class.active]="activeTab === 'funcionarios'">Funcionários</button>
-    <button class="buttonTwo" (click)="setActiveTab('produtos')"
-      [class.active]="activeTab === 'produtos'">Produtos</button>
+    <button class="buttonOne" (click)="setActiveTab('funcionarios')" [class.active]="activeTab === 'funcionarios'">Funcionários</button>
+    <button class="buttonTwo" (click)="setActiveTab('produtos')" [class.active]="activeTab === 'produtos'">Produtos</button>
   </section>
   <img src="../../../assets/logoutCooked.png" alt="Imagem de Logout" class="imgLogout" (click)="logout()">
   <section class="addEmployee">
@@ -45,10 +43,8 @@
         <p class="titleName">{{ employee.name }}</p>
         <p class="titleRole">{{ employee.role }}</p>
         <div class="buttonsWorked">
-          <img class="buttonsIcons" (click)="deleteEmployee(employee.id)" src="../../../assets/lixeira.png"
-            alt="Lixeira Ilustrativa">
-          <img class='buttonsIcons' (click)="showUpdateForm(employee)" src="../../../assets/botao-editar.png"
-            alt="Botão Ilustrativo">
+          <img class="buttonsIcons" (click)="deleteEmployee(employee.id)" src="../../../assets/lixeira.png" alt="Lixeira Ilustrativa">
+          <img class='buttonsIcons' (click)="showUpdateForm(employee)" src="../../../assets/botao-editar.png" alt="Botão Ilustrativo">
         </div>
       </div>
     </section>
@@ -59,8 +55,7 @@
       <section class="addThree">
         <div class="addFor">
           <label for="updateName">Nome:</label>
-          <input class='inputEdit' type="text" id="updateName" name="updateName" [(ngModel)]="employeeToUpdate.name"
-            required>
+          <input class='inputEdit' type="text" id="updateName" name="updateName" [(ngModel)]="employeeToUpdate.name" required>
         </div>
         <div class="addFive">
           <label for="updateRole">Função:</label>
@@ -75,19 +70,30 @@
     </form>
   </section>
   <section *ngIf="activeTab === 'produtos'">
-    <form class="nome">
-      <h2 class="titulo list">Adicionar Produtos</h2>
-      <section class="addOne">
-        <div class="namesOne">
-          <label for="name">Nome do produto:</label>
-          <input class='inputs' type="text" id="name" name="name" required>
-        </div>
-        <div class="namesTwo">
-          <label for="email">Valor do produto:</label>
-          <input class='inputs' type="email" id="email" name="email">
-        </div>
-      </section>
-      <button class='buttonThree' type="submit">Adicionar</button>
+    <form class="nome" (submit)="addProduct()">
+        <h2 class="titulo list">Adicionar Produtos</h2>
+        <section class="addOne">
+            <div class="namesOne">
+                <label for="name">Nome do produto:</label>
+                <input class='inputs' type="text" id="name" name="name" [(ngModel)]="newProduct.name" required>
+            </div>
+            <div class="namesTwo">
+                <label for="price">Valor do produto:</label>
+                <input class='inputs' type="number" id="price" name="price" [(ngModel)]="newProduct.price" required>
+            </div>
+            <div class="namesThree">
+                <label for="image">URL da imagem:</label>
+                <input class='inputs' type="text" id="image" name="image" [(ngModel)]="newProduct.image" required>
+            </div>
+            <div class="namesFour">
+                <label for="type">Tipo do produto:</label>
+                <select id="type" class='buttonSelect' name="type" [(ngModel)]="newProduct.type" required>
+                    <option value="Café da manha">Café da Manhã</option>
+                    <option value="Almoço">Almoço</option>
+                </select>
+            </div>
+        </section>
+        <button class='buttonThree' type="submit">Adicionar</button>
     </form>
     <section class="addedWorked">
       <h2 class="table text2 list">Lista de Produtos</h2>
@@ -96,14 +102,11 @@
           <p class="titleName products">{{ product.name }}</p>
           <p class="titleRole role">R$ {{ product.price }}</p>
           <div class="buttonsWorked icons">
-            <img class="buttonsIcons" src="../../../assets/lixeira.png"
-              alt="Lixeira Ilustrativa">
-            <img class='buttonsIcons' src="../../../assets/botao-editar.png"
-              alt="Botão Ilustrativo">
+            <img class="buttonsIcons" src="../../../assets/lixeira.png" alt="Lixeira Ilustrativa">
+            <img class='buttonsIcons' src="../../../assets/botao-editar.png" alt="Botão Ilustrativo">
           </div>
         </div>
       </section>
-
     </section>
   </section>
 </section>
