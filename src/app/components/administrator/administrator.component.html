@@ -70,30 +70,6 @@
     </form>
   </section>
   <section *ngIf="activeTab === 'produtos'">
-    <form class="nome" (submit)="addProduct()">
-        <h2 class="titulo list">Adicionar Produtos</h2>
-        <section class="addOne">
-            <div class="namesOne">
-                <label for="name">Nome do produto:</label>
-                <input class='inputs' type="text" id="name" name="name" [(ngModel)]="newProduct.name" required>
-            </div>
-            <div class="namesTwo">
-                <label for="price">Valor do produto:</label>
-                <input class='inputs' type="number" id="price" name="price" [(ngModel)]="newProduct.price" required>
-            </div>
-            <div class="namesThree">
-                <label for="image">URL da imagem:</label>
-                <input class='inputs' type="text" id="image" name="image" [(ngModel)]="newProduct.image" required>
-            </div>
-            <div class="namesFour">
-                <label for="type">Tipo do produto:</label>
-                <select id="type" class='buttonSelect' name="type" [(ngModel)]="newProduct.type" required>
-                    <option value="Café da manha">Café da Manhã</option>
-                    <option value="Almoço">Almoço</option>
-                </select>
-            </div>
-        </section>
-        <button class='buttonThree' type="submit">Adicionar</button>
     </form>
     <section class="addedWorked">
       <h2 class="table text2 list">Lista de Produtos</h2>
