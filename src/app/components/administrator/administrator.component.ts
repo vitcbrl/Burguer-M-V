@@ -16,6 +16,8 @@ export class AdministratorComponent implements OnInit {
   products: any[] = [];
   activeTab: string = 'funcionarios';
   newProduct: any = { name: '', price: '', image: '', type: '' };
+  isEditingProduct = false;
+  productToUpdate: any = { id: 0, name: '', price: '', image: '', type: '' };
 
 
   isEmployeesTabActive: boolean = true;  // Variável para controlar a exibição da seção de funcionários
@@ -152,5 +154,42 @@ export class AdministratorComponent implements OnInit {
 
   resetProductForm() {
     this.newProduct = { name: '', price: '', image: '', type: '' };
+  }
+
+  editProduct(product: any) {
+    this.isEditingProduct = true;
+    this.productToUpdate = { ...product };
+  }
+
+  updateProduct() {
+    this.productService.updateProduct(this.productToUpdate.id, this.productToUpdate).subscribe(
+      (response: any) => {
+        console.log('Produto atualizado com sucesso', response);
+        this.loadProducts();
+        this.cancelUpdateProduct();
+      },
+      (error: any) => {
+        console.error('Erro ao atualizar produto', error);
+      }
+    );
+  }
+
+  cancelUpdateProduct() {
+    this.isEditingProduct = false;
+    this.productToUpdate = { id: 0, name: '', price: '', image: '', type: '' };
+  }
+
+  deleteProduct(productId: number) {
+    if (confirm('Tem certeza que deseja excluir este produto?')) {
+      this.productService.deleteProduct(productId).subscribe(
+        (response: any) => {
+          console.log('Produto excluído com sucesso', response);
+          this.loadProducts();
+        },
+        (error: any) => {
+          console.error('Erro ao excluir produto', error);
+        }
+      );
+    }
   }
 }

@@ -53,4 +53,46 @@ export class ProductService {
       })
     );
   }
+
+  updateProduct(productId: number, updatedProduct: any): Observable<any> {
+    const { loggedIn, token } = this.authService.isUserLoggedIn();
+  
+    if (!loggedIn) {
+      throw new Error('Usuário não logado');
+    }
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+  
+    const body = JSON.stringify(updatedProduct);
+  
+    return this.http.put(`${this.apiUrl}/${productId}`, body, { headers }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Erro ao atualizar produto:', error);
+        throw error;
+      })
+    );
+  }
+  
+  deleteProduct(productId: number): Observable<any> {
+    const { loggedIn, token } = this.authService.isUserLoggedIn();
+  
+    if (!loggedIn) {
+      throw new Error('Usuário não logado');
+    }
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Cache-Control': 'no-cache'
+    });
+  
+    return this.http.delete(`${this.apiUrl}/${productId}`, { headers }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Erro ao excluir produto:', error);
+        throw error;
+      })
+    );
+  }
 }
