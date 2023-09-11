@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/authentication.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-administrator',
@@ -9,11 +10,13 @@ import { AuthService } from '../services/authentication.service';
 })
 export class AdministratorComponent implements OnInit {
   employees: any[] = [];
-  newEmployee: any = { id: 0, name: '', email: '', password: '', role: 'garçom' }; // Inicializado com ID 0
+  newEmployee: any = { id: 0, name: '', email: '', password: '', role: 'garçom' };
   isEditing = false;
-  employeeToUpdate: any = { id: 0, name: '', role: '' }; // Inicializado com ID 0
+  employeeToUpdate: any = { id: 0, name: '', role: '' };
+  products: any[] = [];
+  activeTab: string = 'funcionarios';
 
-  constructor(private userService: UserService , private authService: AuthService) {}
+  constructor(private userService: UserService, private authService: AuthService, private productService: ProductService) {}
 
   ngOnInit(): void {
     this.loadEmployees();
@@ -71,17 +74,16 @@ export class AdministratorComponent implements OnInit {
   }
 
   updateEmployee() {
-    // Verifiquei a função selecionada e ajustei antes de atualizar para garantir os roles corretos
     if (this.employeeToUpdate.role === 'Cozinheiro') {
       this.employeeToUpdate.role = 'chefe';
     } else if (this.employeeToUpdate.role === 'Garçom') {
       this.employeeToUpdate.role = 'service';
     }
-  
+
     this.userService.updateEmployee(this.employeeToUpdate.id, this.employeeToUpdate).subscribe(
       (response: any) => {
         console.log('Dados do funcionário atualizados com sucesso', response);
-        this.loadEmployees(); // Atualize a lista após a atualização bem-sucedida.
+        this.loadEmployees();
         this.cancelUpdate();
       },
       (error: any) => {
@@ -94,4 +96,23 @@ export class AdministratorComponent implements OnInit {
     this.isEditing = false;
     this.employeeToUpdate = { id: 0, name: '', role: '' };
   }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+    if (tab === 'produtos') {
+      this.loadProducts();
+    }
+  }
+
+  loadProducts() {
+    this.productService.getProducts().subscribe(
+      (products: any[]) => {
+        console.log('Dados dos produtos recebidos com sucesso:', products);
+        this.products = products;
+      },
+      (error: any) => {
+        console.error('Erro ao carregar produtos', error);
+      }
+    );
+  }  
 }
