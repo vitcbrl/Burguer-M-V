@@ -16,6 +16,8 @@ export class AdministratorComponent implements OnInit {
   products: any[] = [];
   activeTab: string = 'funcionarios';
 
+  isEmployeesTabActive: boolean = true;  // Variável para controlar a exibição da seção de funcionários
+
   constructor(private userService: UserService, private authService: AuthService, private productService: ProductService) {}
 
   ngOnInit(): void {
@@ -101,6 +103,9 @@ export class AdministratorComponent implements OnInit {
     this.activeTab = tab;
     if (tab === 'produtos') {
       this.loadProducts();
+      this.isEmployeesTabActive = false;  // Desativa a exibição da seção de funcionários quando a aba "Produtos" estiver ativa
+    } else {
+      this.isEmployeesTabActive = true;   // Ativa a exibição da seção de funcionários quando qualquer outra aba estiver ativa
     }
   }
 
@@ -108,7 +113,7 @@ export class AdministratorComponent implements OnInit {
     this.productService.getProducts().subscribe(
       (products: any[]) => {
         console.log('Dados dos produtos recebidos com sucesso:', products);
-        this.products = products;
+        this.products = products[0];
       },
       (error: any) => {
         console.error('Erro ao carregar produtos', error);
