@@ -1,4 +1,3 @@
-<!-- administrator.component.html -->
 <section class="principal">
   <img src="../../../assets/Logo-burguermv.png" alt="Logo" class="logoAdm">
   <section class="buttonsContainer">
@@ -70,19 +69,43 @@
     </form>
   </section>
   <section *ngIf="activeTab === 'produtos'">
-    </form>
-    <section class="addedWorked">
-      <h2 class="table text2 list">Lista de Produtos</h2>
-      <section *ngFor="let product of products" class="worked">
-        <div>
-          <p class="titleName products">{{ product.name }}</p>
-          <p class="titleRole role">R$ {{ product.price }}</p>
-          <div class="buttonsWorked icons">
-            <img class="buttonsIcons" src="../../../assets/lixeira.png" alt="Lixeira Ilustrativa">
-            <img class='buttonsIcons' src="../../../assets/botao-editar.png" alt="Botão Ilustrativo">
-          </div>
+    <form class="nome" (submit)="addProduct()">
+      <h2 class="titulo list">Adicionar Produtoss</h2>
+      <section class="addOne">
+        <div class="namesOne">
+          <label for="name">Nome do produto:</label>
+          <input class='inputs' type="text" id="name" name="name" [(ngModel)]="newProduct.name" required>
+        </div>
+        <div class="namesTwo">
+          <label for="price">Valor do produto:</label>
+          <input class='inputs' type="number" id="price" name="price" [(ngModel)]="newProduct.price" required>
+        </div>
+        <div class="namesThree">
+          <label for="image">URL da imagem:</label>
+          <input class='inputs' type="text" id="image" name="image" [(ngModel)]="newProduct.image" required>
+        </div>
+        <div class="namesFour">
+          <label for="type">Tipo do produto:</label>
+          <select id="type" class='buttonSelect' name="type" [(ngModel)]="newProduct.type" required>
+            <option value="Café da manhã">Café da Manhã</option>
+            <option value="Almoço">Almoço</option>
+          </select>
         </div>
       </section>
-    </section>
+      <button class='buttonThree' type="submit">Adicionar</button>
+    </form>
   </section>
+  <section *ngIf="activeTab === 'produtos'">
+    <h2 class="table text2 list">Lista de Produtos</h2>
+    <section *ngFor="let product of products" class="worked">
+      <div>
+        <p class="titleName products">{{ product.name }}</p>
+        <p class="titleRole role">R$ {{ product.price }}</p>
+        <div class="buttonsWorked icons">
+          <img class="buttonsIcons" src="../../../assets/lixeira.png" alt="Lixeira Ilustrativa">
+          <img class='buttonsIcons' src="../../../assets/botao-editar.png" alt="Botão Ilustrativo">
+        </div>
+      </div>
+    </section>
+  </section>  
 </section>
