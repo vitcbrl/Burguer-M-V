@@ -108,6 +108,7 @@
       <button class='buttonThree' type="submit">Adicionar</button>
     </form>
     
+<<<<<<< Updated upstream
     <!-- Lista de Produtos --> 
     <h2 class="table text">Detalhes dos Produtos</h2> <!-- Movi o título para fora do loop *ngFor  e ele so aparece quando tiver nos produtos pois estrutura condicional (*ngIf="activeTab === 'produtos'"), o que significa que ele só será exibido quando a variável activeTab for igual a "produtos". -->
     <section *ngFor="let product of products" class="worked">
@@ -118,6 +119,24 @@
         <div class="buttonsWorked icons">
           <button class="buttonThree" (click)="editProduct(product)">Editar</button>
           <button class="buttonThree" (click)="deleteProduct(product.id)">Excluir</button>
+=======
+    <div class="buttonsWorked icons">
+      <img src="../../../assets/lixeira.png" (click)="deleteProduct(product.id)" alt="Imagem Lixo Ilustrativo" class="buttonsIcons">
+      <img src="../../../assets/botao-editar.png" (click)="editProduct(product)" alt="Imagem Ilustrativa Edit" class="buttonsIcons">
+    </div>
+  </div>
+</section>
+
+<!-- Formulário de Edição de Produto (mostrado quando isEditingProduct é verdadeiro) -->
+<section *ngIf="isEditingProduct" class="worked">
+  <div>
+    <h2 class="table text">Editar Produto</h2>
+    <form (submit)="updateProduct()" class="editWorked">
+      <section class="addThree">
+        <div class="addFor">
+          <label for="updateProductName">Nome do Produto:</label>
+          <input class='inputEdit' type="text" id="updateProductName" name="updateProductName" [(ngModel)]="productToUpdate.name" required>
+>>>>>>> Stashed changes
         </div>
       </div>
     </section>
