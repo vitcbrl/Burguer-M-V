@@ -136,9 +136,7 @@ describe('UserService', () => {
       role: 'Cozinheiro',
     };
 
-    userService.updateEmployee(idDoFuncionarioParaAtualizar, dadosAtualizados).subscribe(() => {
-      // Você pode adicionar asserções adicionais aqui, se necessário
-    });
+    userService.updateEmployee(idDoFuncionarioParaAtualizar, dadosAtualizados).subscribe(() => {});
 
     const urlEsperada = `http://localhost:8080/users/${idDoFuncionarioParaAtualizar}`;
 
