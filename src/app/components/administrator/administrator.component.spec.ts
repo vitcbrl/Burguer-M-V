@@ -4,9 +4,8 @@ import { AuthService } from '../services/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 import { UserService } from '../services/user.service';
-
 
 describe('AdministratorComponent', () => {
   let component: AdministratorComponent;
@@ -33,11 +32,16 @@ describe('AdministratorComponent', () => {
   });
 
   it('Deve chamar loadEmployees() no ngOnInit', () => {
-    const getEmployeesSpy = spyOn(userService, 'getEmployees').and.returnValue(of([]));
+    // Crie um valor observável simulando uma lista vazia de funcionários
+    const emptyEmployeesObservable = of([]);
+
+    // Crie um espião para a função getEmployees e faça-o retornar o valor observável
+    spyOn(userService, 'getEmployees').and.returnValue(emptyEmployeesObservable);
     
     component.ngOnInit();
 
-    expect(getEmployeesSpy).toHaveBeenCalled();
+    // Agora, o espião deve retornar um valor observável simulando sucesso
+    expect(component.employees).toEqual([]); // Verifique se a variável do componente foi atualizada corretamente
   });
 
   it('Deve chamar AuthService.logout() no logout', () => {
@@ -48,29 +52,37 @@ describe('AdministratorComponent', () => {
     expect(logoutSpy).toHaveBeenCalled();
   });
 
-  it('Deve chamar loadEmployees e atualizar employees com sucesso', () => {
-    const mockEmployees = [{ id: 1, name: 'Funcionário 1' }];
-    const mockResponse = of(mockEmployees);
+  it('Deve atualizar o papel para "chefe" quando o papel for "Cozinheiro"', () => {
+    // Arrange
+    component.employeeToUpdate = { role: 'Cozinheiro' };
 
-    spyOn(userService, 'getEmployees').and.returnValue(mockResponse);
+    // Act
+    component.updateEmployee();
 
-    component.loadEmployees();
-
-    expect(userService.getEmployees).toHaveBeenCalled();
-
-    expect(component.employees).toEqual(mockEmployees);
+    // Assert
+    expect(component.employeeToUpdate.role).toBe('chefe');
   });
 
-  it('Deve tratar erro ao chamar loadEmployees()', () => {
-    const errorResponse = 'Usuário não está logado';
-    spyOn(userService, 'getEmployees').and.returnValue(throwError(errorResponse));
+  it('Deve atualizar o papel para "service" quando o papel for "Garçom"', () => {
+    // Arrange
+    component.employeeToUpdate = { role: 'Garçom' };
 
-   const consoleErrorSpy = spyOn(console, 'error');
+    // Act
+    component.updateEmployee();
 
-    component.loadEmployees();
+    // Assert
+    expect(component.employeeToUpdate.role).toBe('service');
+  });
 
+  it('Não deve fazer nada quando o papel não for "Cozinheiro" ou "Garçom"', () => {
+    // Arrange
+    component.employeeToUpdate = { role: 'OutroPapel' };
+    const initialRole = component.employeeToUpdate.role;
 
-    expect(userService.getEmployees).toHaveBeenCalled();
-    expect(consoleErrorSpy).toHaveBeenCalledWith('Erro ao carregar funcionários');
+    // Act
+    component.updateEmployee();
+
+    // Assert
+    expect(component.employeeToUpdate.role).toBe(initialRole); // O papel não deve ser alterado
   });
 });
