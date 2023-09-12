@@ -85,4 +85,26 @@ describe('AdministratorComponent', () => {
     // Assert
     expect(component.employeeToUpdate.role).toBe(initialRole); // O papel não deve ser alterado
   });
+  it('Deve chamar UserService.addEmployee() e atualizar a lista de funcionários ao adicionar um funcionário com sucesso', () => {
+    // Arrange
+    const newEmployee = { name: 'Novo Funcionário', role: 'Cozinheiro' }; // ou qualquer outro papel desejado
+  
+    // Crie um valor observável simulando uma resposta de sucesso ao adicionar um funcionário
+    const successResponse = { /* aqui você pode criar um objeto simulando a resposta de sucesso */ };
+    const addEmployeeSpy = spyOn(userService, 'addEmployee').and.returnValue(of(successResponse));
+  
+    // Crie espiões para os métodos chamados dentro de addEmployee()
+    const loadEmployeesSpy = spyOn(component, 'loadEmployees');
+    const resetFormSpy = spyOn(component, 'resetForm');
+  
+    // Act
+    component.newEmployee = newEmployee; // Defina newEmployee no componente
+    component.addEmployee();
+  
+    // Assert
+    expect(addEmployeeSpy).toHaveBeenCalledWith(newEmployee); // Verifique se addEmployee foi chamado com o novo funcionário
+    expect(loadEmployeesSpy).toHaveBeenCalled(); // Verifique se loadEmployees foi chamado após adicionar o funcionário
+    expect(resetFormSpy).toHaveBeenCalled(); // Verifique se resetForm foi chamado após adicionar o funcionário
+  });
+  
 });
