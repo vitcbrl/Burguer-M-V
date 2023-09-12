@@ -106,5 +106,32 @@ describe('AdministratorComponent', () => {
     expect(loadEmployeesSpy).toHaveBeenCalled(); // Verifique se loadEmployees foi chamado após adicionar o funcionário
     expect(resetFormSpy).toHaveBeenCalled(); // Verifique se resetForm foi chamado após adicionar o funcionário
   });
+  it('Deve ativar a aba "Produtos" corretamente', () => {
+    // Arrange
+    const tab = 'produtos';
+  
+    // Espie a função loadProducts
+    const loadProductsSpy = spyOn(component, 'loadProducts');
+  
+    // Act
+    component.setActiveTab(tab);
+  
+    // Assert
+    expect(component.activeTab).toBe(tab); // Verifique se a aba ativa foi definida corretamente
+    expect(component.isEmployeesTabActive).toBe(false); // Verifique se isEmployeesTabActive foi definido como false
+    expect(loadProductsSpy).toHaveBeenCalled(); // Verifique se a função loadProducts foi chamada
+  });
+  
+  it('Deve ativar a exibição de funcionários corretamente para outras abas', () => {
+    // Arrange
+    const tab = 'outra_aba_qualquer';
+  
+    // Act
+    component.setActiveTab(tab);
+  
+    // Assert
+    expect(component.activeTab).toBe(tab); // Verifique se a aba ativa foi definida corretamente
+    expect(component.isEmployeesTabActive).toBe(true); // Verifique se isEmployeesTabActive foi definido como true
+  });
   
 });
