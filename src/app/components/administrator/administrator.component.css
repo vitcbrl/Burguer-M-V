@@ -173,7 +173,7 @@
     top: 170px;
     gap: 10px;
     left: 250px;
-    padding: 5px;
+    padding-left: 18px;
 }
 
 .btn1 {
@@ -206,6 +206,17 @@
 
 .icons {
     left: 930px;
+}
+
+/**/
+.edit {
+    display: flex;
+    left: 550px;
+}
+
+.inputsEdit {
+    display: flex;
+    left: 550px;
 }
 
 @media screen and (max-width: 1496px) {
@@ -841,7 +852,6 @@
         left: -80px;
     }
 
-     /**/
     .namesProducts{
         left: 5px;
         font-size: 0.7rem;
@@ -926,7 +936,6 @@
         left: -100px;
     }
 
-    /**/
     .namesProducts{
         left: 0px;
     }

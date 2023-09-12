@@ -1,8 +1,10 @@
 <section class="principal">
   <img src="../../../assets/Logo-burguermv.png" alt="Logo" class="logoAdm">
   <section class="buttonsContainer">
-    <button class="buttonOne" (click)="setActiveTab('funcionarios')" [class.active]="activeTab === 'funcionarios'">Funcionários</button>
-    <button class="buttonTwo" (click)="setActiveTab('produtos')" [class.active]="activeTab === 'produtos'">Produtos</button>
+    <button class="buttonOne" (click)="setActiveTab('funcionarios')"
+      [class.active]="activeTab === 'funcionarios'">Funcionários</button>
+    <button class="buttonTwo" (click)="setActiveTab('produtos')"
+      [class.active]="activeTab === 'produtos'">Produtos</button>
   </section>
   <img src="../../../assets/logoutCooked.png" alt="Imagem de Logout" class="imgLogout" (click)="logout()">
   <section class="addEmployee">
@@ -42,8 +44,10 @@
         <p class="titleName">{{ employee.name }}</p>
         <p class="titleRole">{{ employee.role }}</p>
         <div class="buttonsWorked">
-          <img class="buttonsIcons" (click)="deleteEmployee(employee.id)" src="../../../assets/lixeira.png" alt="Lixeira Ilustrativa">
-          <img class='buttonsIcons' (click)="showUpdateForm(employee)" src="../../../assets/botao-editar.png" alt="Botão Ilustrativo">
+          <img class="buttonsIcons" (click)="deleteEmployee(employee.id)" src="../../../assets/lixeira.png"
+            alt="Lixeira Ilustrativa">
+          <img class='buttonsIcons' (click)="showUpdateForm(employee)" src="../../../assets/botao-editar.png"
+            alt="Botão Ilustrativo">
         </div>
       </div>
     </section>
@@ -54,7 +58,8 @@
       <section class="addThree">
         <div class="addFor">
           <label for="updateName">Nome:</label>
-          <input class='inputEdit' type="text" id="updateName" name="updateName" [(ngModel)]="employeeToUpdate.name" required>
+          <input class='inputEdit' type="text" id="updateName" name="updateName" [(ngModel)]="employeeToUpdate.name"
+            required>
         </div>
         <div class="addFive">
           <label for="updateRole">Função:</label>
@@ -64,7 +69,7 @@
           </select>
         </div>
       </section>
-      <button class='buttonThree btn' type="submit">Atualizar Funcionário</button>
+      <button class='buttonThree btn' type="submit">Atualizar</button>
       <button class='buttonThree btn1' type="button" (click)="cancelUpdate()">Cancelar</button>
     </form>
   </section>
@@ -97,21 +102,33 @@
   </section>
   <section *ngIf="activeTab === 'produtos'">
     <h2 class="table text2 list">Lista de Produtos</h2>
-  <section *ngFor="let product of products" class="worked">
-    <div>
-      <p class="titleName products" *ngIf="!isEditingProduct || product.id !== productToUpdate.id">{{ product.name }}</p>
-      <input class='inputs' type="text" [(ngModel)]="productToUpdate.name" *ngIf="isEditingProduct && product.id === productToUpdate.id">
-      
-      <p class="titleRole role" *ngIf="!isEditingProduct || product.id !== productToUpdate.id">R$ {{ product.price }}</p>
-      <input class='inputs' type="number" [(ngModel)]="productToUpdate.price" *ngIf="isEditingProduct && product.id === productToUpdate.id">
-      
-      <div class="buttonsWorked icons">
-        <img class="buttonsIcons" (click)="deleteProduct(product.id)" src="../../../assets/lixeira.png" alt="Lixeira Ilustrativa">
-        <img class='buttonsIcons' *ngIf="!isEditingProduct || product.id !== productToUpdate.id" (click)="editProduct(product)" src="../../../assets/botao-editar.png" alt="Botão Ilustrativo">
-        <button class="buttonThree" *ngIf="isEditingProduct && product.id === productToUpdate.id" (click)="updateProduct()">Salvar</button>
-        <button class="buttonThree btn1" *ngIf="isEditingProduct && product.id === productToUpdate.id" (click)="cancelUpdateProduct()">Cancelar</button>
+    <section *ngFor="let product of products" class="worked">
+      <div class="addedProducts">
+        <p class="titleName products" *ngIf="!isEditingProduct || product.id !== productToUpdate.id">{{ product.name }}
+        </p>
+        <p class="titleRole role" *ngIf="!isEditingProduct || product.id !== productToUpdate.id">R$ {{ product.price }}
+        </p>
+        <div class="buttonsWorked icons">
+          <img class="buttonsIcons" (click)="deleteProduct(product.id)" src="../../../assets/lixeira.png"
+            alt="Lixeira Ilustrativa">
+          <img class='buttonsIcons' *ngIf="!isEditingProduct || product.id !== productToUpdate.id"
+            (click)="editProduct(product)" src="../../../assets/botao-editar.png" alt="Botão Ilustrativo">
+        </div>
       </div>
-    </div>
+      <section class="editWorked edit">
+        <form action="" class="editWorked">
+          <div class="addFor">
+            <input class='inputsEdit' type="text" [(ngModel)]="productToUpdate.name"
+              *ngIf="isEditingProduct && product.id === productToUpdate.id">
+            <input class='inputsEdit' type="number" [(ngModel)]="productToUpdate.price"
+              *ngIf="isEditingProduct && product.id === productToUpdate.id">
+          </div>
+          <button class="buttonThree btn" *ngIf="isEditingProduct && product.id === productToUpdate.id"
+            (click)="updateProduct()">Salvar</button>
+          <button class="buttonThree btn1" *ngIf="isEditingProduct && product.id === productToUpdate.id"
+            (click)="cancelUpdateProduct()">Cancelar</button>
+        </form>
+      </section>
+    </section>
   </section>
-</section>
 </section>
