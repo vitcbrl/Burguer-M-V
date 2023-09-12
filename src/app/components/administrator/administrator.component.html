@@ -92,7 +92,7 @@
         <div class="namesFour">
           <label for="type">Tipo do produto:</label>
           <select id="type" class='buttonSelect' name="type" [(ngModel)]="newProduct.type" required>
-            <option value="Café da manhã">Café da Manhã</option>
+            <option value="Café da manha">Café da Manhã</option>
             <option value="Almoço">Almoço</option>
           </select>
         </div>
@@ -100,35 +100,40 @@
       <button class='buttonThree' type="submit">Adicionar</button>
     </form>
   </section>
-  <section *ngIf="activeTab === 'produtos'">
-    <h2 class="table text2 list">Lista de Produtos</h2>
-    <section *ngFor="let product of products" class="worked">
-      <div class="addedProducts">
-        <p class="titleName products" *ngIf="!isEditingProduct || product.id !== productToUpdate.id">{{ product.name }}
-        </p>
-        <p class="titleRole role" *ngIf="!isEditingProduct || product.id !== productToUpdate.id">R$ {{ product.price }}
-        </p>
-        <div class="buttonsWorked icons">
-          <img class="buttonsIcons" (click)="deleteProduct(product.id)" src="../../../assets/lixeira.png"
-            alt="Lixeira Ilustrativa">
-          <img class='buttonsIcons' *ngIf="!isEditingProduct || product.id !== productToUpdate.id"
-            (click)="editProduct(product)" src="../../../assets/botao-editar.png" alt="Botão Ilustrativo">
-        </div>
-      </div>
-      <section class="editWorked edit">
-        <form action="" class="editWorked">
-          <div class="addFor">
-            <input class='inputsEdit' type="text" [(ngModel)]="productToUpdate.name"
-              *ngIf="isEditingProduct && product.id === productToUpdate.id">
-            <input class='inputsEdit' type="number" [(ngModel)]="productToUpdate.price"
-              *ngIf="isEditingProduct && product.id === productToUpdate.id">
-          </div>
-          <button class="buttonThree btn" *ngIf="isEditingProduct && product.id === productToUpdate.id"
-            (click)="updateProduct()">Salvar</button>
-          <button class="buttonThree btn1" *ngIf="isEditingProduct && product.id === productToUpdate.id"
-            (click)="cancelUpdateProduct()">Cancelar</button>
-        </form>
-      </section>
-    </section>
-  </section>
+ <!-- Parte de Listagem de Produtos -->
+<section *ngFor="let product of products" class="worked">
+  <div>
+    <p class="titleName products">{{ product.name }}</p>
+    <p class="titleRole role">R$ {{ product.price }}</p>
+    
+    <div class="buttonsWorked icons">
+      <button class="buttonThree" (click)="editProduct(product)">Editar</button>
+      <button class="buttonThree" (click)="deleteProduct(product.id)">Excluir</button>
+    </div>
+  </div>
 </section>
+
+<!-- Formulário de Edição de Produto (mostrado quando isEditingProduct é verdadeiro) -->
+<section *ngIf="isEditingProduct" class="worked">
+  <div>
+    <h2 class="table text">Editar Produto</h2>
+    <form (submit)="updateProduct()" class="editWorked">
+      <section class="addThree">
+        <div class="addFor">
+          <label for="updateProductName">Nome do Produto:</label>
+          <input class='inputEdit' type="text" id="updateProductName" name="updateProductName" [(ngModel)]="productToUpdate.name" required>
+        </div>
+        <div class="addFive">
+          <label for="updateProductPrice">Preço:</label>
+          <input class='inputEdit' type="number" id="updateProductPrice" name="updateProductPrice" [(ngModel)]="productToUpdate.price" required>
+        </div>
+      </section>
+      <button class='buttonThree btn' type="submit">Atualizar</button>
+      <button class='buttonThree btn1' type="button" (click)="cancelUpdateProduct()">Cancelar</button>
+    </form>
+  </div>
+</section>
+
+  
+  
+  
