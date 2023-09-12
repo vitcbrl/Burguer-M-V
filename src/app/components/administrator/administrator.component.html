@@ -7,8 +7,11 @@
       [class.active]="activeTab === 'produtos'">Produtos</button>
   </section>
   <img src="../../../assets/logoutCooked.png" alt="Imagem de Logout" class="imgLogout" (click)="logout()">
-  <section class="addEmployee">
-    <form (submit)="addEmployee()" *ngIf="isEmployeesTabActive" class="nome">
+  
+  <!-- Seção de Funcionários -->
+  <section *ngIf="isEmployeesTabActive">
+    <!-- Formulário para adicionar funcionários com o active funcionando -->
+    <form (submit)="addEmployee()" class="nome">
       <h2 class="titulo">Adicionar Funcionários</h2>
       <section class="addOne">
         <div class="namesOne">
@@ -20,62 +23,67 @@
           <input class='inputs' type="email" id="email" name="email" [(ngModel)]="newEmployee.email">
         </div>
       </section>
-      <section class="addTwo" *ngIf="isEmployeesTabActive">
+      <section class="addTwo">
         <label for="password">Senha:</label>
         <input type="password" class="inputPassword" id="password" name="password" [(ngModel)]="newEmployee.password">
-
         <label for="role">Cargo:</label>
         <select id="role" class='buttonSelect' name="role" [(ngModel)]="newEmployee.role" required>
           <option value="Garçom">Garçom</option>
           <option value="Cozinheiro">Cozinheiro</option>
         </select>
       </section>
-      <button class='buttonThree' type="submit" *ngIf="isEmployeesTabActive">Adicionar</button>
+      <button class='buttonThree' type="submit">Adicionar</button>
     </form>
-  </section>
-  <section class="addedWorked" *ngIf="isEmployeesTabActive">
-    <div class="table">
-      <p>Nome</p>
-      <p>Função</p>
-      <p>Ação</p>
-    </div>
-    <section *ngFor="let employee of employees" class="worked">
-      <div class="elementosTwo">
-        <p class="titleName">{{ employee.name }}</p>
-        <p class="titleRole">{{ employee.role }}</p>
-        <div class="buttonsWorked">
-          <img class="buttonsIcons" (click)="deleteEmployee(employee.id)" src="../../../assets/lixeira.png"
-            alt="Lixeira Ilustrativa">
-          <img class='buttonsIcons' (click)="showUpdateForm(employee)" src="../../../assets/botao-editar.png"
-            alt="Botão Ilustrativo">
-        </div>
+    
+    <!-- Lista de Funcionários -->
+    <section class="addedWorked">
+      <div class="table">
+        <p>Nome</p>
+        <p>Função</p>
+        <p>Ação</p>
       </div>
-    </section>
-  </section>
-  <section *ngIf="isEditing && isEmployeesTabActive">
-    <h2 class="table text">Editar Funcionário</h2>
-    <form (submit)="updateEmployee()" class="editWorked">
-      <section class="addThree">
-        <div class="addFor">
-          <label for="updateName">Nome:</label>
-          <input class='inputEdit' type="text" id="updateName" name="updateName" [(ngModel)]="employeeToUpdate.name"
-            required>
-        </div>
-        <div class="addFive">
-          <label for="updateRole">Função:</label>
-          <select id="updateRole" class='buttonSelect' name="updateRole" [(ngModel)]="employeeToUpdate.role" required>
-            <option value="Garçom">Garçom</option>
-            <option value="Cozinheiro">Cozinheiro</option>
-          </select>
+      <section *ngFor="let employee of employees" class="worked">
+        <div class="elementosTwo">
+          <p class="titleName">{{ employee.name }}</p>
+          <p class="titleRole">{{ employee.role }}</p>
+          <div class="buttonsWorked">
+            <img class="buttonsIcons" (click)="deleteEmployee(employee.id)" src="../../../assets/lixeira.png"
+              alt="Lixeira Ilustrativa">
+            <img class='buttonsIcons' (click)="showUpdateForm(employee)" src="../../../assets/botao-editar.png"
+              alt="Botão Ilustrativo">
+          </div>
         </div>
       </section>
-      <button class='buttonThree btn' type="submit">Atualizar</button>
-      <button class='buttonThree btn1' type="button" (click)="cancelUpdate()">Cancelar</button>
-    </form>
+    </section>
+    
+    <!-- Formulário de Edição de Funcionário -->
+    <section *ngIf="isEditing">
+      <h2 class="table text">Editar Funcionário</h2>
+      <form (submit)="updateEmployee()" class="editWorked">
+        <section class="addThree">
+          <div class="addFor">
+            <label for="updateName">Nome:</label>
+            <input class='inputEdit' type="text" id="updateName" name="updateName" [(ngModel)]="employeeToUpdate.name" required>
+          </div>
+          <div class="addFive">
+            <label for="updateRole">Função:</label>
+            <select id="updateRole" class='buttonSelect' name="updateRole" [(ngModel)]="employeeToUpdate.role" required>
+              <option value="Garçom">Garçom</option>
+              <option value="Cozinheiro">Cozinheiro</option>
+            </select>
+          </div>
+        </section>
+        <button class='buttonThree btn' type="submit">Atualizar</button>
+        <button class='buttonThree btn1' type="button" (click)="cancelUpdate()">Cancelar</button>
+      </form>
+    </section>
   </section>
+  
+  <!-- Seção de Produtos -->
   <section *ngIf="activeTab === 'produtos'">
+    <!-- Formulário para adicionar produtos  com o active agora funcionando-->
     <form class="nome" (submit)="addProduct()">
-      <h2 class="titulo list">Adicionar Produtoss</h2>
+      <h2 class="titulo list">Adicionar Produtos</h2>
       <section class="addOne">
         <div class="namesOne">
           <label for="name">Nome do produto:</label>
@@ -92,48 +100,45 @@
         <div class="namesFour">
           <label for="type">Tipo do produto:</label>
           <select id="type" class='buttonSelect' name="type" [(ngModel)]="newProduct.type" required>
-            <option value="Café da manha">Café da Manhã</option>
+            <option value="Café da manhã">Café da Manhã</option>
             <option value="Almoço">Almoço</option>
           </select>
         </div>
       </section>
       <button class='buttonThree' type="submit">Adicionar</button>
     </form>
-  </section>
- <!-- Parte de Listagem de Produtos -->
-<section *ngFor="let product of products" class="worked">
-  <div>
-    <p class="titleName products">{{ product.name }}</p>
-    <p class="titleRole role">R$ {{ product.price }}</p>
     
-    <div class="buttonsWorked icons">
-      <button class="buttonThree" (click)="editProduct(product)">Editar</button>
-      <button class="buttonThree" (click)="deleteProduct(product.id)">Excluir</button>
-    </div>
-  </div>
-</section>
-
-<!-- Formulário de Edição de Produto (mostrado quando isEditingProduct é verdadeiro) -->
-<section *ngIf="isEditingProduct" class="worked">
-  <div>
-    <h2 class="table text">Editar Produto</h2>
-    <form (submit)="updateProduct()" class="editWorked">
-      <section class="addThree">
-        <div class="addFor">
-          <label for="updateProductName">Nome do Produto:</label>
-          <input class='inputEdit' type="text" id="updateProductName" name="updateProductName" [(ngModel)]="productToUpdate.name" required>
+    <!-- Lista de Produtos --> 
+    <h2 class="table text">Detalhes dos Produtos</h2> <!-- Movi o título para fora do loop *ngFor  e ele so aparece quando tiver nos produtos pois estrutura condicional (*ngIf="activeTab === 'produtos'"), o que significa que ele só será exibido quando a variável activeTab for igual a "produtos". -->
+    <section *ngFor="let product of products" class="worked">
+      <div>
+        <p class="titleName products">{{ product.name }}</p>
+        <p class="titleRole role">R$ {{ product.price }}</p>
+        
+        <div class="buttonsWorked icons">
+          <button class="buttonThree" (click)="editProduct(product)">Editar</button>
+          <button class="buttonThree" (click)="deleteProduct(product.id)">Excluir</button>
         </div>
-        <div class="addFive">
-          <label for="updateProductPrice">Preço:</label>
-          <input class='inputEdit' type="number" id="updateProductPrice" name="updateProductPrice" [(ngModel)]="productToUpdate.price" required>
-        </div>
-      </section>
-      <button class='buttonThree btn' type="submit">Atualizar</button>
-      <button class='buttonThree btn1' type="button" (click)="cancelUpdateProduct()">Cancelar</button>
-    </form>
-  </div>
+      </div>
+    </section>
+    
+    <!-- Formulário de Edição de Produto -->
+    <section *ngIf="isEditingProduct">
+      <h2 class="table text">Editar Produto</h2>
+      <form (submit)="updateProduct()" class="editWorked">
+        <section class="addThree">
+          <div class="addFor">
+            <label for="updateProductName">Nome do Produto:</label>
+            <input class='inputEdit' type="text" id="updateProductName" name="updateProductName" [(ngModel)]="productToUpdate.name" required>
+          </div>
+          <div class="addFive">
+            <label for="updateProductPrice">Preço:</label>
+            <input class='inputEdit' type="number" id="updateProductPrice" name="updateProductPrice" [(ngModel)]="productToUpdate.price" required>
+          </div>
+        </section>
+        <button class='buttonThree btn' type="submit">Atualizar</button>
+        <button class='buttonThree btn1' type="button" (click)="cancelUpdateProduct()">Cancelar</button>
+      </form>
+    </section>
+  </section>
 </section>
-
-  
-  
-  
