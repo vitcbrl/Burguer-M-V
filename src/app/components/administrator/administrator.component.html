@@ -84,20 +84,20 @@
     <!-- Formulário para adicionar produtos  com o active agora funcionando-->
     <form class="nome" (submit)="addProduct()">
       <h2 class="titulo list">Adicionar Produtos</h2>
-      <section class="addOne">
+      <section class="addOne addProductEdit">
         <div class="namesOne">
           <label for="name">Nome do produto:</label>
-          <input class='inputs' type="text" id="name" name="name" [(ngModel)]="newProduct.name" required>
+          <input class='inputsProduct' type="text" id="name" name="name" [(ngModel)]="newProduct.name" required>
         </div>
         <div class="namesTwo">
           <label for="price">Valor do produto:</label>
-          <input class='inputs' type="number" id="price" name="price" [(ngModel)]="newProduct.price" required>
+          <input class='inputsProduct' type="number" id="price" name="price" [(ngModel)]="newProduct.price" required>
         </div>
-        <div class="namesThree">
+        <div class="namesTwo">
           <label for="image">URL da imagem:</label>
-          <input class='inputs' type="text" id="image" name="image" [(ngModel)]="newProduct.image" required>
+          <input class='inputsProduct' type="text" id="image" name="image" [(ngModel)]="newProduct.image" required>
         </div>
-        <div class="namesFour">
+        <div class="namesTwo">
           <label for="type">Tipo do produto:</label>
           <select id="type" class='buttonSelect' name="type" [(ngModel)]="newProduct.type" required>
             <option value="Café da manhã">Café da Manhã</option>
@@ -109,35 +109,35 @@
     </form>
     
     <!-- Lista de Produtos --> 
-    <h2 class="table text">Detalhes dos Produtos</h2> <!-- Movi o título para fora do loop *ngFor  e ele so aparece quando tiver nos produtos pois estrutura condicional (*ngIf="activeTab === 'produtos'"), o que significa que ele só será exibido quando a variável activeTab for igual a "produtos". -->
+    <h2 class="table list text2">Detalhes dos Produtos</h2> <!-- Movi o título para fora do loop *ngFor  e ele so aparece quando tiver nos produtos pois estrutura condicional (*ngIf="activeTab === 'produtos'"), o que significa que ele só será exibido quando a variável activeTab for igual a "produtos". -->
     <section *ngFor="let product of products" class="worked">
       <div>
         <p class="titleName products">{{ product.name }}</p>
         <p class="titleRole role">R$ {{ product.price }}</p>
         
         <div class="buttonsWorked icons">
-          <button class="buttonThree" (click)="editProduct(product)">Editar</button>
-          <button class="buttonThree" (click)="deleteProduct(product.id)">Excluir</button>
-        </div>
+          <img class='buttonsIcons' src="../../../assets/lixeira.png" (click)="deleteProduct(product.id)" alt="Imagem Ilustrativa Lixeira">
+          <img class='buttonsIcons' src="../../../assets/botao-editar.png" (click)="editProduct(product)" alt="Imagem Ilustrativa Edit">
+        </div> 
       </div>
     </section>
     
     <!-- Formulário de Edição de Produto -->
     <section *ngIf="isEditingProduct">
-      <h2 class="table text">Editar Produto</h2>
+      <h2 class="table list text3">Editar Produto</h2>
       <form (submit)="updateProduct()" class="editWorked">
-        <section class="addThree">
-          <div class="addFor">
-            <label for="updateProductName">Nome do Produto:</label>
-            <input class='inputEdit' type="text" id="updateProductName" name="updateProductName" [(ngModel)]="productToUpdate.name" required>
+        <section class="addThree listProduct">
+          <div class="addFor namesTwo">
+            <label class='titleProduct' for="updateProductName">Nome do Produto:</label>
+            <input class='inputEdit editingInput' type="text" id="updateProductName" name="updateProductName" [(ngModel)]="productToUpdate.name" required>
           </div>
-          <div class="addFive">
-            <label for="updateProductPrice">Preço:</label>
+          <div class="addFive namesTwo">
+            <label class="titleProduct" for="updateProductPrice">Preço:</label>
             <input class='inputEdit' type="number" id="updateProductPrice" name="updateProductPrice" [(ngModel)]="productToUpdate.price" required>
           </div>
         </section>
-        <button class='buttonThree btn' type="submit">Atualizar</button>
-        <button class='buttonThree btn1' type="button" (click)="cancelUpdateProduct()">Cancelar</button>
+        <button class='buttonThree btn btnEdit' type="submit">Atualizar</button>
+        <button class='buttonThree btn1 btnEdit1' type="button" (click)="cancelUpdateProduct()">Cancelar</button>
       </form>
     </section>
   </section>

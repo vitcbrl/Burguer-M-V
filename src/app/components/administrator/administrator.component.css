@@ -172,7 +172,7 @@
     display: flex;
     top: 170px;
     gap: 10px;
-    left: 250px;
+    left: 280px;
     padding-left: 18px;
 }
 
@@ -180,7 +180,7 @@
     display: flex;
     top: 170px;
     gap: 10px;
-    left: 280px;
+    left: 300px;
     padding-left: 20px;
 }
 
@@ -192,8 +192,9 @@
 
 .text2 {
     margin-top: 20px;
-    padding-left: 180px;
+    padding-left: 160px;
 }
+
 
 .products {
     display: flex;
@@ -217,6 +218,29 @@
 .inputsEdit {
     display: flex;
     left: 550px;
+}
+
+/*adicionei isso agora*/
+.text3{
+    margin-top: 20px;
+    padding-left: 190px;
+}
+
+.listProduct {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 630px;
+}
+
+.btnEdit {
+    top: 200px;
+    left: 350px;
+}
+
+.btnEdit1 {
+    top: 200px;
+    left: 370px;
 }
 
 @media screen and (max-width: 1496px) {
@@ -291,6 +315,27 @@
 
     .icons {
         left: 830px;
+    }
+
+    /*.text3{
+        margin-top: 20px;
+        padding-left: 190px;
+    }*/
+    
+    .addProductEdit {
+        left: 450px;;
+    }
+
+    .listProduct {
+        left: 510px;
+    }
+    
+    .btnEdit {
+        left: 250px;
+    }
+    
+    .btnEdit1 {
+        left: 270px;
     }
 }
 
@@ -378,6 +423,22 @@
     .icons {
         left: 740px;
     }
+
+    .addProductEdit {
+        left: 360px;;
+    }
+
+    .listProduct {
+        left: 400px;
+    }
+    
+    .btnEdit {
+        left: 160px;
+    }
+    
+    .btnEdit1 {
+        left: 180px;
+    }
 }
 
 @media screen and (max-width: 1099px) {
@@ -433,7 +494,7 @@
     }
 
     .btn {
-        padding-left: 5px;
+        padding-left: 15px;
         left: -60px;
     }
 
@@ -456,7 +517,7 @@
     }
 
     .text2 {
-        padding-left: 160px;
+        padding-left: 140px;
     }
 
     .products {
@@ -469,6 +530,26 @@
 
     .icons {
         left: 590px;
+    }
+
+    .addProductEdit {
+        left: 240px;;
+    }
+
+    .text3{
+        padding-left: 170px;
+    }
+
+    .listProduct {
+        left: 300px;
+    }
+    
+    .btnEdit {
+        left: 40px;
+    }
+    
+    .btnEdit1 {
+        left: 60px;
     }
 }
 
@@ -546,6 +627,26 @@
 
     .icons {
         left: 570px;
+    }
+
+    .addProductEdit {
+        left: 205px;;
+    }
+
+    /*.text3{
+        padding-left: 170px;
+    }*/
+
+    .listProduct {
+        left: 260px;
+    }
+    
+    .btnEdit {
+        left: 10px;
+    }
+    
+    .btnEdit1 {
+        left: 30px;
     }
 }
 
@@ -637,7 +738,7 @@
     }
 
     .text2 {
-        padding-left: 140px;
+        padding-left: 130px;
     }
 
     .products {
@@ -650,6 +751,30 @@
 
     .icons {
         left: 470px;
+    }
+
+    .addProductEdit {
+        left: 165px;;
+    }
+
+    .inputsProduct {
+        width: 250px;
+    }
+
+    .text3{
+        padding-left: 150px;
+    }
+
+    .listProduct {
+        left: 190px;
+    }
+    
+    .btnEdit {
+        left: -50px;
+    }
+    
+    .btnEdit1 {
+        left: -30px;
     }
 }
 
@@ -740,7 +865,7 @@
     .btn {
         top: 200px;
         left: -80px;
-        padding-left: 5px;
+        padding-left: 20px;
     }
 
     .btn1 {
@@ -758,7 +883,7 @@
     }
 
     .text2 {
-        padding-left: 90px;
+        padding-left: 70px;
     }
 
     .products {
@@ -777,6 +902,30 @@
         width: 10px;
         height: 10px;
         margin-top: 5px;
+    }
+
+    .addProductEdit {
+        left: 105px;;
+    }
+
+    .inputsProduct {
+        width: 160px;
+    }
+
+    .text3{
+        padding-left: 100px;
+    }
+
+    .listProduct {
+        left: 100px;
+    }
+    
+    .btnEdit {
+        left: -160px;
+    }
+    
+    .btnEdit1 {
+        left: -140px;
     }
 }
 
@@ -876,6 +1025,27 @@
     .icons {
         left: 310px;
     }
+
+    .addProductEdit {
+        left: 80px;;
+    }
+
+    .listProduct {
+        left: 90px;
+        gap: 5px;
+    }
+
+    .editingInput{
+        width: 130px;
+    }
+    
+    .btnEdit {
+        left: -140px;
+    }
+    
+    .btnEdit1 {
+        left: -120px;
+    }
 }
 
 @media screen and (max-width: 416px) {
@@ -954,5 +1124,27 @@
 
     .icons {
         left: 280px;
+    }
+
+    .addProductEdit {
+        left: 50px;;
+    }
+
+    .listProduct {
+        left: 70px;
+    }
+
+    .editingInput{
+        margin-top: 05px;
+        width: 140px;
+        height: 20px;
+    }
+    
+    .btnEdit {
+        left: -130px;
+    }
+    
+    .btnEdit1 {
+        left: -110px;
     }
 }
