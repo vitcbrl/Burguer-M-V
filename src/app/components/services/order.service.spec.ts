@@ -1,6 +1,6 @@
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { OrderService } from './order.service';
-import { of, Observable } from 'rxjs';
+import { of } from 'rxjs';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { AuthService } from './authentication.service';
@@ -31,7 +31,7 @@ describe('OrderService', () => {
     it('addProduct - Deve adicionar um produto corretamente', () => {
         const productToAdd = { id: 1, name: 'Produto 1', price: 10 }; //Simulação de produto
 
-        // Chame a função para adicionar o produto
+        // Chama a função para adicionar o produto
         orderService.addProduct(productToAdd);
 
         // Obtem os produtos adicionados do BehaviorSubject
@@ -94,7 +94,7 @@ describe('OrderService', () => {
         const mockOrder = { id: 1, items: [] }; // Mock de um pedido
         const mockResponse = 'Response data'; // Mock da resposta do servidor
 
-        // Espionar a função 'post' do HttpClient e retornar um Observable com o mock de resposta
+        // Espiona a função 'post' do HttpClient e retornar um Observable com o mock de resposta
         const httpPostSpy = spyOn(http, 'post').and.returnValue(of(mockResponse));
         const consoleLogSpy = spyOn(console, 'log');
 
@@ -136,7 +136,6 @@ describe('OrderService', () => {
         orderService.addProduct(productToAdd);
         orderService.addProduct(productToAdd);
 
-        // Chama a função decreaseProductQuantity
         orderService.decreaseProductQuantity(productToAdd.id);
 
         // Obtem os produtos adicionados do BehaviorSubject
