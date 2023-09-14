@@ -48,35 +48,35 @@ Um pequeno restaurante de hambúrgueres, que está crescendo, necessita de uma i
 
 #### Telas de Login
 
-![Pagina Login](image-1.png)
+![Pagina Login](./src/assets/image-1.png)
 
 #### Telas Garçom
 
 ##### Pedidos
 
-![Pagina Garçom](image-2.png)
+![Pagina Garçom](./src/image-2.png)
 
 
 ##### Pedidos à entregar
 
-![Pagina Garçom](image-3.png)
+![Pagina Garçom](./src/assets/image-3.png)
 
 
 #### Telas Cozinheiro
 
-![Pagina Cozinheiro](image-4.png)
+![Pagina Cozinheiro](./src/assets/image-4.png)
 
 
 #### Telas Administrador
 
-![Pagina Administrador](image-5.png)
+![Pagina Administrador](./src/assets/image-5.png)
 
 
 ## 4. Testes unitários 🔍
 
 Desenvolvemos testes unitários abrangendo as funcionalidades e garantindo mais segurança na usabilidade do sistema.
 
-![Testes unitários](image-6.png)
+![Testes unitários](./src/assets/image-6.png)
 
 
 
