@@ -1,4 +1,4 @@
-import { TestBed } from "@angular/core/testing";
+import { TestBed, fakeAsync, tick } from "@angular/core/testing";
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { ProductService } from "./product.service";
 import { AuthService } from "./authentication.service";
@@ -57,7 +57,7 @@ describe('ProductService', () => {
         }).toThrowError('Usuário não logado');
     });
 
-    /*it('addProduct - Deve adicionar um produto quando o usuário estiver logado', () => {
+    it('addProduct - Deve adicionar um produto quando o usuário estiver logado', fakeAsync(() => {
         const tokenDummy = 'tokenDummy';
         const newProduct = {
             name: 'Novo Produto',
@@ -68,18 +68,17 @@ describe('ProductService', () => {
 
         authService.isUserLoggedIn.and.returnValue({ loggedIn: true, token: tokenDummy });
 
-        productService.addProduct(newProduct).subscribe((response) => {
-            expect(response).toBeDefined();
-            // Verifique se a solicitação POST foi feita com os cabeçalhos corretos
-            const req = httpTestingController.expectOne(productService['apiUrl']);
-            expect(req.request.method).toEqual('POST');
-            expect(req.request.headers.get('Authorization')).toEqual(`Bearer ${tokenDummy}`);
-            expect(req.request.headers.get('Content-Type')).toEqual('application/json');
+        productService.addProduct(newProduct).subscribe((response) => { });
 
-            // Simula uma resposta de sucesso
-            req.flush({});
-        });
-    });*/
+        // Verifique se a solicitação POST foi feita com os cabeçalhos corretos
+        const req = httpTestingController.expectOne('http://localhost:8080/products');
+        expect(req.request.method).toEqual('POST');
+        expect(req.request.headers.get('Authorization')).toEqual(`Bearer ${tokenDummy}`);
+        expect(req.request.headers.get('Content-Type')).toEqual('application/json');
+
+        // Simula uma resposta de sucesso
+        req.flush({});
+    }));
 
     it('addProduct - Deve lançar um erro quando o usuário não estiver logado', () => {
         authService.isUserLoggedIn.and.returnValue({ loggedIn: false, token: null });
@@ -95,31 +94,29 @@ describe('ProductService', () => {
         }).toThrowError('Usuário não logado');
     });
 
-    /*it('updateProduct - Deve atualizar um produto quando o usuário estiver logado', () => {
+    it('updateProduct - Deve atualizar um produto quando o usuário estiver logado', fakeAsync(() => {
         const tokenDummy = 'tokenDummy';
         const productId = 1;
         const updatedProduct = {
-          name: 'Produto Atualizado',
-          price: 20.0,
-          image: 'nova-imagem.png',
-          type: 'Novo Tipo'
+            name: 'Produto Atualizado',
+            price: 20.0,
+            image: 'nova-imagem.png',
+            type: 'Novo Tipo'
         };
-    
+
         authService.isUserLoggedIn.and.returnValue({ loggedIn: true, token: tokenDummy });
-    
-        productService.updateProduct(productId, updatedProduct).subscribe((response) => {
-          
-            expect(response).toBeDefined();
-          // Verifique se a solicitação PUT foi feita com os cabeçalhos corretos
-          const req = httpTestingController.expectOne(`${productService['apiUrl']}/${productId}`); // Acessando apiUrl indiretamente
-          expect(req.request.method).toEqual('PUT');
-          expect(req.request.headers.get('Authorization')).toEqual(`Bearer ${tokenDummy}`);
-          expect(req.request.headers.get('Content-Type')).toEqual('application/json');
-    
-          // Simula uma resposta de sucesso
-          req.flush({});
-        });
-      });*/
+
+        productService.updateProduct(productId, updatedProduct).subscribe((response) => { });
+
+        // Verifique se a solicitação PUT foi feita com os cabeçalhos corretos
+        const req = httpTestingController.expectOne(`${productService['apiUrl']}/${productId}`); // Acessando apiUrl indiretamente
+        expect(req.request.method).toEqual('PUT');
+        expect(req.request.headers.get('Authorization')).toEqual(`Bearer ${tokenDummy}`);
+        expect(req.request.headers.get('Content-Type')).toEqual('application/json');
+
+        // Simula uma resposta de sucesso
+        req.flush({});
+    }));
 
     it('updateProduct - Deve lançar um erro quando o usuário não estiver logado', () => {
         authService.isUserLoggedIn.and.returnValue({ loggedIn: false, token: null });
@@ -136,24 +133,23 @@ describe('ProductService', () => {
         }).toThrowError('Usuário não logado');
     });
 
-    /*it('deleteProduct - Deve excluir um produto quando o usuário estiver logado', () => {
+    it('deleteProduct - Deve excluir um produto quando o usuário estiver logado', fakeAsync(() => {
         const tokenDummy = 'tokenDummy';
         const productId = 1;
 
         authService.isUserLoggedIn.and.returnValue({ loggedIn: true, token: tokenDummy });
 
-        productService.deleteProduct(productId).subscribe((response) => {
-            expect(response).toBeDefined();
-            // Verifique se a solicitação DELETE foi feita com os cabeçalhos corretos
-            const req = httpTestingController.expectOne(`${productService['apiUrl']}/${productId}`); // Acessando apiUrl indiretamente
-            expect(req.request.method).toEqual('DELETE');
-            expect(req.request.headers.get('Authorization')).toEqual(`Bearer ${tokenDummy}`);
-            expect(req.request.headers.get('Cache-Control')).toEqual('no-cache');
+        productService.deleteProduct(productId).subscribe((response) => { });
+        
+        // Verifique se a solicitação DELETE foi feita com os cabeçalhos corretos
+        const req = httpTestingController.expectOne(`${productService['apiUrl']}/${productId}`); // Acessando apiUrl indiretamente
+        expect(req.request.method).toEqual('DELETE');
+        expect(req.request.headers.get('Authorization')).toEqual(`Bearer ${tokenDummy}`);
+        expect(req.request.headers.get('Cache-Control')).toEqual('no-cache');
 
-            // Simula uma resposta de sucesso
-            req.flush({});
-        });
-    });*/
+        // Simula uma resposta de sucesso
+        req.flush({});
+    }));
 
     it('deleteProduct - Deve lançar um erro quando o usuário não estiver logado', () => {
         authService.isUserLoggedIn.and.returnValue({ loggedIn: false, token: null });
