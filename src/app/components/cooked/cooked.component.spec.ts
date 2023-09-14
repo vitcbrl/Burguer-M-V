@@ -119,6 +119,20 @@ describe('CookedComponent', () => {
     expect(component.loadOrders).toHaveBeenCalled();
   });
 
+  it('markOrderAsReady - Deve tratar erro ao marcar o pedido como pronto', () => {
+    const orderToUpdate = { id: 1, status: 'pending' };
+    const errorResponse = { message: 'Erro ao marcar o pedido como pronto' };
+  
+    orderService.updateOrder.and.returnValue(throwError(errorResponse));
+  
+    spyOn(console, 'error'); // Espiona a função console.error
+  
+    component.markOrderAsReady(orderToUpdate);
+  
+    expect(orderService.updateOrder).toHaveBeenCalledWith(jasmine.objectContaining(orderToUpdate));
+    expect(console.error).toHaveBeenCalledWith('Falha ao marcar o pedido como pronto:', errorResponse);
+  });
+
   it('calculatePreparationTime - Deve calcular o tempo de preparo de um pedido pronto', () => {
     const order = {
       id: 1,

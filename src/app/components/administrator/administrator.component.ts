@@ -39,6 +39,7 @@ export class AdministratorComponent implements OnInit {
       },
       (error: any) => {
         console.error('Erro ao carregar funcionários', error);
+        this.employees = [];
       }
     );
   }

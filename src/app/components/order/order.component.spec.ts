@@ -105,5 +105,19 @@ describe('OrderComponent', () => {
     // Verifica se console.error foi chamado com a mensagem de erro esperada
     expect(console.error).toHaveBeenCalledWith('Erro ao enviar pedido:', 'Erro simulado');
     expect(component.customerName).toBe(cliente); // Garante que o nome do cliente não tenha sido apagado após o erro
-  })
+  });
+
+  it('sendOrderToAPI - Deve tratar erro desconhecido ao enviar pedido para o backend', () => {
+    const consoleErrorSpy = spyOn(console, 'error');
+
+    // Simula um erro desconhecido ao chamar sendOrderToBackend
+    spyOn(orderService, 'sendOrderToBackend').and.callFake(() => {
+      throw new Error('Erro desconhecido');
+    });
+
+    component.sendOrderToAPI();
+
+    // Verifique se console.error foi chamado com a mensagem correta
+    expect(consoleErrorSpy).toHaveBeenCalledWith('Erro ao enviar pedido:', 'Erro desconhecido');
+  });
 });

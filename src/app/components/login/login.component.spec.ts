@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { AuthService } from '../services/authentication.service';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 
 describe('LoginComponent', () => {
@@ -56,5 +56,19 @@ describe('LoginComponent', () => {
 
     expect(component.errorLogin).toBeTrue();
     expect(component.errorMessage).toEqual('Invalid login');
+  });
+
+  it('login - Deve tratar erro ao fazer login com credenciais inválidas', () => {
+    const errorResponse = new Error('Invalid login');
+    const mockLoginObservable = throwError(errorResponse);
+    mockAuthService.login.and.returnValue(mockLoginObservable);
+  
+    spyOn(console, 'error'); // Espiona a função console.error
+  
+    component.login();
+  
+    expect(component.errorLogin).toBeTrue();
+    expect(component.errorMessage).toEqual('Email ou senha inválidos');
+    expect(console.error).toHaveBeenCalledWith('Login error:', errorResponse);
   });
 });
