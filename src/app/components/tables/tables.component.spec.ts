@@ -67,7 +67,7 @@ describe('TablesComponent', () => {
 
   it('markOrderAsDelivered - Deve marcar um pedido como entregue', () => {
     const order = {id: 1, entregue: false};
-    orderService.updateOrder.and.returnValue(of(order)); //Simula retorno do serviço
+    orderService.updateOrder.and.returnValue(of(order));
   
     spyOn(component, 'updateOrders');
 
@@ -89,7 +89,6 @@ describe('TablesComponent', () => {
 
     expect(orderService.updateOrder).toHaveBeenCalledWith(order);
     expect(console.error).toHaveBeenCalledWith('Error marking order as delivered:', errorMessage);
-     // Verifica se o console.error foi chamado com a mensagem de erro
   });
 
   it('setActiveTab - Deve definir a aba corretamente ativa', () => {

@@ -95,7 +95,6 @@ describe('UserService', () => {
   });
 
   it('deleteEmployee - Deve excluir um funcionário com as informações corretas', () => {
-    // Simula o método isUserLoggedIn do AuthService
     spyOn(authService, 'isUserLoggedIn').and.returnValue({
       loggedIn: true,
       token: 'token123',
@@ -122,7 +121,6 @@ describe('UserService', () => {
   });
 
   it('updateEmployee - Deve atualizar um funcionário com as informações corretas', () => {
-    // Simula o método isUserLoggedIn do AuthService
     spyOn(authService, 'isUserLoggedIn').and.returnValue({
       loggedIn: true,
       token: 'token123',
@@ -149,7 +147,7 @@ describe('UserService', () => {
       name: 'Mislene',
       email: 'atualizado@funcionario.com',
       password: 'senha123',
-      role: 'chefe', // Deve ser convertido de 'Cozinheiro' para 'chefe'
+      role: 'chefe'
     });
 
     expect(requisicao.request.body).toEqual(corpoEsperado);

@@ -7,7 +7,6 @@ import { UserService } from '../services/user.service';
 import { ProductService } from '../services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { tick } from '@angular/core/testing';
 
 describe('AdministratorComponent', () => {
   let component: AdministratorComponent;
@@ -15,7 +14,6 @@ describe('AdministratorComponent', () => {
   let userService: jasmine.SpyObj<UserService>;
   let authService: jasmine.SpyObj<AuthService>;
   let productService: jasmine.SpyObj<ProductService>;
-  //let httpMock: HttpTestingController;
 
   beforeEach(() => {
     const userServiceSpy = jasmine.createSpyObj('UserService', ['getEmployees', 'addEmployee', 'deleteEmployee', 'updateEmployee', 'loadEmployees']); // teste função ngOnInit, loadEmployees -, addEmployees
@@ -40,7 +38,6 @@ describe('AdministratorComponent', () => {
     userService = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
     authService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
     productService = TestBed.inject(ProductService) as jasmine.SpyObj<ProductService>;
-    //httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should create', () => {
@@ -192,14 +189,14 @@ describe('AdministratorComponent', () => {
   });
 
   it('loadProducts - Deve carregar produtos com sucesso', () => {
-    const mockProductsResponse = [{ id: 1, name: 'Product 1' }, { id: 2, name: 'Product 2' }]; // Defina a resposta simulada
+    const mockProductsResponse = [{ id: 1, name: 'Product 1' }, { id: 2, name: 'Product 2' }]; // Define a resposta simulada
 
     productService.getProducts.and.returnValue(of(mockProductsResponse));
 
     component.loadProducts();
 
-    expect(productService.getProducts).toHaveBeenCalledOnceWith(); // Verifique se a função foi chamada
-    expect(component.products).toEqual(mockProductsResponse); // Verifique se a variável products foi atualizada corretamente
+    expect(productService.getProducts).toHaveBeenCalledOnceWith(); // Verifica se a função foi chamada
+    expect(component.products).toEqual(mockProductsResponse); // Verifica se a variável products foi atualizada corretamente
   });
 
   it('addProduct - Deve adicionar um novo produto com sucesso', () => {
@@ -313,5 +310,4 @@ describe('AdministratorComponent', () => {
 
     expect(loadProductsSpy).toHaveBeenCalled();
   });
-
 });

@@ -72,7 +72,7 @@ describe('AuthService', () => {
         expect(resultLoggedIn.loggedIn).toBe(true);
         expect(resultLoggedIn.token).toBe('token123');
 
-        // Agora, verifica o cenário em que o usuário não está logado
+        // Verifica o cenário em que o usuário não está logado
         localStorage.removeItem('accessToken');
 
         const resultNotLoggedIn = authService.isUserLoggedIn();
@@ -120,7 +120,6 @@ describe('AuthService', () => {
 
         authService.logout();
 
-        //Verifica se o token e o email do usuário foram removidos 
         const storedToken = localStorage.getItem('token');
         const storedUserEmail = localStorage.getItem('userEmail');
 
@@ -132,13 +131,12 @@ describe('AuthService', () => {
     });
 
     it('getUsername - Deve obter o nome de usuário corretamente', () => {
-        localStorage.setItem('username', 'usuario123'); // Simula que o nome do usuário está definido
+        localStorage.setItem('username', 'usuario123');
 
         const userName = authService.getUsername();
         expect(userName).toBe('usuario123');
 
-        // Verifica o cenário em que o nome do usuário não está como definido
-        localStorage.removeItem('username'); // Simula que o nome não está definido
+        localStorage.removeItem('username');
 
         const userNameNull = authService.getUsername();
         expect(userNameNull).toBeNull();
