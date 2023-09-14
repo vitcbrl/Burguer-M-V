@@ -17,11 +17,11 @@ Desenvolvido por:
 
 # Índice
 
-* [1. Resumo do projeto](#2-resumo-do-projeto)
-* [2. Histórias de usuário](#3-histórias-de-usuario)
+* [1. Resumo do projeto](#1-resumo-do-projeto)
+* [2. Histórias de usuário](#2-histórias-de-usuario)
 * [3. Protótipo](#3-prototipo)
-* [4. Testes Unitários](#3-testes-unitarios)
-* [5. Tecnologias Utilizadas](#4-tecnologias-utilizadas)
+* [4. Testes Unitários](#4-testes-unitarios)
+* [5. Tecnologias Utilizadas](#5-tecnologias-utilizadas)
 
 
 ## 1. Resumo do Projeto 📓
@@ -54,7 +54,7 @@ Um pequeno restaurante de hambúrgueres, que está crescendo, necessita de uma i
 
 ##### Pedidos
 
-![Pagina Garçom](./src/image-2.png)
+![Pagina Garçom](./src/assets/image-2.png)
 
 
 ##### Pedidos à entregar
