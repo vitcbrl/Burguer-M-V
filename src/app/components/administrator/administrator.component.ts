@@ -130,8 +130,6 @@ export class AdministratorComponent implements OnInit {
     );
   }
   
-  
-  
   addProduct() {
     const newProduct = {
       name: this.newProduct.name,

@@ -2,11 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AdministratorComponent } from './administrator.component';
 import { AuthService } from '../services/authentication.service';
 import { FormsModule } from '@angular/forms';
-import { of, throwError, Observable } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { ProductService } from '../services/product.service';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { tick } from '@angular/core/testing';
 
 describe('AdministratorComponent', () => {
   let component: AdministratorComponent;
@@ -17,25 +18,25 @@ describe('AdministratorComponent', () => {
   //let httpMock: HttpTestingController;
 
   beforeEach(() => {
-    const userServiceSpy = jasmine.createSpyObj('UserService', ['getEmployees', 'addEmployee', 'deleteEmployee', 'updateEmployee', 'loadEmployees' ]); // teste função ngOnInit, loadEmployees -, addEmployees
+    const userServiceSpy = jasmine.createSpyObj('UserService', ['getEmployees', 'addEmployee', 'deleteEmployee', 'updateEmployee', 'loadEmployees']); // teste função ngOnInit, loadEmployees -, addEmployees
     userServiceSpy.getEmployees.and.returnValue(of([{ id: 1, nome: 'Funcionário 1' }, { id: 2, nome: 'Funcionário 2' }])); // teste função ngOnInit
 
     const authServiceSpy = jasmine.createSpyObj('AuthService', ['logout', 'isUserLoggedIn']);
-    const productServiceSpy = jasmine.createSpyObj('ProductService', ['getProducts', 'addProduct']);
-    
+    const productServiceSpy = jasmine.createSpyObj('ProductService', ['getProducts', 'addProduct', 'updateProduct', 'deleteProduct', 'loadProducts']);
+
     TestBed.configureTestingModule({
       declarations: [AdministratorComponent],
       providers: [
-        {provide: UserService, useValue: userServiceSpy},
-        {provide: AuthService, useValue: authServiceSpy},
-        {provide: ProductService, useValue: productServiceSpy}
+        { provide: UserService, useValue: userServiceSpy },
+        { provide: AuthService, useValue: authServiceSpy },
+        { provide: ProductService, useValue: productServiceSpy }
       ],
       imports: [FormsModule, HttpClientModule, HttpClientTestingModule],
     });
     fixture = TestBed.createComponent(AdministratorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    
+
     userService = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
     authService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
     productService = TestBed.inject(ProductService) as jasmine.SpyObj<ProductService>;
@@ -94,11 +95,11 @@ describe('AdministratorComponent', () => {
   });
 
   it('resetForm - Deve redefinir o formulário corretamente', () => {
-    component.newEmployee = {name: 'Nome', email: 'email@example.com', password: 'senha123', role: 'garçom'};
+    component.newEmployee = { name: 'Nome', email: 'email@example.com', password: 'senha123', role: 'garçom' };
 
     component.resetForm();
 
-    expect(component.newEmployee).toEqual({name: '', email: '', password: '', role: 'garçom'});
+    expect(component.newEmployee).toEqual({ name: '', email: '', password: '', role: 'garçom' });
   });
 
   it('deleteEmployee - Deve excluir um funcionário com confirmação', () => {
@@ -171,7 +172,7 @@ describe('AdministratorComponent', () => {
 
   it('setActiveTab - Deve definir a aba ativa corretamente', () => {
     authService.isUserLoggedIn.and.returnValue({ loggedIn: true, token: 'fakeToken' });
-    
+
     component.activeTab = 'outra_aba';
     component.isEmployeesTabActive = true;
 
@@ -202,12 +203,11 @@ describe('AdministratorComponent', () => {
   });
 
   it('addProduct - Deve adicionar um novo produto com sucesso', () => {
-    // Preparando dados para o teste
     const newProduct = {
-        name: 'Novo Produto',
-        price: '10.99',
-        image: 'produto.jpg',
-        type: 'Tipo Produto'
+      name: 'Novo Produto',
+      price: '10.99',
+      image: 'produto.jpg',
+      type: 'Tipo Produto'
     };
 
     component.newProduct = { ...newProduct };
@@ -222,45 +222,96 @@ describe('AdministratorComponent', () => {
     expect(productService.addProduct).toHaveBeenCalledWith(newProduct);
     expect(component.loadProducts).toHaveBeenCalled();
     expect(component.resetProductForm).toHaveBeenCalled();
-});
+  });
 
-  /*it('addEmployee - Deve chamar UserService.addEmployee() e atualizar a lista de funcionários ao adicionar um funcionário com sucesso', () => {
+  it('resetProductForm - Deve redefinir o formulário de produto corretamente', () => {
+    component.newProduct = {
+      name: 'Produto de Teste',
+      price: '9.99',
+      image: 'teste.jpg',
+      type: 'Tipo de Teste'
+    };
+
+    // Chama a função para redefinir o formulário
+    component.resetProductForm();
+
+    // Verifica se os campos foram redefinidos corretamente
+    expect(component.newProduct.name).toBe('');
+    expect(component.newProduct.price).toBe('');
+    expect(component.newProduct.image).toBe('');
+    expect(component.newProduct.type).toBe('');
+  });
+
+  it('editProduct - Deve editar um produto corretamente', () => {
+    const productToEdit = {
+      id: 1,
+      name: 'Produto Original',
+      price: '19.99',
+      image: 'original.jpg',
+      type: 'Tipo Original'
+    };
+
+    component.editProduct(productToEdit);
+
+    // Verifica se as propriedades foram definidas corretamente para edição
+    expect(component.isEditingProduct).toBe(true);
+    expect(component.productToUpdate).toEqual(productToEdit); // Verifica se o produto para atualização é igual ao produto original
+  });
+
+  it('updateProduct - Deve atualizar um produto corretamente', () => {
+    const productToUpdate = {
+        id: 1,
+        name: 'Produto Original',
+        price: '19.99',
+        image: 'original.jpg',
+        type: 'Café da manha'
+    };
+  
+    productService.updateProduct.and.returnValue(of({})); 
+  
+    spyOn(component, 'loadProducts');
+    spyOn(component, 'cancelUpdateProduct');
+  
+    component.productToUpdate = { ...productToUpdate };
+    component.updateProduct();
+  
+    expect(productService.updateProduct).toHaveBeenCalledWith(productToUpdate.id, productToUpdate);
+    expect(component.loadProducts).toHaveBeenCalled();
+    expect(component.cancelUpdateProduct).toHaveBeenCalled();
+  });
+
+  it('cancelUpdateProduct - Deve cancelar a atualização de um produto corretamente', () => {
+    component.isEditingProduct = true;
+    component.productToUpdate = {
+      id: 1,
+      name: 'Produto Original',
+      price: '19.99',
+      image: 'original.jpg',
+      type: 'Tipo Original'
+    };
+
+    component.cancelUpdateProduct();
+
+    expect(component.isEditingProduct).toBe(false);
+    expect(component.productToUpdate).toEqual({ id: 0, name: '', price: '', image: '', type: '' });
+  });
+
+
+  it('deleteProduct - Deve excluir um produto corretamente', () => {
+    const productId = 1;
+    const confirmSpy = spyOn(window, 'confirm').and.returnValue(true);
+    const deleteProductResponse = {}; // Simulando uma resposta vazia do serviço
+
+    productService.deleteProduct.and.returnValue(of(deleteProductResponse));
     
-    const newEmployee = { name: 'Novo Funcionário', role: 'Cozinheiro' }; // ou qualquer outro papel desejado
-  
-    const successResponse = {};
-    const addEmployeeSpy = spyOn(userService, 'addEmployee').and.returnValue(of(successResponse));
-  
-    const loadEmployeesSpy = spyOn(component, 'loadEmployees');
-    const resetFormSpy = spyOn(component, 'resetForm');
-  
-    component.newEmployee = newEmployee; // Defina newEmployee no componente
-    component.addEmployee();
-  
-    expect(addEmployeeSpy).toHaveBeenCalledWith(newEmployee); // Verifique se addEmployee foi chamado com o novo funcionário
-    expect(loadEmployeesSpy).toHaveBeenCalled(); // Verifique se loadEmployees foi chamado após adicionar o funcionário
-    expect(resetFormSpy).toHaveBeenCalled(); // Verifique se resetForm foi chamado após adicionar o funcionário
+    const loadProductsSpy = spyOn(component, 'loadProducts');
+
+    component.deleteProduct(productId);
+
+    expect(confirmSpy).toHaveBeenCalledWith('Tem certeza que deseja excluir este produto?');
+    expect(productService.deleteProduct).toHaveBeenCalledWith(productId);
+
+    expect(loadProductsSpy).toHaveBeenCalled();
   });
 
-  it('setActiveTab - Deve ativar a aba "Produtos" corretamente', () => {
-    const tab = 'produtos';
-  
-    const loadProductsSpy = spyOn(component, 'loadProducts');
-  
-    component.setActiveTab(tab);
-  
-    expect(component.activeTab).toBe(tab); // Verifique se a aba ativa foi definida corretamente
-    expect(component.isEmployeesTabActive).toBe(false); // Verifique se isEmployeesTabActive foi definido como false
-    expect(loadProductsSpy).toHaveBeenCalled(); // Verifique se a função loadProducts foi chamada
-  });
-  
-  it('setActiveTab - Deve ativar a exibição de funcionários corretamente para outras abas', () => {
-    const tab = 'outra_aba_qualquer';
-  
-    component.setActiveTab(tab);
-  
-    expect(component.activeTab).toBe(tab); // Verifique se a aba ativa foi definida corretamente
-    expect(component.isEmployeesTabActive).toBe(true); // Verifique se isEmployeesTabActive foi definido como true
-  });*/
-  
 });
