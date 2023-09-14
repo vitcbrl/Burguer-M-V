@@ -1,7 +1,7 @@
+<div align="center">
 
 # Burguer MV
 
-<div align="center">
 Desenvolvido por:
  
   <br>
