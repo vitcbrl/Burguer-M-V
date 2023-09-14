@@ -1,27 +1,101 @@
-# MyFirstProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+# Burguer MV
 
-## Development server
+<div align="center">
+Desenvolvido por:
+ 
+  <br>
+  Mislene Moura<br>
+  <a href="https://www.linkedin.com/in/mislenemoura/">Linkedin</a> | <a href="https://github.com/MisleneSM">Github</a>
+  <br>
+  Vitória Cabral <br> 
+  <a href="https://www.linkedin.com/in/vitoria-cabral-oliveira/">Linkedin</a> | <a href="https://github.com/vitcbrl">Github</a>
+  <br>
+</div>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Índice
 
-## Build
+* [1. Resumo do projeto](#2-resumo-do-projeto)
+* [2. Histórias de usuário](#3-histórias-de-usuario)
+* [3. Protótipo](#3-prototipo)
+* [4. Testes Unitários](#3-testes-unitarios)
+* [5. Tecnologias Utilizadas](#4-tecnologias-utilizadas)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## 1. Resumo do Projeto 📓
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Um pequeno restaurante de hambúrgueres, que está crescendo, necessita de uma interface em que se possa realizar pedidos utilizando um tablet, e enviá-los para a cozinha para que sejam preparados de forma ordenada e eficiente. Neste projeto foi desenvolvido um sistema de pedidos onde o mesmo possui dois tipos de cardápios (Café da Manhã e Almoço e jantar). Nele foi realizado e implementado 3 tipos de acesso de acordo com a sua função, sendo eles o garçom, cozinheiro e administrador. O garçom deve ser capaz de acessar com sua credencial, anotar os pedidos dos clientes e enviá-los para a cozinha. O cozinheiro deve se autenticar no sistema e ter acesso aos pedidos pendentes e concluídos, finalizando com o administrador que deve ser capaz de acessar o sistema e ter acesso ao cadastro, edição e exclusão dos produtos e funcionários da hamburgueria.
 
-## Running end-to-end tests
+## 2. Histórias de Usuários 🔍
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+* <strong>História de usuário 1:</strong> Garçom/Garçonete deve poder entrar no sistema, caso o admin já lhe tenha dado as credenciais. Eu, como garçom/garçonete quero entrar no sistema de pedidos.
 
-## Further help
+* <strong>História de usuário 2:</strong> Garçom/Garçonete deve ser capaz de anotar o pedido do cliente. Eu como garçom/garçonete quero poder anotar o pedido de um cliente para não depender da minha memória, saber quanto cobrar e poder enviar os pedidos para a cozinha para serem preparados em ordem.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* <strong>História de usuário 3:</strong> Chefe de cozinha deve ver os pedidos. Eu como chefe de cozinha quero ver os pedidos dos clientes em ordem, poder marcar que estão prontos e poder notificar os garçons/garçonetes que o pedido está pronto para ser entregue ao cliente.
+
+* <strong>História de usuário 4:</strong> Garçom/Garçonete deve ver os pedidos prontos para servir. Eu como garçom/garçonete quero ver os pedidos que estão prontos para entregá-los rapidamente aos clientes.
+
+* <strong>História de usuário 5:</strong> Administrador(a) de loja deve administrar seus funcionários. Eu como administrador(a) de loja quero gerenciar os usuários da plataforma para manter atualizado as informações de meus funcionários.
+
+* <strong>História de usuário 6:</strong> Administrador(a) de loja deve administrar os produtos. Eu como administrador(a) de loja quero gerenciar os produtos para manter atualizado o menu.
+
+## 3. Protótipo 🖊️
+
+### Versão Mobile - Tablet - Desktop
+
+#### Telas de Login
+
+![Pagina Login](image-1.png)
+
+#### Telas Garçom
+
+##### Pedidos
+
+![Pagina Garçom](image-2.png)
+
+
+##### Pedidos à entregar
+
+![Pagina Garçom](image-3.png)
+
+
+#### Telas Cozinheiro
+
+![Pagina Cozinheiro](image-4.png)
+
+
+#### Telas Administrador
+
+![Pagina Administrador](image-5.png)
+
+
+## 4. Testes unitários 🔍
+
+Desenvolvemos testes unitários abrangendo as funcionalidades e garantindo mais segurança na usabilidade do sistema.
+
+![Testes unitários](image-6.png)
+
+
+
+<div align="center">
+  
+  ### Tecnologias utilizadas:  
+
+  <br>
+  <img align="center" alt="Rafa-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
+  <img align="center" alt="Rafa-CSS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
+  <img align="center" alt="Rafa-Js" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
+  <img align="center" alt="vscode" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" />
+  <img align="center" alt="Figma" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg">
+  <img align="center" alt="TS" height="35" src="https://www.typescripttutorial.net/wp-content/uploads/2020/04/favicon.png">
+  <img align="center" alt="Angular" height="35" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1024px-Angular_full_color_logo.svg.png"> 
+<img align="center" alt="Figma" height="35" src="https://cdn4.iconfinder.com/data/icons/logos-brands-in-colors/3000/figma-logo-256.png"/>
+<img align="center" alt="git" height="35" src="https://cdn3.iconfinder.com/data/icons/social-media-2169/24/social_media_social_media_logo_git-256.png"/> 
+<img align="center" alt="github" height="35" src="https://cdn1.iconfinder.com/data/icons/unicons-line-vol-3/24/github-256.png"/>
+<br>
+</div>
+
+
