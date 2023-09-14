@@ -19,8 +19,8 @@ Desenvolvido por:
 
 * [1. Resumo do projeto](#1-resumo-do-projeto)
 * [2. Histórias de usuário](#2-histórias-de-usuario)
-* [3. Protótipo](#3-prototipo)
-* [4. Testes Unitários](#4-testes-unitarios)
+* [3. Protótipo](#3-protótipo)
+* [4. Testes Unitários](#4-testes-unitários)
 * [5. Tecnologias Utilizadas](#5-tecnologias-utilizadas)
 
 
@@ -79,11 +79,8 @@ Desenvolvemos testes unitários abrangendo as funcionalidades e garantindo mais 
 ![Testes unitários](./src/assets/image-6.png)
 
 
-
+## 5. Tecnologias utilizadas ✅  
 <div align="center">
-  
-  ### Tecnologias utilizadas ✅  
-
   <br>
   <img align="center" alt="Rafa-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
   <img align="center" alt="Rafa-CSS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
