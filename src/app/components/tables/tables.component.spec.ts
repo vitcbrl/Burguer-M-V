@@ -65,6 +65,22 @@ describe('TablesComponent', () => {
     expect(component.deliveredOrders).toEqual([ordersMock[1]]);
   });
 
+  it('updateOrders - Deve tratar erro ao buscar pedidos prontos', () => {
+    const errorResponse = 'Erro ao buscar pedidos prontos';
+    orderService.getReadyOrdersFromBackend.and.returnValue(throwError(errorResponse)); // Simula um erro
+  
+    spyOn(console, 'error');
+  
+    component.updateOrders();
+  
+    // Verifica se console.error foi chamado com a mensagem de erro esperada
+    expect(console.error).toHaveBeenCalledWith('Error fetching orders:', errorResponse);
+  
+    expect(component.readyOrders).toEqual([]);
+    expect(component.deliveredOrders).toEqual([]);
+  });
+
+
   it('markOrderAsDelivered - Deve marcar um pedido como entregue', () => {
     const order = {id: 1, entregue: false};
     orderService.updateOrder.and.returnValue(of(order));

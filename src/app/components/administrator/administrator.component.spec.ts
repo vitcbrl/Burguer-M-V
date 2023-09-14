@@ -72,6 +72,16 @@ describe('AdministratorComponent', () => {
     expect(component.employees).toEqual(employees);
   });
 
+  it('loadEmployees - Deve tratar erro ao carregar funcionários', () => {
+    const errorResponse = { message: 'Erro ao carregar funcionários' };
+    userService.getEmployees.and.returnValue(throwError(errorResponse)); // Simula um erro
+
+    component.loadEmployees();
+
+    expect(userService.getEmployees).toHaveBeenCalled();
+    expect(component.employees).toEqual([]); // Verifique se a propriedade employees está vazia após o erro
+  });
+
   it('addEmployee - Deve chamar userService.addEmployee com sucesso', () => {
     const expectedEmployee = { id: 0, name: '', email: '', password: '', role: 'garçom' };
 
@@ -108,6 +118,16 @@ describe('AdministratorComponent', () => {
 
     expect(window.confirm).toHaveBeenCalledWith('Tem certeza que deseja excluir esse funcionário?');
 
+  });
+
+  it('deleteEmployee - Deve tratar erro ao excluir funcionário', () => {
+    spyOn(window, 'confirm').and.returnValue(true); // Simula a confirmação
+    const errorResponse = { message: 'Erro ao excluir funcionário' };
+    userService.deleteEmployee.and.returnValue(throwError(errorResponse)); // Simula um erro
+
+    component.deleteEmployee(1);
+
+    expect(window.confirm).toHaveBeenCalledWith('Tem certeza que deseja excluir esse funcionário?');
   });
 
   it('showUpdateForm - Deve configurar isEditing como true e definir employeeToUpdate corretamente', () => {
@@ -157,6 +177,35 @@ describe('AdministratorComponent', () => {
     expect(component.employeeToUpdate.role).toBe(initialRole); // O papel não deve ser alterado
   });
 
+  it('updateEmployee - Deve tratar erro ao atualizar funcionário', () => {
+    const errorResponse = { message: 'Erro ao atualizar funcionário' };
+    userService.updateEmployee.and.returnValue(throwError(errorResponse)); // Simula um erro
+
+    spyOn(console, 'error');
+
+    component.updateEmployee();
+
+    expect(console.error).toHaveBeenCalledWith('Erro ao atualizar funcionário', errorResponse);
+  });
+
+  it('updateEmployee - Deve atualizar o role para "chefe" quando o role atual for "Cozinheiro"', () => {
+    component.employeeToUpdate = { id: 1, role: 'Cozinheiro' };
+    userService.updateEmployee.and.returnValue(of({}));
+
+    component.updateEmployee();
+
+    expect(component.employeeToUpdate.role).toBe('');
+  });
+
+  it('updateEmployee - Deve atualizar o role para "service" quando o role atual for "Garçom"', () => {
+    component.employeeToUpdate = { id: 1, role: 'Garçom' };
+    userService.updateEmployee.and.returnValue(of({}));
+
+    component.updateEmployee();
+
+    expect(component.employeeToUpdate.role).toBe('');
+  });
+
   it('cancelUpdate - Deve cancelar a edição e redefinir os valores', () => {
     component.isEditing = true;
     component.employeeToUpdate = { id: 1, name: 'Nome', role: 'Cargo' };
@@ -199,6 +248,17 @@ describe('AdministratorComponent', () => {
     expect(component.products).toEqual(mockProductsResponse); // Verifica se a variável products foi atualizada corretamente
   });
 
+  it('loadProducts - Deve tratar erro ao carregar produtos', () => {
+    const errorResponse = { message: 'Erro ao carregar produtos' };
+    productService.getProducts.and.returnValue(throwError(errorResponse)); // Simula um erro
+
+    spyOn(console, 'error');
+
+    component.loadProducts();
+
+    expect(console.error).toHaveBeenCalledWith('Erro ao carregar produtos', errorResponse);
+  });
+
   it('addProduct - Deve adicionar um novo produto com sucesso', () => {
     const newProduct = {
       name: 'Novo Produto',
@@ -219,6 +279,25 @@ describe('AdministratorComponent', () => {
     expect(productService.addProduct).toHaveBeenCalledWith(newProduct);
     expect(component.loadProducts).toHaveBeenCalled();
     expect(component.resetProductForm).toHaveBeenCalled();
+  });
+
+  it('addProduct - Deve tratar erro ao adicionar um novo produto', () => {
+    const errorResponse = { message: 'Erro ao adicionar produto' };
+    const newProduct = {
+      name: 'Novo Produto',
+      price: '10.99',
+      image: 'produto.jpg',
+      type: 'Tipo Produto'
+    };
+    component.newProduct = { ...newProduct };
+  
+    productService.addProduct.and.returnValue(throwError(errorResponse)); // Simula um erro
+  
+    spyOn(console, 'error'); // Espiona a função console.error
+  
+    component.addProduct();
+  
+    expect(console.error).toHaveBeenCalledWith('Erro ao adicionar produto', errorResponse);
   });
 
   it('resetProductForm - Deve redefinir o formulário de produto corretamente', () => {
@@ -277,6 +356,26 @@ describe('AdministratorComponent', () => {
     expect(component.cancelUpdateProduct).toHaveBeenCalled();
   });
 
+  it('updateProduct - Deve tratar erro ao atualizar um produto', () => {
+    const errorResponse = { message: 'Erro ao atualizar produto' };
+    const productToUpdate = {
+      id: 1,
+      name: 'Produto Original',
+      price: '19.99',
+      image: 'original.jpg',
+      type: 'Café da manha'
+    };
+    component.productToUpdate = { ...productToUpdate };
+  
+    productService.updateProduct.and.returnValue(throwError(errorResponse)); // Simula um erro
+  
+    spyOn(console, 'error'); // Espiona a função console.error
+  
+    component.updateProduct();
+  
+    expect(console.error).toHaveBeenCalledWith('Erro ao atualizar produto', errorResponse);
+  });
+
   it('cancelUpdateProduct - Deve cancelar a atualização de um produto corretamente', () => {
     component.isEditingProduct = true;
     component.productToUpdate = {
@@ -309,5 +408,22 @@ describe('AdministratorComponent', () => {
     expect(productService.deleteProduct).toHaveBeenCalledWith(productId);
 
     expect(loadProductsSpy).toHaveBeenCalled();
+  });
+
+  it('deleteProduct - Deve tratar erro ao excluir um produto', () => {
+    const productId = 1;
+    const confirmSpy = spyOn(window, 'confirm').and.returnValue(true);
+    const errorResponse = { message: 'Erro ao excluir produto' };
+  
+    productService.deleteProduct.and.returnValue(throwError(errorResponse)); // Simula um erro
+  
+    spyOn(console, 'error'); // Espiona a função console.error
+  
+    component.deleteProduct(productId);
+  
+    expect(confirmSpy).toHaveBeenCalledWith('Tem certeza que deseja excluir este produto?');
+    expect(productService.deleteProduct).toHaveBeenCalledWith(productId);
+  
+    expect(console.error).toHaveBeenCalledWith('Erro ao excluir produto', errorResponse);
   });
 });

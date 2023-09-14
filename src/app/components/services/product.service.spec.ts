@@ -1,4 +1,4 @@
-import { TestBed, fakeAsync, tick } from "@angular/core/testing";
+import { TestBed, fakeAsync} from "@angular/core/testing";
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { ProductService } from "./product.service";
 import { AuthService } from "./authentication.service";
@@ -140,7 +140,7 @@ describe('ProductService', () => {
         authService.isUserLoggedIn.and.returnValue({ loggedIn: true, token: tokenDummy });
 
         productService.deleteProduct(productId).subscribe((response) => { });
-        
+
         // Verifique se a solicitação DELETE foi feita com os cabeçalhos corretos
         const req = httpTestingController.expectOne(`${productService['apiUrl']}/${productId}`); // Acessando apiUrl indiretamente
         expect(req.request.method).toEqual('DELETE');

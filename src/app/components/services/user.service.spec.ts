@@ -2,6 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { UserService } from './user.service';
 import { AuthService } from './authentication.service';
+import { of } from 'rxjs';
 
 describe('UserService', () => {
   let userService: UserService;
@@ -94,6 +95,52 @@ describe('UserService', () => {
     expect(() => userService.addEmployee(funcionarioParaAdicionar)).toThrowError('Usuário não logado');
   });
 
+  it('addEmployee - Deve adicionar um funcionário com role "chefe" quando o role atual for "Cozinheiro"', () => {
+    const authServiceSpy = spyOn(authService, 'isUserLoggedIn').and.returnValue({ loggedIn: true, token: 'tokenDummy' });
+  
+    const newEmployee = {
+      name: 'Novo Funcionário',
+      email: 'novo@email.com',
+      password: 'senha123',
+      role: 'Cozinheiro'
+    };
+  
+    userService.addEmployee(newEmployee).subscribe((response) => {
+      expect(response.role).toEqual('chefe');
+    });
+  
+    const req = httpTestingController.expectOne('http://localhost:8080/users');
+    expect(req.request.method).toEqual('POST');
+    expect(req.request.headers.get('Authorization')).toEqual('Bearer tokenDummy');
+    expect(req.request.headers.get('Content-Type')).toEqual('application/json');
+  
+    // Simula uma resposta de sucesso
+    req.flush({ role: 'chefe' });
+  });
+  
+  it('addEmployee - Deve adicionar um funcionário com role "service" quando o role atual for "Garçom"', () => {
+    const authServiceSpy = spyOn(authService, 'isUserLoggedIn').and.returnValue({ loggedIn: true, token: 'tokenDummy' });
+  
+    const newEmployee = {
+      name: 'Novo Funcionário',
+      email: 'novo@email.com',
+      password: 'senha123',
+      role: 'Garçom'
+    };
+  
+    userService.addEmployee(newEmployee).subscribe((response) => {
+      expect(response.role).toEqual('service');
+    });
+  
+    const req = httpTestingController.expectOne('http://localhost:8080/users');
+    expect(req.request.method).toEqual('POST');
+    expect(req.request.headers.get('Authorization')).toEqual('Bearer tokenDummy');
+    expect(req.request.headers.get('Content-Type')).toEqual('application/json');
+  
+    // Simula uma resposta de sucesso
+    req.flush({ role: 'service' });
+  });
+
   it('deleteEmployee - Deve excluir um funcionário com as informações corretas', () => {
     spyOn(authService, 'isUserLoggedIn').and.returnValue({
       loggedIn: true,
@@ -166,5 +213,43 @@ describe('UserService', () => {
     };
 
     expect(() => userService.updateEmployee(idDoFuncionarioParaAtualizar, dadosAtualizados)).toThrowError('Usuário não logado');
+  });
+
+  it('updateEmployee - Deve atualizar o role para "chefe" quando o role atual for "Cozinheiro"', () => {
+    spyOn(authService, 'isUserLoggedIn').and.returnValue({ loggedIn: true, token: 'tokenDummy' });
+
+    const employeeId = 1;
+    const updatedData = {role: 'Cozinheiro'};
+
+    userService.updateEmployee(employeeId, updatedData).subscribe((response) => {
+      expect(response.role).toEqual('chefe');
+    });
+
+    // Verifica se a solicitação PATCH foi feita com os cabeçalhos corretos e o corpo JSON correto
+    const req = httpTestingController.expectOne(`http://localhost:8080/users/${employeeId}`);
+    expect(req.request.method).toEqual('PATCH');
+    expect(req.request.headers.get('Authorization')).toEqual('Bearer tokenDummy');
+    expect(req.request.headers.get('Content-Type')).toEqual('application/json');
+   
+    req.flush({role: 'chefe'}); // Simule uma resposta de sucesso
+  });
+
+  it('updateEmployee - Deve atualizar o role para "service" quando o role atual for "Garçom"', () => {
+    spyOn(authService, 'isUserLoggedIn').and.returnValue({ loggedIn: true, token: 'tokenDummy' });
+  
+    const employeeId = 1;
+    const updatedData = { role: 'Garçom' };
+  
+    userService.updateEmployee(employeeId, updatedData).subscribe((response) => {
+      expect(response.role).toEqual('service');
+    });
+  
+    const req = httpTestingController.expectOne(`http://localhost:8080/users/${employeeId}`);
+    expect(req.request.method).toEqual('PATCH');
+    expect(req.request.headers.get('Authorization')).toEqual('Bearer tokenDummy');
+    expect(req.request.headers.get('Content-Type')).toEqual('application/json');
+  
+    // Simula uma resposta de sucesso
+    req.flush({ role: 'service' });
   });
 });

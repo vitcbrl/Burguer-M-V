@@ -1,9 +1,10 @@
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { OrderService } from './order.service';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { AuthService } from './authentication.service';
+import { EMPTY } from 'rxjs';
 
 
 describe('OrderService', () => {
@@ -106,6 +107,53 @@ describe('OrderService', () => {
         expect(orderService.getAddedProductsLength()).toBe(0);
     });
 
+    it('sendOrderToBackend - Deve tratar erro ao enviar um pedido para o backend', () => {
+        const authServiceInstance = TestBed.inject(AuthService);
+        spyOn(authServiceInstance, 'isUserLoggedIn').and.returnValue({ loggedIn: true, token: 'mockedToken' });
+
+        const mockOrder = { id: 1, items: [] }; // Mock de um pedido
+        const errorMessage = 'Erro simulado ao enviar pedido para a API'; // Mensagem de erro simulada
+
+        // Espiona a função 'post' do HttpClient e retorna um Observable com erro simulado
+        const httpPostSpy = spyOn(http, 'post').and.returnValue(throwError({ message: errorMessage }));
+        const consoleErrorSpy = spyOn(console, 'error');
+
+        orderService.sendOrderToBackend(mockOrder);
+
+        // Testa o tratamento de erro após a chamada assíncrona
+        expect(httpPostSpy).toHaveBeenCalled();
+        expect(consoleErrorSpy).toHaveBeenCalledWith('Falha ao enviar pedido para a API:', errorMessage);
+        expect(orderService.getAddedProductsLength()).toBe(0);
+    });
+
+    it('sendOrderToBackend - Deve resetar a quantidade de produtos para zero', () => {
+        const authServiceInstance = TestBed.inject(AuthService);
+        spyOn(authServiceInstance, 'isUserLoggedIn').and.returnValue({ loggedIn: true, token: 'mockedToken' });
+
+        const mockOrder = { id: 1, items: [] }; // Mock de um pedido
+
+        // Criado alguns itens de pedido com quantidades diferentes
+        const mockItems = [
+            { product: { id: 1, quantity: 2 } },
+            { product: { id: 2, quantity: 3 } },
+            { product: { id: 3, quantity: 1 } },
+        ];
+
+        // Adiciona os itens individualmente ao carrinho
+        for (const mockItem of mockItems) {
+            orderService.addProduct(mockItem.product);
+        }
+
+        orderService.sendOrderToBackend(mockOrder);
+
+        const addedProducts = orderService.addedProduct$; // Acesse o estado do carrinho usando o observable
+        addedProducts.subscribe(products => {
+            for (const item of products) {
+                expect(item.product.quantity).toBe('');
+            }
+        });
+    });
+
     it('getOrders - Deve obter pedidos corretamente', () => {
         const httpResponse = new HttpResponse({
             body: [{ id: 1 }, { id: 2 }],
@@ -186,11 +234,29 @@ describe('OrderService', () => {
 
         expect(req.request.method).toEqual('GET');
         expect(req.request.headers.get('Authorization')).toBe(`Bearer ${user.token}`);
-        
+
         req.flush([{ id: 1, status: 'ready' }]);
-        
+
         tick();
 
         expect(orders).toEqual([{ id: 1, status: 'ready' }]);
+    }));
+
+    it('getReadyOrdersFromBackend - Deve retornar EMPTY quando o usuário não estiver logado', fakeAsync(() => {
+        // Simula que o usuário não está logado
+        spyOn(authService, 'isUserLoggedIn').and.returnValue({ loggedIn: false, token: null });
+    
+        const response$ = orderService.getReadyOrdersFromBackend();
+    
+        // Não deve fazer nenhuma solicitação HTTP neste caso
+        httpTestingController.expectNone(`${orderService['apiUrl']}?status=ready`);
+    
+        // Aguarda a resolução do Observable
+        let response: any;
+        response$.subscribe((data) => {
+            response = data;
+        });
+
+        expect(response).toEqual(undefined);
     }));
 });

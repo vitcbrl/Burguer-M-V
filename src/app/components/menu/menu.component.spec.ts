@@ -135,5 +135,5 @@ describe('MenuComponent', () => {
     expect(orderServiceDecreaseProductQuantitySpy).not.toHaveBeenCalled();
     expect(orderServiceRemoveProductSpy).toHaveBeenCalledWith(product.id);
     expect(product.quantity).toBe(0);
-  })
+  });
 });
