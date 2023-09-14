@@ -72,7 +72,7 @@ Um pequeno restaurante de hambúrgueres, que está crescendo, necessita de uma i
 ![Pagina Administrador](./src/assets/image-5.png)
 
 
-## 4. Testes unitários 🔍
+## 4. Testes unitários ✅
 
 Desenvolvemos testes unitários abrangendo as funcionalidades e garantindo mais segurança na usabilidade do sistema.
 
@@ -82,7 +82,7 @@ Desenvolvemos testes unitários abrangendo as funcionalidades e garantindo mais 
 
 <div align="center">
   
-  ### Tecnologias utilizadas:  
+  ### Tecnologias utilizadas ✅  
 
   <br>
   <img align="center" alt="Rafa-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
