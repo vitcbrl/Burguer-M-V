@@ -47,16 +47,11 @@ Um pequeno restaurante de hambúrgueres, que está crescendo, necessita de uma i
 
 #### Telas de Login
 
-![Página Login](./src/assets/image.png)
+![Página Login](./src/assets/imagelogin.png)
 
-#### Telas Garçom
-
-##### Pedidos
+#### Telas Garçom - Pedidos e Pedidos à entregar
 
 ![Página Garçom](./src/assets/image-1.png)
-
-
-##### Pedidos à entregar
 
 ![Pedidos Garçom](./src/assets/image-2.png)
 
