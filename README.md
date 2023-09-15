@@ -27,7 +27,7 @@ Desenvolvido por:
 
 Um pequeno restaurante de hambúrgueres, que está crescendo, necessita de uma interface em que se possa realizar pedidos utilizando um tablet, e enviá-los para a cozinha para que sejam preparados de forma ordenada e eficiente. Neste projeto foi desenvolvido um sistema de pedidos onde o mesmo possui dois tipos de cardápios (Café da Manhã e Almoço e jantar). Nele foi realizado e implementado 3 tipos de acesso de acordo com a sua função, sendo eles o garçom, cozinheiro e administrador. O garçom deve ser capaz de acessar com sua credencial, anotar os pedidos dos clientes e enviá-los para a cozinha. O cozinheiro deve se autenticar no sistema e ter acesso aos pedidos pendentes e concluídos, finalizando com o administrador que deve ser capaz de acessar o sistema e ter acesso ao cadastro, edição e exclusão dos produtos e funcionários da hamburgueria.
 
-## 2. Histórias de usuários🔍
+## 2. Histórias de usuário🔍
 
 * <strong>História de usuário 1:</strong> Garçom/Garçonete deve poder entrar no sistema, caso o admin já lhe tenha dado as credenciais. Eu, como garçom/garçonete quero entrar no sistema de pedidos.
 
@@ -41,7 +41,7 @@ Um pequeno restaurante de hambúrgueres, que está crescendo, necessita de uma i
 
 * <strong>História de usuário 6:</strong> Administrador(a) de loja deve administrar os produtos. Eu como administrador(a) de loja quero gerenciar os produtos para manter atualizado o menu.
 
-## 3. Protótipo 🖊️
+## 3. Protótipo🖊️
 
 ### Versão Mobile - Tablet - Desktop
 
