@@ -18,7 +18,7 @@ Desenvolvido por:
 
 * [1. Resumo do projeto](#1-resumo-do-projeto)
 * [2. Histórias de usuário](#2-histórias-de-usuário)
-* [3. Protótipo](#3-protótipo)
+* [3. Protótipos](#3-Protótipos)
 * [4. Testes unitários](#4-testes-unitários)
 * [5. Tecnologias Utilizadas](#5-tecnologias-utilizadas)
 
@@ -41,7 +41,7 @@ Um pequeno restaurante de hambúrgueres, que está crescendo, necessita de uma i
 
 * <strong>História de usuário 6:</strong> Administrador(a) de loja deve administrar os produtos. Eu como administrador(a) de loja quero gerenciar os produtos para manter atualizado o menu.
 
-## 3. Protótipo🖊️
+## 3. Protótipos🖊️
 
 ### Versão Mobile - Tablet - Desktop
 
