@@ -58,7 +58,7 @@ Um pequeno restaurante de hambúrgueres, que está crescendo, necessita de uma i
 
 #### Telas Cozinheiro
 
-![Página Cozinheiro](./src/assets/image-3.png)
+![Página Cozinheiro](./src/assets/imagem-3.png)
 
 
 #### Telas Administrador
