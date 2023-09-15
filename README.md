@@ -17,7 +17,7 @@ Desenvolvido por:
 # Índice
 
 * [1. Resumo do projeto](#1-resumo-do-projeto)
-* [2. Histórias de usuário](#2-histórias-de-usuario)
+* [2. Histórias de usuário](#2-histórias-de-usuário)
 * [3. Protótipo](#3-protótipo)
 * [4. Testes unitários](#4-testes-unitários)
 * [5. Tecnologias Utilizadas](#5-tecnologias-utilizadas)
