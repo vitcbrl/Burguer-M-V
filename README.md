@@ -3,8 +3,7 @@
 # Burguer MV
 
 Desenvolvido por:
- 
-  <br>
+
   Mislene Moura<br>
   <a href="https://www.linkedin.com/in/mislenemoura/">Linkedin</a> | <a href="https://github.com/MisleneSM">Github</a>
   <br>
@@ -20,15 +19,15 @@ Desenvolvido por:
 * [1. Resumo do projeto](#1-resumo-do-projeto)
 * [2. Histórias de usuário](#2-histórias-de-usuario)
 * [3. Protótipo](#3-protótipo)
-* [4. Testes Unitários](#4-testes-unitários)
+* [4. Testes unitários](#4-testes-unitários)
 * [5. Tecnologias Utilizadas](#5-tecnologias-utilizadas)
 
 
-## 1. Resumo do Projeto 📓
+## 1. Resumo do Projeto📓
 
 Um pequeno restaurante de hambúrgueres, que está crescendo, necessita de uma interface em que se possa realizar pedidos utilizando um tablet, e enviá-los para a cozinha para que sejam preparados de forma ordenada e eficiente. Neste projeto foi desenvolvido um sistema de pedidos onde o mesmo possui dois tipos de cardápios (Café da Manhã e Almoço e jantar). Nele foi realizado e implementado 3 tipos de acesso de acordo com a sua função, sendo eles o garçom, cozinheiro e administrador. O garçom deve ser capaz de acessar com sua credencial, anotar os pedidos dos clientes e enviá-los para a cozinha. O cozinheiro deve se autenticar no sistema e ter acesso aos pedidos pendentes e concluídos, finalizando com o administrador que deve ser capaz de acessar o sistema e ter acesso ao cadastro, edição e exclusão dos produtos e funcionários da hamburgueria.
 
-## 2. Histórias de Usuários 🔍
+## 2. Histórias de usuários🔍
 
 * <strong>História de usuário 1:</strong> Garçom/Garçonete deve poder entrar no sistema, caso o admin já lhe tenha dado as credenciais. Eu, como garçom/garçonete quero entrar no sistema de pedidos.
 
@@ -48,38 +47,38 @@ Um pequeno restaurante de hambúrgueres, que está crescendo, necessita de uma i
 
 #### Telas de Login
 
-![Pagina Login](./src/assets/image-1.png)
+![Página Login](./src/assets/image.png)
 
 #### Telas Garçom
 
 ##### Pedidos
 
-![Pagina Garçom](./src/assets/image-2.png)
+![Página Garçom](./src/assets/image-1.png)
 
 
 ##### Pedidos à entregar
 
-![Pagina Garçom](./src/assets/image-3.png)
+![Pedidos Garçom](./src/assets/image-2.png)
 
 
 #### Telas Cozinheiro
 
-![Pagina Cozinheiro](./src/assets/image-4.png)
+![Página Cozinheiro](./src/assets/image-3.png)
 
 
 #### Telas Administrador
 
-![Pagina Administrador](./src/assets/image-5.png)
+![Página administrador](./src/assets/image-4.png)
 
 
-## 4. Testes unitários ✅
+## 4. Testes unitários✅
 
 Desenvolvemos testes unitários abrangendo as funcionalidades e garantindo mais segurança na usabilidade do sistema.
 
 ![Testes unitários](./src/assets/image-6.png)
 
 
-## 5. Tecnologias utilizadas ✅  
+## 5. Tecnologias utilizadas✅  
 <div align="center">
   <br>
   <img align="center" alt="Rafa-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
